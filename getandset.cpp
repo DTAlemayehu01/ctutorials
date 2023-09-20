@@ -4,8 +4,9 @@ using namespace std;
 
 class Movie{
 	//any attributes here can only be accessed by the Movie class, not even objects initalized by the class can use the private we can use public and private to control what can be set to a variable
+	//do not mix up with local/global variables, you can never access private members outside of the class
 	private:
-	//any code outside of class can access the variables and constructor
+	//any code outside of class can access the variables and constructor, but not the rating
 		string rating;
 	public:
 		string title;
@@ -34,6 +35,7 @@ int main()
 	Movie avengers("The Avengers", "Joss Whedon", "PG-13");
 	
 	//since we made rating private we need a function to grab the rating in order to print it
+	//an accessor function
 	cout << avengers.getRating() << endl;	
 
 	return 0;	

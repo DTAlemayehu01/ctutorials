@@ -18,8 +18,9 @@ class Book {
 		string author;
 		int pages;
 		//this is a constructor function it will execute when the class is called
-		//the constructor function must have the same name as the class
+		//the constructor function must have the same name as the class it has no return type
 		//it can also take parameters, but you must make sure each instance of the 'Book' class has the parameters when they're initalized
+		//unfortunately structs cant have member functions
 		Book(string name){
 			cout << name << " initalized!" << endl;
 		}
@@ -31,6 +32,9 @@ class Man {
 	string name;
 	int age;
 	double height;
+		//here's an example of function overloading a function with multiple definitions
+		//This is used to execute different functions depending how many arguments are passed
+
 		//often we use lowercase a before our name for a variable to indicate the variable is an argument (parameter)
 		Man(string aName, int aAge, double aHeight){
 			name = aName;

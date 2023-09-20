@@ -3,6 +3,14 @@
 using namespace std;
 
 class Chef {
+	//you can declare public and private members
+	//this is not the same as "scope" or local/global
+	//even if you call the class ordinarily like "Chef man.<private var> = value;" it won't work
+	//this is so there is finer control on how class data is accessed
+	
+	//the only way to access private data is with a public member function, this function
+	//can have checks to make sure the data passed to the private member
+	//is what the class definer wants in their private member
 	private:
 	
 	
