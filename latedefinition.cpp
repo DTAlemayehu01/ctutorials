@@ -22,3 +22,7 @@ int main()
 //Header file for declarations ".hpp"
 //Impletmentation file for definitions ".cpp"
 //Driver file for execution ".cpp"
+
+//The best part about segmenting these files is that
+//it can be resued by other programs later on by other programs
+//Purely by including the file in the directory
