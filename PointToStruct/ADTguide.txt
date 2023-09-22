@@ -1,0 +1,5 @@
+1. Make a header file and declarations
+2. Make a constructor 
+3. Make a display function
+4. Make an insert function
+5. Make a search function
