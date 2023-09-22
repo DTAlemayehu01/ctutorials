@@ -33,13 +33,13 @@ int main()
 	
 	
 	//pass a pointer by reference example
-	
+	int length2 = 2;
 	
 	//pass a pointer-pointer variable example
 	int length3 = 2;
-	int *array = new int[2];
+	int *array = new int[length3];
 	int **arr_pt = &array;
 	arr2xPP(arr_pt, &length3);
-
+	
 	return 0;	
 }
