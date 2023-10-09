@@ -1,0 +1,11 @@
+PSUEDOCODE VTO TRANSLATE TO C LATER:
+
+A = {4,2,3,6,0,9,5}
+
+ptr top = 4
+ptr top left = 2
+ptr top left right = 3
+ptr top right = 6
+ptr top left left 0
+ptr top right right = 9
+ptr top right left = 5
