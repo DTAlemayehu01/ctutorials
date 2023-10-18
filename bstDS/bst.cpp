@@ -1,3 +1,6 @@
+//we're segmenting functions as to prevent users from accessing private data
+//for example we can assign root using our private function and public function but the user can't because they only have access to public functions
+
 //Destructor
 BST::~BST(){
 	destorySubTree(root);
@@ -56,3 +59,23 @@ Node* getMin(currNode){
 		getMin(currNode->right);
 	}
 }
+
+//insert parent node functions
+void BST::insert(int data){
+	root = insertHelper(root, data);
+}
+
+//note these recursive implementations are very reduntant
+Node* BST::instertHelper(Node* currNode, int data){
+	if(currNode == nullptr){
+		return createNode(data);
+	} else if (currNode->key < data){
+		currNode->right = insertHelper(currNode->left,data);
+		currNode->right->parent = currNode;
+	}	else if (currNode->key > data){
+		currNode->left = insertHelper(currNode->left,data);
+		currNode->left->parent = currNode;
+	}
+	return currNode;
+}
+
