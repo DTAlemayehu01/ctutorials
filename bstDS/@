@@ -81,15 +81,14 @@ Node* BST::instertHelper(Node* currNode, int data){
 }
 
 //actual node deletion
-Node* getMin(currNode){
+//note this is actually declared
+/*Node* getMin(currNode){
 	if(currNode->value < currNode->right->value){
 		return currNode;
 	} else {
 		getMin(currNode->right);
 	}
-}
-
+}*/
 //complete later
-Node* rmNode(){
-	rsm->parent->left = rsm->right;
-}
+*Node deleteNode()
+	rsm->p
