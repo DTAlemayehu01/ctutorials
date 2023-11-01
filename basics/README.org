@@ -48,9 +48,9 @@ Finally we're going to write our output statement
 #+begin_src cpp :tangle no
     std::cout << "Hello World!" << std::endl;
 #+end_src
-=cout= is short for C-out, referring to C++ language output.
-=endl= is short for end line, which passes a line break into the terminal.
-As a part of the standard namespace (a concept we'll review later) =cout= and =endl= are called with an 'std::' prefix.
+=cout= is short for C-out, referring to C++ language output.\\
+=endl= is short for end line, which passes a line break into the terminal.\\
+As a part of the standard namespace (a concept we'll review later) =cout= and =endl= are called with an 'std::' prefix.\\
 For now, just know that in order to preform these specific functions we'll need to call 'std::' before =cout= and =endl=
 Every command in c++ ends in a semi-colon as that is how c++ knows theres an end of the program line.
 ** Step 4
@@ -58,9 +58,9 @@ To compile the completed program run
 #+begin_src
 g++ --std=c++11 hello.cpp
 #+end_src
-=g++= is the compiler.
-=--std=c++11= specifies to the compiler the c++ standard version to use for compiling.
-=hello.cpp= is the file name containing the code that will be compiled.
+=g++= is the compiler.\\
+=--std=c++11= specifies to the compiler the c++ standard version to use for compiling.\\
+=hello.cpp= is the file name containing the code that will be compiled.\\
 This will output the executable to the file =a.out= on UNIX systems (Linux and MacOS) and =a.exe= on Windows systems. To run it do
 #+begin_src
 ./a.out
