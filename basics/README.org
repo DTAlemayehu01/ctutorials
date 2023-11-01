@@ -8,15 +8,19 @@ Hi! Here are some basic tools that you'll need to get started programming in C++
 4. Debugger
 ** Text Editor/IDE
 Any basic text editor will work! Vim, Notepad++, Sublime or anything else!
+
 However, if going for an IDE like VSCode, JetBrains, Etc. you won't have to worry about opening a separate terminal window, as it'll be integrated in the IDE.
 ** Terminal
 Not much to say here. All that's needed is a terminal to execute the '.exe' or '.out' files generated from compiling the cpp files.
 ** Compiler
 C++ is a compiled language. That means that once the program is written another computer will need to take that code and turn it into machine code to be executed, rather than being intepreted or just-in-time compiled like Python and Lua respectively.
+
 Any C compiler will work, cmake, g++, etc.
+
 This tutorial will showcase compilation instructions using g++. The GNU general compiler for C++.
 ** Debugger
 This is something that will be explored in later sections, but this will make fixing C++ code easier.
+
 This tutorial will go over the Valgrind and GDB debuggers.
 * Hello World
 ** Objective: Understand basic program structure and output method
@@ -34,6 +38,7 @@ int main(){
 }
 #+end_src
 In here we have created a function called ~int main()~.
+
 This function is always executed on the start up of a cpp file and as good practice, will return an /integer/ value of 0 upon the successful execution of a program.
 ** Step 2
 In order for us to be able to print messages to the terminal we need to include a C++ library.
