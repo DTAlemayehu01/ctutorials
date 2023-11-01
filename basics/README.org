@@ -13,7 +13,7 @@ However, if going for an IDE like VSCode, JetBrains, Etc. you won't have to worr
 Not much to say here. All that's needed is a terminal to execute the '.exe' or '.out' files generated from compiling the cpp files.
 ** Compiler
 C++ is a compiled language. That means that once the program is written another computer will need to take that code and turn it into machine code to be executed, rather than being intepreted or just-in-time compiled like Python and Lua respectively.
-Any compiler will work, cmake, g++, etc.
+Any C compiler will work, cmake, g++, etc.
 This tutorial will showcase compilation instructions using g++. The GNU general compiler for C++.
 ** Debugger
 This is something that will be explored in later sections, but this will make fixing C++ code easier.
@@ -33,7 +33,7 @@ int main(){
       return 0;
 }
 #+end_src
-In here we have created a function called src_cpp{int main(){}}.
+In here we have created a function called =int main()=.
 This function is always executed on the start up of a cpp file and as good practice, will return an /integer/ value of 0 upon the successful execution of a program.
 ** Step 2
 In order for us to be able to print messages to the terminal we need to include a C++ library.
@@ -41,23 +41,35 @@ In order for us to be able to print messages to the terminal we need to include 
 #+begin_src cpp :tangle no
 #include<iostream>
 #+end_src
-IOStream, short for input-output stream allows us to take input from the terminal and output to the terminal as well, utilizing src_cpp{std::cout} and src_cpp{std::cin}.
+IOStream, short for input-output stream allows us to take input from the terminal and output to the terminal as well, utilizing =std::cout= and =std::cin=.
 ** Step 3
 Finally we're going to write our output statement
 #+Name: print statement
 #+begin_src cpp :tangle no
     std::cout << "Hello World!" << std::endl;
 #+end_src
-src_cpp{cout} is short for C-out, referring to C++ language output.
-src_cpp{endl} is short for end line, which passes a line break into the terminal.
-As a part of the standard namespace (a concept we'll review later) src_cpp{cout} and src_cpp{endl} are called with an 'std::' prefix.
-For now, just know that in order to preform these specific functions we'll need to call 'std::' before src_cpp{cout} and src_cpp{endl}
+=cout= is short for C-out, referring to C++ language output.
+=endl= is short for end line, which passes a line break into the terminal.
+As a part of the standard namespace (a concept we'll review later) =cout= and =endl= are called with an 'std::' prefix.
+For now, just know that in order to preform these specific functions we'll need to call 'std::' before =cout= and =endl=
 Every command in c++ ends in a semi-colon as that is how c++ knows theres an end of the program line.
 ** Step 4
 To compile the completed program run
 #+begin_src
 g++ --std=c++11 hello.cpp
 #+end_src
-src_bash{g++} is the compiler.
-src_bash{--std=c++11} specifies to the compiler the c++ standard version to use for compiling.
-src_bash{hello.cpp} is the file name containing the code that will be compiled.
+=g++= is the compiler.
+={--std=c++11= specifies to the compiler the c++ standard version to use for compiling.
+=hello.cpp= is the file name containing the code that will be compiled.
+This will output the executable to the file =a.out= on UNIX systems (Linux and MacOS) and =a.exe= on Windows systems. To run it do
+#+begin_src
+./a.out
+#+end_src
+Or
+#+begin_src
+./a.exe
+#+end_src
+Depending on the system you're using. The output should before
+#+begin_src
+Hello World!
+#+end_src
