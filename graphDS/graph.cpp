@@ -47,4 +47,41 @@ graph::bft(/*type*/ keyStart){
 	 *			3) n->adj[x].v->distance = n->distance+1; (we're incrementing the distance value for the distance to the relative node.
 	 * 		}
 	 * 6. If using bft (breadth first traversal again set items to unvisited
+	*/
+}
+
+graph::dft(/*type*/ keystart){
+	/*
+	 * 1. Find key of starting vertex
+	 * 2. Set vStart as "visited"
+	 * 3. create a stack (S)
+	 * 4. Push vStart on to S
+	 * 5. Loop until S is empty
+	 * 	i. n = pop;
+	 * 	ii. print(n->key) //basic operation on node
+	 * 	iii. loop through n's adj list in reverse order
+	 * 		1) if(!n-adj[i] == visited)
+	 * 			a) n->adj[i].visited = true
+	 * 			b) push on to (S)
+	 */
+}
+
+graph::dftRecursive(/*type*/ keystart){}
+
+//directed graphs
+graph::dijkstra(/*type*/ keystart){
+	/*
+	 * 1. Find vStart and mark solved
+	 * 2. Add vStart to solved List (L)
+	 * 3. Loop until at verticies marked
+	 * 	a. set variable minDist = "infinty"
+	 * 	b. Iterate through solved list(int i)
+	 * 		i. iteraete through solvedlist [i] and adj list (int j)
+	 * 			1) if solvedList[i]->adj[j].v not solved
+	 * 				a) calculate distance from vStart
+	 * 				b) if dist < minDist
+	 * 					i) set dist < minDist
+	 * 					ii) set minDist = dist
+	 * 	c. set solved v distance to min dist
+	 */
 }
