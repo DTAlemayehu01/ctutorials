@@ -1,0 +1,86 @@
+#+title: Hello World!
+
+* Getting Started
+Hi! Here are some basic tools that you'll need to get started programming in C++.
+1. Text Editor/IDE
+2. Terminal
+3. Compiler
+4. Debugger
+** Text Editor/IDE
+Any basic text editor will work! Vim, Notepad++, Sublime or anything else!
+
+However, if going for an IDE like VSCode, JetBrains, Etc. you won't have to worry about opening a separate terminal window, as it'll be integrated in the IDE.
+** Terminal
+Not much to say here. All that's needed is a terminal to execute the '.exe' or '.out' files generated from compiling the cpp files.
+** Compiler
+C++ is a compiled language. That means that once the program is written another computer will need to take that code and turn it into machine code to be executed, rather than being intepreted or just-in-time compiled like Python and Lua respectively.
+
+Any C compiler will work, cmake, g++, etc.
+
+This tutorial will showcase compilation instructions using g++. The GNU general compiler for C++.
+** Debugger
+This is something that will be explored in later sections, but this will make fixing C++ code easier.
+
+This tutorial will go over the Valgrind and GDB debuggers.
+* Hello World
+** Objective: Understand basic program structure and output method
+In this code we're going to showcase how we can output "Hello World" in the terminal
+** Step 1
+Here we are going to define basic C++ structure, fundamental for all code.
+#+Name: Hello World
+#+begin_src cpp :noweb strip-export :tangle hello.cpp
+<<Included Libraries>>
+
+int main(){
+<<print statement>>
+
+      return 0;
+}
+#+end_src
+In here we have created a function called ~int main()~.
+
+This function is always executed on the start up of a cpp file and as good practice, will return an /integer/ value of 0 upon the successful execution of a program.
+** Step 2
+In order for us to be able to print messages to the terminal we need to include a C++ library.
+#+Name: Included Libraries
+#+begin_src cpp :tangle no
+#include<iostream>
+#+end_src
+IOStream, short for input-output stream allows us to take input from the terminal and output to the terminal as well, utilizing =std::cout= and =std::cin=.
+** Step 3
+Finally we're going to write our output statement
+#+Name: print statement
+#+begin_src cpp :tangle no
+    std::cout << "Hello World!" << std::endl;
+#+end_src
+=cout= is short for C-out, referring to C++ language output.
+
+=endl= is short for end line, which passes a line break into the terminal.
+
+As a part of the standard namespace (a concept we'll review later) =cout= and =endl= are called with an 'std::' prefix.
+
+For now, just know that in order to preform these specific functions we'll need to call 'std::' before =cout= and =endl=
+Every command in c++ ends in a semi-colon as that is how c++ knows theres an end of the program line.
+** Step 4
+To compile the completed program run
+#+begin_src
+g++ --std=c++11 hello.cpp
+#+end_src
+=g++= is the compiler.
+
+=--std=c++11= specifies to the compiler the c++ standard version to use for compiling.
+
+=hello.cpp= is the file name containing the code that will be compiled.
+
+This will output the executable to the file =a.out= on UNIX systems (Linux and MacOS) and =a.exe= on Windows systems. To run it do
+#+begin_src
+./a.out
+#+end_src
+Or
+#+begin_src
+./a.exe
+#+end_src
+Depending on the system you're using. The output should before
+#+begin_src
+Hello World!
+#+end_src
