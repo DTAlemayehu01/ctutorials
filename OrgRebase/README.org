@@ -84,3 +84,39 @@ Depending on the system you're using. The output should before
 #+begin_src
 Hello World!
 #+end_src
+* Variables
+** Objective: Understand the basics of how data is managed in C++
+Here we'll showcase the basics of C++ data management, variables
+** Section 1: Variables Basics:
+Definition: A variable is a way to store some type of data under a sort of "nickname". This is so that the computer can reuse this piece of information throught a computer program.
+
+Below here is an example of a variable
+#+Name: Variable Example
+#+begin_src cpp :tangle :no
+int num = 5;
+#+end_src
+Here we are storing a variable of the ~int~ type with the name ~num~ and it is storing the number 5.
+
+There are a variety of variable datatypes so here's a list of the basic ones:
+- ~int~: short for /integer/, this variable datatype can only store whole numbers
+- ~char~: short for /character/, this variable stores a character, contained with ~' '~
+- ~bool~: short for /boolean/, this variable stores a value of /0/ or /1/, which represent /false/ and /true/ respectively. For now just know you can set ~bool~ vars equal to /false/ or /true/
+- ~string~: meaning a /string/ of /characters/, it can store a prose of characters and words of any length, it's best to imagine this data type as a "list" of /characters/ as there are a lot of special things that can be done with this data type
+- ~float~: not necesarily short for anything but it represents how it stores it's data. /Floats/ store /decimal/ numbers but because computers operate in the /base 2/ system they essentially need to make a number and float a decimal to the correct spot
+  - As an example if a computer wanted to represent the value ~5.13~ it first would need to represent the number ~513~ in binary and then float a decimal in between the 5 and the 1.
+
+Variables are great because we just need to declare them once and they can be used anywhere.
+#+begin_src cpp :noweb strip-export :tangle variables.cpp
+#include<iostream>
+
+int main () {
+    int num = 20;
+    char favChar = 'A';
+    string name = "John";
+
+    std::cout << "There once was a man named " << name << "." << std::endl;
+    std::cout << "He was " << num << " years old." << std::endl;
+    std::cout << "His favorite letter is " << favChar << std::endl;
+    std::cout << "He liked his name " << name << " but he wanted to be older than " << age << "." << std:: endl;
+}
+#+end_src
