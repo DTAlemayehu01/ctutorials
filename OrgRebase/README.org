@@ -1,5 +1,21 @@
 #+title: Hello World!
 
+* Table of Contents :toc:
+- [[#getting-started][Getting Started]]
+  - [[#text-editoride][Text Editor/IDE]]
+  - [[#terminal][Terminal]]
+  - [[#compiler][Compiler]]
+  - [[#debugger][Debugger]]
+- [[#hello-world][Hello World]]
+  - [[#objective-understand-basic-program-structure-and-output-method][Objective: Understand basic program structure and output method]]
+  - [[#step-1][Step 1]]
+  - [[#step-2][Step 2]]
+  - [[#step-3][Step 3]]
+  - [[#step-4][Step 4]]
+- [[#variables][Variables]]
+  - [[#objective-understand-the-basics-of-how-data-is-managed-in-c][Objective: Understand the basics of how data is managed in C++]]
+  - [[#section-1-variables-basics][Section 1: Variables Basics:]]
+
 * Getting Started
 Hi! Here are some basic tools that you'll need to get started programming in C++.
 1. Text Editor/IDE
@@ -91,8 +107,8 @@ Here we'll showcase the basics of C++ data management, variables
 Definition: A variable is a way to store some type of data under a sort of "nickname". This is so that the computer can reuse this piece of information throught a computer program.
 
 Below here is an example of a variable
-#+Name: Variable Example
-#+begin_src cpp :tangle :no
+#+NAME: Variable Example
+#+begin_src cpp :tangle no
 int num = 5;
 #+end_src
 Here we are storing a variable of the ~int~ type with the name ~num~ and it is storing the number 5.
@@ -106,6 +122,7 @@ There are a variety of variable datatypes so here's a list of the basic ones:
   - As an example if a computer wanted to represent the value ~5.13~ it first would need to represent the number ~513~ in binary and then float a decimal in between the 5 and the 1.
 
 Variables are great because we just need to declare them once and they can be used anywhere.
+#+NAME: Code Example
 #+begin_src cpp :noweb strip-export :tangle variables.cpp
 #include<iostream>
 
