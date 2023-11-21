@@ -150,6 +150,8 @@ But sometimes we won't know what ~int~ or other data the variable needs to be as
 *** Arithmetic
 With ~floats~, ~doubles~, and ~ints~ you can perform arithmetic operations on these variables and they'll follow PEMDAS rules in C++.
 
+In the following code examples below we can observe some addition syntax with ~int~ variables ~num1~ and ~num2~.
+
 Here we're adding two ~ints~ together and assigning the result to a variable.
 #+NAME: Add EX 1
 #+begin_src cpp :tangle no
@@ -194,3 +196,32 @@ int main () {
 16
 32
 #+end_src
+
+What's great about these operations is that they're essentially interchangable up to a certain extent. For example, you could do ~x*=x~ to multiply a variable ~x~ by itself but you wouldn't be able to do ~x**~ but you could do ~x--~ to decriment ~x~.
+
+Another thing to note is that when doing arithmetic the variables don't have to be of the same type. You can /add/, /subtract/, /muliply/, and /divide/ any combination of ~ints~, ~doubles~, and ~floats~. However, when you include ~doubles~ and ~floats~ in the arithmetic the answer is always going to be a precise number rather an a whole number like with regular ~int~ arithmetic.
+
+Another useful operation that doesn't fall under the umbrella of traditionall arithmetic is the modulo operation. An example is shown below.
+#+NAME: Modulo Math
+#+begin_src cpp :tangle no
+int x = 20;
+std::cout << x%3 << std::endl;
+#+end_src
+Here we have an ~int~ variable ~x~ and performing the modulo operation with the number 3. The result is:
+#+NAME: Modulo Output
+#+begin_src cpp :exports results :noweb strip-export :results code :tangle modulo.cpp
+#include<iostream>
+int main () {
+  <<Modulo Math>>
+  return 0;
+}
+#+end_src
+
+#+RESULTS: Modulo Output
+#+begin_src cpp
+2
+#+end_src
+The modulo operation actually finds and returns the remainder of a number if it was divided by another number. In our previous example if we do 20/3 we are left with a remainder of 2 which is what was outputted.
+
+There are more advanced math functions we'll be able to do with the ~<cmath>~ library that will be delved into later but for now we can also talk about string manipulation.
+*** String/Char Manipulation
