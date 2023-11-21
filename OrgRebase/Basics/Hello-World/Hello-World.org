@@ -45,7 +45,7 @@ Here we are going to define basic C++ structure, fundamental for all code.
 <<Included Libraries>>
 
 int main(){
-<<print statement>>
+      <<print statement>>
 
       return 0;
 }
@@ -64,7 +64,7 @@ IOStream, short for input-output stream allows us to take input from the termina
 Finally we're going to write our output statement
 #+Name: print statement
 #+begin_src cpp :tangle no
-    std::cout << "Hello World!" << std::endl;
+std::cout << "Hello World!" << std::endl;
 #+end_src
 =cout= is short for C-out, referring to C++ language output.
 

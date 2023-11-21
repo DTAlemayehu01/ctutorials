@@ -9,4 +9,6 @@ int main () {
     std::cout << "He was " << num << " years old." << std::endl;
     std::cout << "His favorite letter is " << favChar << std::endl;
     std::cout << "He liked his name " << name << " but he wanted to be older than " << num << "." << std:: endl;
+
+    return 0;
 }

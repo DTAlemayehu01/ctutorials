@@ -43,6 +43,8 @@ int main () {
     std::cout << "He was " << num << " years old." << std::endl;
     std::cout << "His favorite letter is " << favChar << std::endl;
     std::cout << "He liked his name " << name << " but he wanted to be older than " << num << "." << std:: endl;
+
+    return 0;
 }
 #+end_src
 
@@ -95,6 +97,8 @@ For example, if I want to print the first element of ~arrayOfNums~ you'd write
 int main () {
     <<Array>>
     std::cout << arrayOfNums[0] << std::endl;
+
+    return 0;
 }
 #+end_src
 Which outputs:
@@ -106,11 +110,14 @@ If we recall the data stored in the array ~{4, 0, 8 ,12}~ we see that 4 is the f
 With our matrix we can do a similar thing.
 
 For exa,ple, if we want to print out the first element in the second array we would write
-#+begin_src cpp :noweb strip-export :results code :tangle array.cpp
+#+Name: Matrix Printing EX 1
+#+begin_src cpp :noweb strip-export :results code :tangle matrix.cpp
 #include<iostream>
 int main() {
     <<Matrix>>
     std::cout << matrix[1][0] << std::endl;
+
+    return 0;
 }
 #+end_src
 Which outputs:
@@ -138,3 +145,55 @@ In the example above, we had declared an ~int~ variable ~n~ storing the number 5
 
 But sometimes we won't know what ~int~ or other data the variable needs to be assigned. Which is why there are methods for manipulating variables.
 *** Arithmetic
+With ~floats~, ~doubles~, and ~ints~ you can perform arithmetic operations on these variables and they'll follow PEMDAS rules in C++.
+
+Here are a list of the arithmetic operations and methods associated with them:
+- Addition
+  Here we're adding two ~ints~ together and assigning the result to a variable.
+  #+NAME: Add EX 1
+  #+begin_src cpp :tangle no
+  int num1 = 5 + 5;
+  std::cout << num1 << std::endl;
+  #+end_src
+  You can also add a number variable to a number to. Here we're adding 5 to the previous variable ~num1~.
+  #+NAME: Add EX 2
+  #+begin_src cpp :tangle no
+  int num2 = num1 + 5;
+  std::cout << num2 << std::endl;
+  #+end_src
+  There are also shortcuts to doing simple things, like incrementing variables. Here we increment ~num2~ by exactly 1.
+  #+NAME: Add EX 3
+  #+begin_src cpp :tangle no
+  num2++;
+  std::cout << num2 << std::endl;
+  #+end_src
+  Finally we can also increment a variable by itself. Here we increment ~num2~ by a value of itself.
+  #+NAME: Add EX 4
+  #+begin_src cpp :tangle no
+  num2 += num2;
+  std::cout << num2 << std::endl;
+  #+end_src
+  So when we output the results we obtain the following
+  #+NAME: Addtion
+  #+begin_src cpp :exports results :noweb strip-export :results code :tangle addition.cpp
+  #include<iostream>
+  int main () {
+    <<Add EX 1>>
+    <<Add EX 2>>
+    <<Add EX 3>>
+    <<Add EX 4>>
+  }
+  #+end_src
+
+  #+RESULTS: Addtion
+  #+begin_src cpp
+  10
+  15
+  16
+  32
+  #+end_src
+
+- Subtraction
+- Multiplication
+- Division
+- Modulo
