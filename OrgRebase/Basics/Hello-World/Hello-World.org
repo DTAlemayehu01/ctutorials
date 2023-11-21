@@ -50,6 +50,12 @@ int main(){
       return 0;
 }
 #+end_src
+
+#+RESULTS: Hello World
+#+begin_src cpp
+Hello World!
+#+end_src
+
 In here we have created a function called ~int main()~.
 
 This function is always executed on the start up of a cpp file and as good practice, will return an /integer/ value of 0 upon the successful execution of a program.
@@ -93,8 +99,4 @@ Or
 #+begin_src
 ./a.exe
 #+end_src
-Depending on the system you're using. The output should before
-#+RESULTS: Hello World
-#+begin_src cpp
-Hello World!
-#+end_src
+Depending on the system you're using. The output should be:
