@@ -41,7 +41,7 @@ In this code we're going to showcase how we can output "Hello World" in the term
 ** Step 1
 Here we are going to define basic C++ structure, fundamental for all code.
 #+Name: Hello World
-#+begin_src cpp :noweb strip-export :results code :export both :tangle hello.cpp
+#+begin_src cpp :noweb strip-export :results code :exports both :tangle hello.cpp
 <<Included Libraries>>
 
 int main(){
