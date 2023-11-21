@@ -1,0 +1,8 @@
+#+title: Linked List
+
+* Table of Contents :toc:
+- [[#objective][Objective]]
+- [[#linked-list][Linked List]]
+
+* Objective
+* Linked List

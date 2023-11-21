@@ -1,0 +1,8 @@
+#+title: Graph
+
+* Table of Contents :toc:
+- [[#objective][Objective]]
+- [[#graph][Graph]]
+
+* Objective
+* Graph

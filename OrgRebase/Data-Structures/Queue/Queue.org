@@ -1,0 +1,8 @@
+#+title: Queue
+
+* Table of Contents :toc:
+- [[#objective][Objective]]
+- [[#queue][Queue]]
+
+* Objective
+* Queue

@@ -1,0 +1,10 @@
+#+title: Functions
+
+* Table of Contents :toc:
+- [[#objective][Objective]]
+- [[#basics-functions][Basics Functions]]
+  - [[#recursive-function][Recursive Function]]
+
+* Objective
+* Basics Functions
+** Recursive Function

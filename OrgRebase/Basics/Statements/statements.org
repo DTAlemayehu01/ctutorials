@@ -1,0 +1,12 @@
+#+title: Statements
+
+* Table of Contents :toc:
+- [[#objective][Objective]]
+- [[#condtionals][Condtionals]]
+- [[#if-statements][If Statements]]
+- [[#switch-statements][Switch Statements]]
+
+* Objective
+* Condtionals
+* If Statements
+* Switch Statements

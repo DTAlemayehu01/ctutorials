@@ -1,0 +1,12 @@
+#+title: Loops
+
+* Table of Contents :toc:
+- [[#objective][Objective]]
+- [[#while-loops][While Loops]]
+- [[#do-while-loops][Do While Loops]]
+- [[#for-loops][For Loops]]
+
+* Objective
+* While Loops
+* Do While Loops
+* For Loops

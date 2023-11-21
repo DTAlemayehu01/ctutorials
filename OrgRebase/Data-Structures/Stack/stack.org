@@ -1,0 +1,8 @@
+#+title: Stack
+
+* Table of Contents :toc:
+- [[#objective][Objective]]
+- [[#stack][Stack]]
+
+* Objective
+* Stack
