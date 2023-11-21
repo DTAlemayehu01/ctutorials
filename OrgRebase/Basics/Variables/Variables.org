@@ -31,7 +31,7 @@ There are a variety of variable datatypes so here's a list of the basic ones:
 
 Variables are great because we just need to declare them once and they can be used anywhere.
 #+NAME: Variable-Story-Example
-#+begin_src cpp :noweb strip-export :results code :tangle variables.cpp
+#+begin_src cpp :exports both :noweb strip-export :results code :tangle variables.cpp
 #include<iostream>
 
 int main () {
@@ -47,9 +47,8 @@ int main () {
     return 0;
 }
 #+end_src
-
-The output should be...
-
+The output should be:
+#+RESULTS: Variable-Story-Example
 #+begin_src cpp
 There once was a man named John.
 He was 20 years old.
@@ -92,7 +91,7 @@ The great part about arrays is that each item is still easily accessible thanks 
 
 For example, if I want to print the first element of ~arrayOfNums~ you'd write
 #+NAME: Array Printing EX 1
-#+begin_src cpp :noweb strip-export :results code :tangle array.cpp
+#+begin_src cpp :exports both :noweb strip-export :results code :tangle array.cpp
 #include<iostream>
 int main () {
     <<Array>>
@@ -102,16 +101,18 @@ int main () {
 }
 #+end_src
 Which outputs:
+#+RESULTS: Array Printing EX 1
 #+begin_src cpp
 4
 #+end_src
+
 If we recall the data stored in the array ~{4, 0, 8 ,12}~ we see that 4 is the first element despite being referenced in code as the 0th element. In arrays elements are indexed from 0 to /arraySize-1/ with ~arraySize~ being the number of elements in the array.
 
 With our matrix we can do a similar thing.
 
 For exa,ple, if we want to print out the first element in the second array we would write
 #+Name: Matrix Printing EX 1
-#+begin_src cpp :noweb strip-export :results code :tangle matrix.cpp
+#+begin_src cpp :exports both :noweb strip-export :results code :tangle matrix.cpp
 #include<iostream>
 int main() {
     <<Matrix>>
@@ -121,9 +122,11 @@ int main() {
 }
 #+end_src
 Which outputs:
+#+RESULTS: Matrix Printing EX 1
 #+begin_src cpp
 6
 #+end_src
+
 The first number is telling us to look at the 2nd list containing the 2 item array of ints, ~{6,8}~. The second number tells us to look at the first element of that array, 6.
 
 One serious limitation about arrays in C++ however is that they can not have their size changed (there are caveats to this that will be discussed later) like how they can be in other languages like Python.
