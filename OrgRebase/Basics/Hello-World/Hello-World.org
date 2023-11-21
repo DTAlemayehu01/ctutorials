@@ -95,4 +95,9 @@ Or
 ./a.exe
 #+end_src
 Depending on the system you're using. The output should be:
-#+CALL: Hello World() :export results :results code
+#+CALL: Hello World()[:export results :results code]
+
+#+RESULTS:
+#+begin_src cpp
+Hello World!
+#+end_src
