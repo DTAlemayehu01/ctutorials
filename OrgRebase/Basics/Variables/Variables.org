@@ -5,6 +5,7 @@
   - [[#objective-understand-the-basics-of-how-data-is-managed-in-c][Objective: Understand the basics of how data is managed in C++]]
   - [[#section-1-variables-basics][Section 1: Variables Basics]]
   - [[#section-2-arrays][Section 2: Arrays]]
+  - [[#section-3-variable-manipulation][Section 3: Variable Manipulation]]
 
 * Variables
 ** Objective: Understand the basics of how data is managed in C++
@@ -20,12 +21,13 @@ int num = 5;
 Here we are storing a variable of the ~int~ type with the name ~num~ and it is storing the number 5.
 
 There are a variety of variable datatypes so here's a list of the basic ones:
-- ~int~: short for /integer/, this variable datatype can only store whole numbers
+- ~int~: short for /integer/, this variable datatype can only store whole numbers, positive or negative
 - ~char~: short for /character/, this variable stores a character, contained with ~' '~
 - ~bool~: short for /boolean/, this variable stores a value of /0/ or /1/, which represent /false/ and /true/ respectively. For now just know you can set ~bool~ vars equal to /false/ or /true/
 - ~std::string~: meaning a /string/ of /characters/, it can store a prose of characters and words of any length, it's best to imagine this data type as a "list" of /characters/ as there are a lot of special things that can be done with this data type
 - ~float~: not necesarily short for anything but it represents how it stores it's data. /Floats/ store /decimal/ numbers but because computers operate in the /base 2/ system they essentially need to make a number and float a decimal to the correct spot
   - As an example if a computer wanted to represent the value ~5.13~ it first would need to represent the number ~513~ in binary and then float a decimal in between the 5 and the 1.
+- ~double~: a more accurate version of a float but takes up more memory as a trade-off.
 
 Variables are great because we just need to declare them once and they can be used anywhere.
 #+NAME: Variable-Story-Example
@@ -46,7 +48,6 @@ int main () {
 
 The output should be...
 
-#+RESULTS: Variable-Story-Example
 #+begin_src cpp
 There once was a man named John.
 He was 20 years old.
@@ -58,3 +59,82 @@ As evidenced by the output, there are some commonly repeated words and numbers i
 
 But we don't have to store just one unit of data in each variable, we can store a list of data in all the variable types as well!
 ** Section 2: Arrays
+Array: A List of a /predetermined/ size (set before compile time) of a specific data /type/.
+
+There are two different ways an array can be called.
+
+If you want an empty array (of ~ints~) of size 20 the declaration is.
+#+begin_src cpp
+int arrayOfNums[20];
+#+end_src
+The ~int~ array ~arrayOfNums~ now has 20 spots where data of ~int~ type can be inserted.
+
+If you already know what data you want in your array you can also declare it in the following way.
+#+NAME: Array
+#+begin_src cpp :tangle no
+int arrayOfNums[] = {4, 0, 8, 12};
+#+end_src
+Here I have an array of size 4 and an item in each array.
+
+You can even have arrays of arrays!
+#+NAME: Matrix
+#+begin_src cpp :tangle no
+int matrix[2][2] = {
+                    {2,4},
+                    {6,8}
+                    };
+#+end_src
+Here we have 2 arrays in the ~matrix~ array of size 2 each!
+
+The great part about arrays is that each item is still easily accessible thanks to indicies!
+
+For example, if I want to print the first element of ~arrayOfNums~ you'd write
+#+NAME: Array Printing EX 1
+#+begin_src cpp :noweb strip-export :results code :tangle array.cpp
+#include<iostream>
+int main () {
+    <<Array>>
+    std::cout << arrayOfNums[0] << std::endl;
+}
+#+end_src
+Which outputs:
+#+begin_src cpp
+4
+#+end_src
+If we recall the data stored in the array ~{4, 0, 8 ,12}~ we see that 4 is the first element despite being referenced in code as the 0th element. In arrays elements are indexed from 0 to /arraySize-1/ with ~arraySize~ being the number of elements in the array.
+
+With our matrix we can do a similar thing.
+
+For exa,ple, if we want to print out the first element in the second array we would write
+#+begin_src cpp :noweb strip-export :results code :tangle array.cpp
+#include<iostream>
+int main() {
+    <<Matrix>>
+    std::cout << matrix[1][0] << std::endl;
+}
+#+end_src
+Which outputs:
+#+begin_src cpp
+6
+#+end_src
+The first number is telling us to look at the 2nd list containing the 2 item array of ints, ~{6,8}~. The second number tells us to look at the first element of that array, 6.
+
+One serious limitation about arrays in C++ however is that they can not have their size changed (there are caveats to this that will be discussed later) like how they can be in other languages like Python.
+
+As a result, it is important to take care in noting the size of your array in your programs.
+
+If you try to access an item outside of the bounds of the array the result is a /segmentation fault/, this isn't the only thing that'll cause a /segmentation fault/ and we'll go over later in depth what exactly a segmentation fault is.
+
+For now, just remember to stay within the "bounds" (0,size-1) in your array.
+** Section 3: Variable Manipulation
+Sometimes, variable data needs to be adjusted.
+
+You can manually reassign data to a variable like such in the following example
+#+begin_src cpp
+int n = 5;
+n = 10;
+#+end_src
+In the example above, we had declared an ~int~ variable ~n~ storing the number 5. Because we had already declared var ~n~ of type ~int~ we do not need to redeclare it's type (that would result in an error) so we can simply just call var ~n~ and reassign it's value to 10.
+
+But sometimes we won't know what ~int~ or other data the variable needs to be assigned. Which is why there are methods for manipulating variables.
+*** Arithmetic
