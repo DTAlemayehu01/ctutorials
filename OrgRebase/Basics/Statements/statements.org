@@ -7,6 +7,12 @@
 - [[#switch-statements][Switch Statements]]
 
 * Objective
+In this section we'll learn about conditonal operations in C++ and conditional operations.
 * Condtionals
+All data types in c++ can be compared. However, ther eare some restrictions on what data types can be compared to what datatypes.
+- ~ints~, ~floats~, and ~doubles~ can all be freely compared with each other
+- ~std::sting~ and ~char~ can only be compared with data of the same type.
+- And ~bool~ can only utilize equity comparisons, not true and false comparisons.
+
 * If Statements
 * Switch Statements
