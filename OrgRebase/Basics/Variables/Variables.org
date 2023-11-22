@@ -24,7 +24,7 @@ There are a variety of variable datatypes so here's a list of the basic ones:
 - ~int~: short for /integer/, this variable datatype can only store whole numbers, positive or negative
 - ~char~: short for /character/, this variable stores a character, contained with ~' '~
 - ~bool~: short for /boolean/, this variable stores a value of /0/ or /1/, which represent /false/ and /true/ respectively. For now just know you can set ~bool~ vars equal to /false/ or /true/
-- ~std::string~: meaning a /string/ of /characters/, it can store a prose of characters and words of any length, it's best to imagine this data type as a "list" of /characters/ as there are a lot of special things that can be done with this data type
+- ~std::string~: meaning a /string/ of /characters/, it can store a prose of characters and words of any length, it's best to imagine this data type as a "list" of /characters/ as there are a lot of special things that can be done with this data type, strings are contained with ~" "~
 - ~float~: not necesarily short for anything but it represents how it stores it's data. /Floats/ store /decimal/ numbers but because computers operate in the /base 2/ system they essentially need to make a number and float a decimal to the correct spot
   - As an example if a computer wanted to represent the value ~5.13~ it first would need to represent the number ~513~ in binary and then float a decimal in between the 5 and the 1.
 - ~double~: a more accurate version of a float but takes up more memory as a trade-off.
@@ -197,7 +197,7 @@ int main () {
 32
 #+end_src
 
-What's great about these operations is that they're essentially interchangable up to a certain extent. For example, you could do ~x*=x~ to multiply a variable ~x~ by itself but you wouldn't be able to do ~x**~ but you could do ~x--~ to decriment ~x~.
+What's great about these operations is that they're essentially interchangable up to a certain extent. For example, you could do ~x*=x~ to multiply a variable ~x~ by itself but you wouldn't be able to do ~x**~ but you could do ~x--~ to decriment ~x~ by 1.
 
 Another thing to note is that when doing arithmetic the variables don't have to be of the same type. You can /add/, /subtract/, /muliply/, and /divide/ any combination of ~ints~, ~doubles~, and ~floats~. However, when you include ~doubles~ and ~floats~ in the arithmetic the answer is always going to be a precise number rather an a whole number like with regular ~int~ arithmetic.
 
@@ -225,3 +225,132 @@ The modulo operation actually finds and returns the remainder of a number if it 
 
 There are more advanced math functions we'll be able to do with the ~<cmath>~ library that will be delved into later but for now we can also talk about string manipulation.
 *** String/Char Manipulation
+We also have a variety of ways to manipulate the ~std::string~ and ~char~ data types too.
+
+One basic manipulation we can do is increment a ~char~. Because every ~char~ representable by C++ is a part of the ASCII table we can tie a direct number to the ~char~. Below is an example of us incrementing a ~char~ ~x~ by a unit of 1.
+#+NAME: Char Manipulation
+#+begin_src cpp :tangle no
+char x = 'a';
+std::cout << x << std::endl;
+x = x + 1;
+std::cout << x << std::endl;
+#+end_src
+The result is:
+#+Name: Char Eval
+#+begin_src cpp :exports results :noweb strip-export :results code :tangle char.cpp
+#include<iostream>
+int main () {
+    <<Char Manipulation>>
+    return 0;
+}
+#+end_src
+
+#+RESULTS: Char Eval
+#+begin_src cpp
+a
+b
+#+end_src
+One important thing to note when doing ~char~ arithmetic is that there are only 128 characters in the traditional ASCII table so be sure to note that you don't go over the maximum ASCII ~char~ value.
+
+We had previously discussed that ~std::strings~ are actually a "string of ~chars~". Utilizing what we know about arrays we can reference any character in the string. Like in the example below
+
+#+NAME: String Array
+#+begin_src cpp :tangle no
+std::string x = "I have friends!\nThey're cool!";
+std::cout << x << std::endl;
+std::cout << x[0] << std::endl;
+#+end_src
+
+#+Name: String Array Eval
+#+begin_src cpp :exports results :noweb strip-export :results code :tangle stringarray.cpp
+#include<iostream>
+int main () {
+    <<String Array>>
+    return 0;
+}
+#+end_src
+The output is:
+#+RESULTS: String Array Eval
+#+begin_src cpp
+I have friends!
+They're cool!
+I
+#+end_src
+Notice the first letter in the string is the capital /I/. And we reference the first letter by calling the ~std::string x~ variable and the ~[0]~ index.
+
+Note: In our output the string actually takes up two lines. This is because of ~\n~ which represents a line-break and can be used as a replacement for ~std::endl~.
+
+You can also concactenate strings which is combines the two strings into one. Check the following example below.
+#+NAME: Concactenation
+#+begin_src cpp :tangle no
+std::string x = "a";
+std::string y = "b";
+std::cout << x << std::endl;
+std::cout << y << std::endl;
+x = x + y;
+std::cout << x << std::endl;
+std::cout << y << std::endl;
+#+end_src
+
+#+Name: Concactenation Eval
+#+begin_src cpp :exports results :noweb strip-export :results code :tangle concactenation.cpp
+#include<iostream>
+int main () {
+    <<Concactenation>>
+    return 0;
+}
+#+end_src
+The output should be:
+#+RESULTS: Concactenation Eval
+#+begin_src cpp
+a
+b
+ab
+b
+#+end_src
+Above we declare ~std::strings~ ~x~ and ~y~ and print their values. Then we combine the ~std::string x~ with ~std::string y~ which results in the combined value of ~ab~. The value of ~y~ stays the same.
+
+~std::string~ also comes with useful methods that can be used on the variables to apply helpful manipulations. Observe the examples below.
+#+NAME: String functions
+#+begin_src cpp :tangle no
+std::string x = "Behold the Tenno, come to scavenge and desecrate this sacred realm.\nLook at them. They come to this place when they know they are not pure.\nMy brothers, did I not tell of this day? Did I not prophesise this moment?";
+std::cout << x << std::endl;
+std::cout << x.length() << std::endl;
+std::cout << x.find("I",0) << std::endl;
+std::cout << x.find("I",180) << std::endl;
+std::cout << x.substr(11,5) << std::endl;
+std::cout << x.substr(61,5) << std::endl;
+#+end_src
+
+#+Name: String functions eval
+#+begin_src cpp :exports results :noweb strip-export :results code :tangle stringfunctions.cpp
+#include<iostream>
+int main () {
+    <<String functions>>
+    return 0;
+}
+#+end_src
+The output should be:
+#+RESULTS: String functions eval
+#+begin_src cpp
+Behold the Tenno, come to scavenge and desecrate this sacred realm.
+Look at them. They come to this place when they know they are not pure.
+My brothers, did I not tell of this day? Did I not prophesise this moment?
+214
+157
+185
+Tenno
+realm
+#+end_src
+Here is an explaination of what each of the functions in the code is doing.
+- ~x.length()~ returns the length of the string which is /214/ characters.
+- ~x.find(std::string string, int index)~ takes ~std::string string~ and ~int index~ as inputs and returns index value of the first instance of that ~std:string string~ within ~std::string x~ startin from index ~int index~
+  - In the 5th line of the output we can see that "I" was found at the 157th index of ~std::string x~.
+  - But in the 6th line because we specified a different starting index the string "I" is said to be found at the 185th index of ~std::string x~
+- ~x.substr(int index, int size)~ takes ~int index~ and ~int size~ as inputs and returns the string in ~std::string x~ starting from index ~int index~ and ending at ~int size~ from ~int index~.
+  - In the 7th line we ask for the string of /size 5/ starting from /index 11/ in x which returns the string "Tenno" in the output.
+    - Notice that the 11th index in ~std::string x~ is "T" and that the string is 5 characters long.
+    - Also notice how the ~x.substr()~ reads from left to right. So in this example we wont get "the T" as our output because the first letter has to be "T"
+  - In the 8th line we ask for the string of /size 5/ again but starting from /index 61/ which retruns the string "realm".
+    - Notice that the 61st index in ~std::string x~ is "r" and that the string is 5 characters long.
+    - Also notice how the ~x.substr()~ reads from left to right again in this example. So in this example we wont get "red r" as our output because the first letter has to be "r"
