@@ -1,0 +1,72 @@
+#+title: Ctutorial Todos
+
+* TODO Write Org Sections [0/3]
+** TODO Basics [2/9]
+*** DONE Hello World
+CLOSED: [2023-11-09 Thu 02:02]
+- CLOSING NOTE [2023-11-09 Thu 02:02] \\
+  Wrote hello.cpp tangle
+*** DONE Variables [3/3]
+CLOSED: [2023-11-21 Tue 21:23]
+- CLOSING NOTE [2023-11-21 Tue 21:23]
+- [X] Data Types
+- [X] Arrays
+- [X] Variable Manipulation [2/2]
+  - [X] Arithmetic
+  - [X] Concactenation
+*** TODO Statements [0/3]
+- [ ] Conditionals
+- [ ] If Statements
+- [ ] Switch Statements
+*** TODO Loops [0/4]
+- [ ] While Loops
+- [ ] Do While Loops
+- [ ] For Loops
+*** TODO Libraries [0/4]
+- [ ] IOStream
+- [ ] Fstream
+- [ ] CMath
+- [ ] CCType
+*** TODO Functions
+- [ ] Basic Functions
+*** TODO Classes
+*** TODO Pointers
+*** TODO Vector
+** TODO Data Structures [0/9]
+*** TODO Linked Lists [0/3]
+**** [ ] Singly Linked List
+**** [ ] Doubly Linked List
+**** [ ] Circular Linked List
+*** TODO Stack [0/2]
+**** [ ] Array Based
+**** [ ] Linked List Based
+*** TODO Queue [0/2]
+**** [ ] Circular Array Based
+**** [ ] Linked List Based
+*** TODO Binary Tree [0/2]
+**** [ ] Binary Search
+**** [ ] Red-Black Tree
+*** TODO Graph [0/4]
+**** [ ] Undirected Graph
+**** [ ] Directed Graph
+**** [ ] Unweighted Graph
+**** [ ] Weighted Graph
+*** TODO Hash DS [0/3]
+**** [ ] Hash Division
+**** [ ] Hash Muliplication
+*** TODO Misc Data Structures [0/2]
+- [ ] Min/Max Heap
+- [ ] Priority Queue
+** TODO Main OrgReadme [0/4]
+- [ ] Heading Links, ToC
+- [ ] Introduction
+- [ ] Contribution
+* TODO Fix Errors in Branches [1/5]
+- [X] arrays.cpp
+  matrix references item out of bounds, fixed in OrgRebase branch
+- [ ] Hello-World.org not displaying cpp output
+  so i can't use the export option to display both #+Results: and the code if both are under different headings
+- [ ] Get 4th level heading to appear in ToC of variables.org
+- [ ] Explain multivariable declaration in c++
+- [ ] Fix BST Insert
+  - It should return currNode upon finishing the node->left or node->right iteration
