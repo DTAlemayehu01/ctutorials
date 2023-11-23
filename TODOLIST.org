@@ -1,7 +1,7 @@
 #+title: Ctutorial Todos
 
 * TODO Write Org Sections [0/3]
-** TODO Basics [2/9]
+** TODO Basics [2/10]
 *** DONE Hello World
 CLOSED: [2023-11-09 Thu 02:02]
 - CLOSING NOTE [2023-11-09 Thu 02:02] \\
@@ -14,8 +14,8 @@ CLOSED: [2023-11-21 Tue 21:23]
 - [X] Variable Manipulation [2/2]
   - [X] Arithmetic
   - [X] Concactenation
-*** TODO Statements [0/3]
-- [ ] Conditionals
+*** TODO Statements [1/3]
+- [X] Conditionals
 - [ ] If Statements
 - [ ] Switch Statements
 *** TODO Loops [0/4]
@@ -28,7 +28,9 @@ CLOSED: [2023-11-21 Tue 21:23]
 - [ ] CMath
 - [ ] CCType
 *** TODO Functions
-- [ ] Basic Functions
++ [ ] Int main
++ [ ] Command line arguments
++ [ ] Basic Functions
 *** TODO Classes
 *** TODO Pointers
 *** TODO Vector
