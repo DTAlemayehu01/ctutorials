@@ -143,49 +143,67 @@ If both ~isWitch~ and ~isFemale~ are false the result is:
 #+begin_src cpp
 Hello there, Cheshire!
 #+end_src
-
+Just note that you don't always have to use variables in ~if~ statements. You could also write something like ~if (2 < 7) {}~ and that would still be valid syntax.
 * Switch Statements
 Sometimes ~if~ Statements can get really long and tedious, so C++ has a thing called ~switch~ Statements to make them more readable.
 
-Let's say we want a certain phrase, like a day, to print based on what number
-#+begin_src cpp :exports both :noweb strip-export :results code :tangle switch.cpp
-string getDayOfWeek(int dayNum){
-	string dayName;
-
-	//this is a switch statement each case handles a different input which in this case is a number, switch statemets are useful when trying to execute lines of code depending on the output of a single variable in this case the number of daynum
-	switch(dayNum){
-	//here dayNum=0 in the input so thus case 0 is executed
-	case 0:
-		dayName = "Sunday";
-		break;
-	case 1:
-		dayName = "Monday";
-		break;
-
-	case 2:
-		dayName = "Tuesday";
-		break;
-
-	case 3:
-		dayName = "Wednesday";
-		break;
-
-	case 4:
-		dayName = "Thursday";
-		break;
-
-	case 5:
-		dayName = "Friday";
-		break;
-
-	case 6:
-		dayName = "Saturday";
-		break;
-	//this is the executed code if none of the other conditions are met
-	default:
-		dayName = "Invalid Day Number";
-		break;
-	}
-	return dayName;
+Let's say I want to print a certain phrase /if/ a variable is a certain value. We can use the switch statement below to achieve that.
+#+NAME: Basic Switch
+#+begin_src cpp :exports both :noweb strip-export :results code
+#include<iostream>
+int main () {
+    switch (numberOfShoes) {
+        case 0:
+            std::cout << "No Drip" << std::endl;
+            break;
+        case 1:
+            std::cout << "Some Drip" << std::endl;
+        default:
+            std::cout << "How many shoes was that?" << std::endl;
+            break;
+    }
 }
 #+end_src
+#+NAME: Basic Switch
+#+begin_src cpp :exports none :noweb strip-export :tangle basicswitch.cpp
+#include<iostream>
+int main () {
+    //be sure to assign a value so the program can compile
+    int numberOfShoes;
+    switch (numberOfShoes) {
+        case 0:
+            std::cout << "No Drip" << std::endl;
+            break;
+        case 1:
+            std::cout << "Some Drip" << std::endl;
+            break;
+        default:
+            std::cout << "How many shoes was that?" << std::endl;
+            break;
+    }
+}
+#+end_src
+If ~numberOfShoes = 0~ the output is:
+#+CALL: Basic Switch[:var numberOfShoes=0]()
+#+RESULTS:
+#+begin_src cpp
+No Drip
+#+end_src
+If ~numberOfShoes = 1~ the output is:
+#+CALL: Basic Switch[:var numberOfShoes=1]()
+#+RESULTS:
+#+begin_src cpp
+Some Drip
+How many shoes was that?
+#+end_src
+If ~numberOfShoes != 0~ /and/ ~numberOfShoes != 1~ the output is:
+#+CALL: Basic Switch[:var numberOfShoes=2]()
+#+RESULTS:
+#+begin_src cpp
+How many shoes was that?
+#+end_src
+Some keywords to go over:
+- ~switch~ -> this declares the start of a switch statement.
+- ~case~ -> behaves similar to ~if~. When the variable passed into the swithc statement is equal to the ~case~ value the code executes down until...
+- ~break~ -> informs the switch statement when to stop executing code. Without ~break~ we can make overflow cases like in the second example where both ~case 1~ and the ~default~ case are executed and where ~case 0~ only executes the code it contains.
+- ~default~ -> this case executes by itself if none of the other ~case~ values are matched. Like in our 3rd example, because the ~case~ value is neither 1 or 2 the default case get's executed.
