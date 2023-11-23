@@ -15,9 +15,91 @@
 Here we'll go over the primarily used and generally useful libaries in C++.
 * Basic Libraries
 ** IOStream - a library for the console, taking in and printing information
-We've primarily used ~std::cout~ and ~std::endl~ to output to the console. But we can also take in user input from the console utilizing ~std::cin~
+We've primarily used ~std::cout~ and ~std::endl~ to output to the console utilizing ~#incude<iostream>~. But we can also take in user input from the console utilizing ~std::cin~
+#+NAME: Personalized Greeting
+#+begin_src cpp :exports both :noweb strip-export :results code :tangle personalgreeting.cpp
+#include<iostream>
+int main() {
+    std::string string;
+    std::cout << "What is your name? ";
+    std::cin >> string;
+    std::cout << "What an interesting name, " << string << std::endl;
+}
+#+end_src
+When we execute our code we can notice our code will stop after outputting:
+#+begin_src
+What is your name?
+#+end_src
+From here we can write anything and press enter to conclude the input. Let's try two differnt, inputs.
+
+Here we'll input "Kris". Our output is:
+#+CALL: Personalized Greeting[:cmdline < cin1.txt]()
+#+RESULTS:
+#+begin_src cpp
+What is your name?
+What an interesting name, Kris
+#+end_src
+
+And here we'll input "Could". Our output is:
+#+CALL: Personalized Greeting[:cmdline < cin2.txt]()
+#+RESULTS:
+#+begin_src cpp
+What is your name?
+What an interesting name, Cloud
+#+end_src
+Now our program can interact with the user. The user can influence what the program does based on the input provided.
+
+An important thing to note is that the input will always be read as a string so if we're trying to grab user input as a different data typer there are a variety of manipulations we'll need to apply.
 ** FStream - a library for reading and outputing to files
+On top of standard input and output we can also manipulate and read files utilizing ~fstream~.
+
+There a file in our repo called ~words1.txt~ and we want to print it's output. The following code will achieve such.
+#+NAME: PrintMessage
+#+begin_src cpp :exports both :noweb strip-export :results code :tangle ifstream1.cpp
+#include<fstream>
+#include<iostream>
+int main () {
+    std::ifstream file;
+    std::ofstream outputfile;
+    file.open("words1.txt");
+    outputfile.open("words2.txt");
+    std::string output;
+    if(file.is_open()) {
+        while(file >> output){
+            std::cout << output << std::endl;
+            outputfile << output << std::endl;
+        }
+    }
+    file.close();
+    outputfile.close();
+}
+#+end_src
+Our output mirrors that of the file, reading:
+#+RESULTS: PrintMessage
+#+begin_src cpp
+Godhood
+Awaits
+You
+Go
+Claim
+It
+#+end_src
+Here is what each keyword does:
+- ~std::ifstream~ -> creats a new ~std::fstream~ object. This object is responsible for pointing to a file to read from. In our example we open an ~std::ifstream~ object called ~file~.
+- ~std::ofstream~ -> is another ~std::fstream~ object. This object points to a file to write to. In our example we're opening an ~std::ofstream~ object called ~outputfile~.
+- ~x.open("filename")~ -> assigns to ~std::fstream~ (the general name for all Input/Output ~fstream~ objects, including ~std::ifstream~ and ~std::ofstream~) object ~x~ a file to point to. In our code example our ~std::ifstream~ object ~file~ is being assigned to point to the file ~words1.txt~. Now whenever we refernce ~file~ we can actually read from ~words1.txt~.
+  - An important thing to note is that if we want to reference files outside of the directory the C++ file is in we'll have to use Bash style navigation to point C++ to the correct file. Something like ~"../../filename.txt"~ will tell the program to look for the file ~filename.txt.~ in it's grandparent directory.
+- ~x.is_open()~ -> returns a ~bool~ value, this ~bool~ value represents whether or not the ~std::ifstream~ object ~x~ was able to successfully point to a file. If the object is pointing to a nonexistent file the ~bool~ will be ~false~.
+- ~x.close()~ -> stops the ~std::fstream~ object from pointing to the file. It's generally good practice to close all Input/Output ~std::frstream~ objects once done to prevent any unforseen errors.
+Notice the ~bool~ condition in our ~while~ loop. Since we couldn't represent the number of times we need our code to repeat as an integer the ~while~ loop.
 ** CMath - a library for advanced arithmetic operations
+Imported with ~#include<cmath>~ here are some operations a part of the library.
+- ~pow(x,y)~ -> performs x^y
+- ~sqrt(x,y)~ -> performs x^(1/y)
+- ~round(x)~ -> round ~x~ to the nearest ~int~
+- ~ceil(x)~ -> rounds up ~x~ to the closest ~int~
+- ~fmax(x,y)~ -> returns the bigger number
+- ~fmin(x,y)~ -> returns the smaller number
 ** CCType - a library for checking the Type of data in C++.
 * Advanced Libraries
 ** Stack - an implementation of the Stack DS
