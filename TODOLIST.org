@@ -1,7 +1,7 @@
 #+title: Ctutorial Todos
 
 * TODO Write Org Sections [0/3]
-** TODO Basics [2/10]
+** TODO Basics [3/9]
 *** DONE Hello World
 CLOSED: [2023-11-09 Thu 02:02]
 - CLOSING NOTE [2023-11-09 Thu 02:02] \\
@@ -14,10 +14,12 @@ CLOSED: [2023-11-21 Tue 21:23]
 - [X] Variable Manipulation [2/2]
   - [X] Arithmetic
   - [X] Concactenation
-*** TODO Statements [1/3]
+*** DONE Statements [3/3]
+CLOSED: [2023-11-23 Thu 02:54]
+- CLOSING NOTE [2023-11-23 Thu 02:54]
 - [X] Conditionals
-- [ ] If Statements
-- [ ] Switch Statements
+- [X] If Statements
+- [X] Switch Statements
 *** TODO Loops [0/4]
 - [ ] While Loops
 - [ ] Do While Loops
