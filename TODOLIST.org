@@ -1,7 +1,7 @@
 #+title: Ctutorial Todos
 
-* TODO Write Org Sections [0/3]
-** TODO Basics [3/9]
+* TODO Write Org Sections [0/4]
+** TODO Basics [4/9]
 *** DONE Hello World
 CLOSED: [2023-11-09 Thu 02:02]
 - CLOSING NOTE [2023-11-09 Thu 02:02] \\
@@ -20,10 +20,12 @@ CLOSED: [2023-11-23 Thu 02:54]
 - [X] Conditionals
 - [X] If Statements
 - [X] Switch Statements
-*** TODO Loops [0/4]
-- [ ] While Loops
-- [ ] Do While Loops
-- [ ] For Loops
+*** DONE Loops [3/3]
+CLOSED: [2023-11-23 Thu 03:37]
+- CLOSING NOTE [2023-11-23 Thu 03:37]
+- [X] While Loops
+- [X] Do While Loops
+- [X] For Loops
 *** TODO Libraries [0/4]
 - [ ] IOStream
 - [ ] Fstream
@@ -37,6 +39,7 @@ CLOSED: [2023-11-23 Thu 02:54]
 *** TODO Pointers
 *** TODO Vector
 ** TODO Data Structures [0/9]
+*** TODO Debuggers Breakdown
 *** TODO Linked Lists [0/3]
 **** [ ] Singly Linked List
 **** [ ] Doubly Linked List
@@ -65,7 +68,7 @@ CLOSED: [2023-11-23 Thu 02:54]
 - [ ] Heading Links, ToC
 - [ ] Introduction
 - [ ] Contribution
-* TODO Fix Errors in Branches [1/5]
+* TODO Fix Errors in Branches [1/7]
 - [X] arrays.cpp
   matrix references item out of bounds, fixed in OrgRebase branch
 - [ ] Hello-World.org not displaying cpp output
@@ -73,5 +76,6 @@ CLOSED: [2023-11-23 Thu 02:54]
 - [ ] Get 4th level heading to appear in ToC of variables.org
 - [ ] Explain multivariable declaration in c++
 - [ ] Edit various abiguous variable files to utilize cin, rather than expecting user to edit code files themselves.
+- [ ] Utilize, realistic applications for loops in loops.org? Or apply that in functions?
 - [ ] Fix BST Insert
   - It should return currNode upon finishing the node->left or node->right iteration
