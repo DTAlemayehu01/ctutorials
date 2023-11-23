@@ -72,5 +72,6 @@ CLOSED: [2023-11-23 Thu 02:54]
   so i can't use the export option to display both #+Results: and the code if both are under different headings
 - [ ] Get 4th level heading to appear in ToC of variables.org
 - [ ] Explain multivariable declaration in c++
+- [ ] Edit various abiguous variable files to utilize cin, rather than expecting user to edit code files themselves.
 - [ ] Fix BST Insert
   - It should return currNode upon finishing the node->left or node->right iteration
