@@ -20,6 +20,18 @@ int num = 5;
 #+end_src
 Here we are storing a variable of the ~int~ type with the name ~num~ and it is storing the number 5.
 
+You can also just initalize an empty variable:
+#+NAME: Variable EX 2
+#+begin_src cpp :tangle no
+int num;
+#+end_src
+
+Even multiple!
+#+NAME: Variable EX 3
+#+begin_src cpp :tangle no
+int num1, num2;
+#+end_src
+
 There are a variety of variable datatypes so here's a list of the basic ones:
 - ~int~: short for /integer/, this variable datatype can only store whole numbers, positive or negative
 - ~char~: short for /character/, this variable stores a character, contained with ~' '~
