@@ -1,10 +1,11 @@
 #+title: Functions
 
 * Table of Contents :toc:
-- [[#objective][Objective]]
-- [[#basics-functions][Basics Functions]]
-  - [[#recursive-function][Recursive Function]]
+- [[#objective-learn-about-functions-in-c][Objective: Learn about functions in C++]]
+- [[#making-a-function][Making a Function]]
+- [[#int-main][int main()]]
 
-* Objective
-* Basics Functions
-** Recursive Function
+* Objective: Learn about functions in C++
+Here we'll learn more about ~int main()~ and how we segment code in ~C++~
+* Making a Function
+* int main()

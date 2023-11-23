@@ -68,7 +68,7 @@ CLOSED: [2023-11-23 Thu 03:37]
 - [ ] Heading Links, ToC
 - [ ] Introduction
 - [ ] Contribution
-* TODO Fix Errors in Branches [1/7]
+* TODO Fix Errors in Branches [1/8]
 - [X] arrays.cpp
   matrix references item out of bounds, fixed in OrgRebase branch
 - [ ] Hello-World.org not displaying cpp output
@@ -77,5 +77,6 @@ CLOSED: [2023-11-23 Thu 03:37]
 - [ ] Explain multivariable declaration in c++
 - [ ] Edit various abiguous variable files to utilize cin, rather than expecting user to edit code files themselves.
 - [ ] Utilize, realistic applications for loops in loops.org? Or apply that in functions?
+- [ ] Implement Advanced libraries in C++ tutorial
 - [ ] Fix BST Insert
   - It should return currNode upon finishing the node->left or node->right iteration

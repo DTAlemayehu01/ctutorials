@@ -1,14 +1,24 @@
 #+title: Libraries
 
 * Table of Contents :toc:
-- [[#objective][Objective]]
-- [[#iostream][IOStream]]
-- [[#fstream][FStream]]
-- [[#cmath][CMath]]
-- [[#cctype][CCType]]
+- [[#objective-understand-the-primary-standard-libraries-in-c][Objective: Understand the primary standard libraries in C++]]
+- [[#basic-libraries][Basic Libraries]]
+  - [[#iostream---a-library-for-the-console-taking-in-and-printing-information][IOStream - a library for the console, taking in and printing information]]
+  - [[#fstream---a-library-for-reading-and-outputing-to-files][FStream - a library for reading and outputing to files]]
+  - [[#cmath---a-library-for-advanced-arithmetic-operations][CMath - a library for advanced arithmetic operations]]
+  - [[#cctype---a-library-for-checking-the-type-of-data-in-c][CCType - a library for checking the Type of data in C++.]]
+- [[#advanced-libraries][Advanced Libraries]]
+  - [[#stack---an-implementation-of-the-stack-ds][Stack - an implementation of the Stack DS]]
+  - [[#queue---an-implementation-of-the-queue-ds][Queue - an implementation of the Queue DS]]
 
-* Objective
-* IOStream
-* FStream
-* CMath
-* CCType
+* Objective: Understand the primary standard libraries in C++
+Here we'll go over the primarily used and generally useful libaries in C++.
+* Basic Libraries
+** IOStream - a library for the console, taking in and printing information
+We've primarily used ~std::cout~ and ~std::endl~ to output to the console. But we can also take in user input from the console utilizing ~std::cin~
+** FStream - a library for reading and outputing to files
+** CMath - a library for advanced arithmetic operations
+** CCType - a library for checking the Type of data in C++.
+* Advanced Libraries
+** Stack - an implementation of the Stack DS
+** Queue - an implementation of the Queue DS

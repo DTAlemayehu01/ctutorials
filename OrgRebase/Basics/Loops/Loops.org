@@ -1,12 +1,13 @@
 #+title: Loops
 
 * Table of Contents :toc:
-- [[#objective][Objective]]
+- [[#objective-understand-the-three-methods-for-repeating-code][Objective: Understand the three methods for repeating code]]
 - [[#while-loops][While Loops]]
 - [[#do-while-loops][Do While Loops]]
 - [[#for-loops][For Loops]]
 
-* Objective
+* Objective: Understand the three methods for repeating code
+Here we'll go over the 3 types of loops in C++.
 * While Loops
 Using the condtionals we learned about from the section on C++ statements we can make chucks of code repeat execution while that condtion remains true.
 
@@ -45,7 +46,7 @@ int main () {
 }
 #+end_src
 #+NAME: Elmo Vampire Counter 2
-#+begin_src cpp :export none :noweb strip-export :tangle whilecounter.cpp
+#+begin_src cpp :export none :noweb strip-export :tangle dowhilecounter.cpp
 #include<iostream>
 int main () {
     //make sure to assign numbers to these variables.
