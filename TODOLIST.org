@@ -36,21 +36,23 @@ CLOSED: [2023-11-23 Thu 03:37]
 - [ ] Stack
 - [ ] Queue
 - [X] Vector
-*** TODO Functions
-+ [ ] Basic Functions
+*** TODO Functions [/]
++ [ ] Basic Functions [/]
   + [ ] Declaration vs Definition
   + [ ] Recusrive function
 + [ ] Int main
 + [ ] Command line arguments
-*** TODO Classes
+*** TODO Classes [/]
+- [ ] Structs
 - [ ] Class Info
 - [ ] Header Files
-*** TODO Pointers
+*** TODO Pointers and Memory [0/6]
 - [ ] Basics
 - [ ] Heap
 - [ ] Stack
 - [ ] Pass-By-XYZ
 - [ ] array doubling
+- [ ] Struct and class ptrs
 ** TODO Data Structures [1/8]
 *** DONE Debuggers Breakdown
 CLOSED: [2023-11-23 Thu 18:55]
