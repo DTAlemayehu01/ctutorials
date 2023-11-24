@@ -1,6 +1,6 @@
 #+title: Ctutorial Todos
 
-* TODO Write Org Sections [0/4]
+* TODO Write Org Sections [0/3]
 ** TODO Basics [4/9]
 *** DONE Hello World
 CLOSED: [2023-11-09 Thu 02:02]
@@ -26,19 +26,28 @@ CLOSED: [2023-11-23 Thu 03:37]
 - [X] While Loops
 - [X] Do While Loops
 - [X] For Loops
-*** TODO Libraries [2/5]
+*** TODO Libraries [4/8]
 - [X] IOStream
 - [X] Fstream
 - [ ] StringStream
-- [ ] CMath
+- [X] CMath
 - [ ] CCType
+- [ ] Stack
+- [ ] Queue
+- [X] Vector
 *** TODO Functions
++ [ ] Basic Functions
+  + [ ] Declaration vs Definition
+  + [ ] Recusrive function
 + [ ] Int main
 + [ ] Command line arguments
-+ [ ] Basic Functions
 *** TODO Classes
+- [ ] Class Info
+- [ ] Header Files
 *** TODO Pointers
-*** TODO Vector
+- [ ] Basics
+- [ ] Heap
+- [ ] array doubling
 ** TODO Data Structures [0/9]
 *** TODO Debuggers Breakdown
 *** TODO Linked Lists [0/3]
@@ -69,7 +78,7 @@ CLOSED: [2023-11-23 Thu 03:37]
 - [ ] Heading Links, ToC to other org files
 - [ ] Introduction
 - [ ] Contribution
-* TODO Fix Errors in Branches [1/10]
+* TODO Fix Errors in Branches [1/12]
 - [X] arrays.cpp
   matrix references item out of bounds, fixed in OrgRebase branch
 - [ ] Hello-World.org not displaying cpp output
@@ -80,6 +89,8 @@ CLOSED: [2023-11-23 Thu 03:37]
 - [ ] Utilize, realistic applications for loops in loops.org? Or apply that in functions?
 - [ ] Implement Advanced libraries in C++ tutorial
 - [ ] Integrate getline explaination()
+- [ ] Rename all subfolder lines to readme.org
+- [ ] Reformat code block in libaries.org for vector explaination
 - [ ] Fix BST Insert
   - It should return currNode upon finishing the node->left or node->right iteration
 - [ ] There's a reference to a previous section in the libraries section of the repo, perhaps learn to use cross reference linking to link to previous section?

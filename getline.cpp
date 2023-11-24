@@ -32,5 +32,6 @@ int main (){
 	}
 	writeFile << sepcount << endl;
 	
+	getline(cin, variable);
 	return 0;
 }

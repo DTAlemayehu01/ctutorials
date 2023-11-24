@@ -8,4 +8,8 @@
 * Objective: Learn about functions in C++
 Here we'll learn more about ~int main()~ and how we segment code in ~C++~
 * Making a Function
+When making a new function, one must consider the three following items:
+- Parameters: what inputs should the function require before executing
+- Code: what should the function do with those inputs, if any
+- Return: should the function finish and come back with a ~bool~ evaluation? what about a string? or what if the function doesn't need to return anything at all?
 * int main()

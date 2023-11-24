@@ -4,10 +4,12 @@
 - [[#objective-understand-the-primary-standard-libraries-in-c][Objective: Understand the primary standard libraries in C++]]
 - [[#basic-libraries][Basic Libraries]]
   - [[#iostream---a-library-for-the-console-taking-in-and-printing-information][IOStream - a library for the console, taking in and printing information]]
+  - [[#iomanip---a-library-to-regulate-inputoutput][IOManip - a library to regulate Input/Output]]
   - [[#fstream---a-library-for-reading-and-outputing-to-files][FStream - a library for reading and outputing to files]]
   - [[#cmath---a-library-for-advanced-arithmetic-operations][CMath - a library for advanced arithmetic operations]]
   - [[#cctype---a-library-for-checking-the-type-of-data-in-c][CCType - a library for checking the Type of data in C++.]]
 - [[#advanced-libraries][Advanced Libraries]]
+  - [[#vector---an-improved-implementation-of-the-list][Vector - an improved implementation of the List]]
   - [[#stack---an-implementation-of-the-stack-ds][Stack - an implementation of the Stack DS]]
   - [[#queue---an-implementation-of-the-queue-ds][Queue - an implementation of the Queue DS]]
 
@@ -36,8 +38,7 @@ Here we'll input "Kris". Our output is:
 #+CALL: Personalized Greeting[:cmdline < cin1.txt]()
 #+RESULTS:
 #+begin_src cpp
-What is your name?
-What an interesting name, Kris
+1.12346
 #+end_src
 
 And here we'll input "Could". Our output is:
@@ -50,6 +51,40 @@ What an interesting name, Cloud
 Now our program can interact with the user. The user can influence what the program does based on the input provided.
 
 An important thing to note is that the input will always be read as a string so if we're trying to grab user input as a different data typer there are a variety of manipulations we'll need to apply.
+** IOManip - a library to regulate Input/Output
+When we print ~floats~ and ~doubles~ the result:
+#+NAME: Double example
+#+begin_src cpp :exports both :results code
+#include<iostream>
+int main () {
+    double d = 1.1234567890000001;
+    std::cout << d << std::endl;
+}
+#+end_src
+#+RESULTS: Double example
+#+begin_src cpp
+1.12346
+#+end_src
+
+Is restricted to a maximum of 6 decimal spots. With ~#include<iomanip>~ we can change that.
+#+NAME: iomanip example
+#+begin_src cpp :exports both :noweb strip-exploit :results code :tangle iomanip.cpp
+#include<iostream>
+#include<iomanip>
+int main () {
+    double d = 1.123456789123456789123456789;
+    std::cout << d << std::endl;
+    std::cout << std::setprecision(17);
+    std::cout << d << std::endl;
+}
+#+end_src
+Now our output is:
+#+RESULTS: iomanip example
+#+begin_src cpp
+1.12346
+1.1234567891234568
+#+end_src
+We have changed the level of decimal precision from 6 digits to 17 digits.
 ** FStream - a library for reading and outputing to files
 On top of standard input and output we can also manipulate and read files utilizing ~fstream~.
 
@@ -102,5 +137,117 @@ Imported with ~#include<cmath>~ here are some operations a part of the library.
 - ~fmin(x,y)~ -> returns the smaller number
 ** CCType - a library for checking the Type of data in C++.
 * Advanced Libraries
+Please read about data structures before continuing on with the reading
+** Vector - an improved implementation of the List
+With the /Linked-List/, we're capable of having an effectively infinitely sized list that is easy to manipulate. But we can't access the item at the end of the list at the same speed we can access the item at the beginning of the list.
+
+With the /Array/, we can reference any item easily with an index number. But inserting elements in a specific index is significantly more complex and /Arrays/ have fixed sizes without array resizing, which is very inconvenient and wastes memory.
+
+~std::vector~ is the modern C++ solution to the disadvantages of both.
+
+Below, is an example of us declaring ~std::vector v0~ that stores ~int~ data.
+#+NAME: VectorExample1
+#+begin_src cpp :tangle no
+std::vector<int> v0;
+#+end_src
+You can also specify a specific size for an ~std::vector~ object. Lets make ~std::vector v1~ have a size of 5 with ~int~ data.
+#+NAME: VectorExample2
+#+begin_src cpp :tangle no
+std::vector<int> v1(5);
+#+end_src
+When making an ~std::vector~ object there are two different ways you can initalize it with preloaded values.
+
+In this example we make ~std::vector v2~ store five 3s such that the ~std::vector~ array looks like ~{3,3,3,3,3}~
+#+NAME: VectorExample3
+#+begin_src cpp :tangle no
+std::vector<int> v2(5,3);
+#+end_src
+In this example we make ~std::vector v3~ store five differing numbers such that the ~std::vectory~ array loks like ~{3,2,1,4,5}~
+#+NAME: VectorExample4
+#+begin_src cpp :tangle no
+std::vector<int> v3 = {3,2,1,4,5};
+#+end_src
+Let's use our ~std::vector~ objects to demonstrate some of the things you can do with ~std::vector~ objects.
+#+NAME: Vector Functions
+#+begin_src cpp :exports both :noweb strip-export :results code :tangle vector.cpp
+#include<iostream>
+#include<vector>
+int main () {
+    <<VectorExample1>>
+    <<VectorExample2>>
+    <<VectorExample3>>
+    <<VectorExample4>>
+    std::cout << v0.empty() << std::endl;
+    std::cout << v1.empty() << std::endl;
+    std::cout << v2.empty() << std::endl;
+    std::cout << v3.empty() << std::endl;
+    std::cout << v0.size() << std::endl;
+    std::cout << v1.size() << std::endl;
+    std::cout << v2.size() << std::endl;
+    std::cout << v3.size() << std::endl;
+    v0.push_back(2);
+    v1.push_back(2);
+    v2.push_back(2);
+    v3.push_back(2);
+    int vecLen;
+    for(int i = 0; i < 4; i++) {
+        vecLen = v0.size();
+        for(int j = 0; j < vecLen; j++) {
+            std::cout << v0[j];
+        }
+        std::cout << std::endl;
+
+        vecLen = v1.size();
+        for(int j = 0; j < vecLen; j++) {
+            std::cout << v1[j];
+        }
+        std::cout << std::endl;
+
+        vecLen = v2.size();
+        for(int j = 0; j < vecLen; j++) {
+            std::cout << v2[j];
+        }
+
+        std::cout << std::endl;
+        vecLen = v3.size();
+        for(int j = 0; j < vecLen; j++) {
+            std::cout << v3[j];
+        }
+        std::cout << std::endl;
+    }
+}
+#+end_src
+The output should be:
+#+RESULTS: Vector Functions
+#+begin_src cpp
+1
+0
+0
+0
+0
+5
+5
+5
+2
+000002
+333332
+321452
+2
+000002
+333332
+321452
+2
+000002
+333332
+321452
+2
+000002
+333332
+321452
+#+end_src
+- ~x.empty()~ -> this function checks if the ~std::vector~ object ~x~ is empty and returns true if it's empty. Because ~std::vector v4~ has data through this will evaluate to false.
+- ~x.size()~ -> this function counts 1 by 1 the number of items in the ~std::vector~ object ~x~ and returns the size of the vector.
+- ~x.push_back(y)~ -> this function appends the ~std::vector~ object ~x~ with the data of ~y~.
+
 ** Stack - an implementation of the Stack DS
 ** Queue - an implementation of the Queue DS
