@@ -1,7 +1,7 @@
 #include<iostream>
 int main() {
-    std::string string;
+    std::string str;
     std::cout << "What is your name? ";
-    std::cin >> string;
-    std::cout << "What an interesting name, " << string << std::endl;
+    std::cin >> str;
+    std::cout << "What an interesting name, " << str << std::endl;
 }

@@ -26,9 +26,10 @@ CLOSED: [2023-11-23 Thu 03:37]
 - [X] While Loops
 - [X] Do While Loops
 - [X] For Loops
-*** TODO Libraries [4/8]
+*** TODO Libraries [5/9]
 - [X] IOStream
 - [X] Fstream
+- [X] string
 - [ ] StringStream
 - [X] CMath
 - [ ] CCType
@@ -47,9 +48,13 @@ CLOSED: [2023-11-23 Thu 03:37]
 *** TODO Pointers
 - [ ] Basics
 - [ ] Heap
+- [ ] Stack
+- [ ] Pass-By-XYZ
 - [ ] array doubling
-** TODO Data Structures [0/9]
-*** TODO Debuggers Breakdown
+** TODO Data Structures [1/8]
+*** DONE Debuggers Breakdown
+CLOSED: [2023-11-23 Thu 18:55]
+- CLOSING NOTE [2023-11-23 Thu 18:55]
 *** TODO Linked Lists [0/3]
 **** [ ] Singly Linked List
 **** [ ] Doubly Linked List
@@ -78,7 +83,7 @@ CLOSED: [2023-11-23 Thu 03:37]
 - [ ] Heading Links, ToC to other org files
 - [ ] Introduction
 - [ ] Contribution
-* TODO Fix Errors in Branches [1/12]
+* TODO Fix Errors in Branches [1/17]
 - [X] arrays.cpp
   matrix references item out of bounds, fixed in OrgRebase branch
 - [ ] Hello-World.org not displaying cpp output
@@ -94,3 +99,8 @@ CLOSED: [2023-11-23 Thu 03:37]
 - [ ] Fix BST Insert
   - It should return currNode upon finishing the node->left or node->right iteration
 - [ ] There's a reference to a previous section in the libraries section of the repo, perhaps learn to use cross reference linking to link to previous section?
+- [ ] Expand linking and backlinking relations for each org file
+- [ ] Make notes on ~namespace~ and ~using namespace std;~
+- [ ] Make notes on how getline can mess up/common pitfalls
+- [ ] Make something on macro definitions
+- [ ] Consider making CPP libaries it's own section or split into basic libraries for basic section, advanced libraries for advanced section, etc.

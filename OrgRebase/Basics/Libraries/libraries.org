@@ -5,6 +5,7 @@
 - [[#basic-libraries][Basic Libraries]]
   - [[#iostream---a-library-for-the-console-taking-in-and-printing-information][IOStream - a library for the console, taking in and printing information]]
   - [[#iomanip---a-library-to-regulate-inputoutput][IOManip - a library to regulate Input/Output]]
+  - [[#string---wait-this-is-a-library][string - wait this is a library?]]
   - [[#fstream---a-library-for-reading-and-outputing-to-files][FStream - a library for reading and outputing to files]]
   - [[#cmath---a-library-for-advanced-arithmetic-operations][CMath - a library for advanced arithmetic operations]]
   - [[#cctype---a-library-for-checking-the-type-of-data-in-c][CCType - a library for checking the Type of data in C++.]]
@@ -18,16 +19,31 @@ Here we'll go over the primarily used and generally useful libaries in C++.
 * Basic Libraries
 ** IOStream - a library for the console, taking in and printing information
 We've primarily used ~std::cout~ and ~std::endl~ to output to the console utilizing ~#incude<iostream>~. But we can also take in user input from the console utilizing ~std::cin~
+#+name: cin
+#+begin_src elisp
+(completing-read "Enter the input: " nil)
+#+end_src
+
 #+NAME: Personalized Greeting
 #+begin_src cpp :exports both :noweb strip-export :results code :tangle personalgreeting.cpp
 #include<iostream>
 int main() {
-    std::string string;
+    std::string str;
     std::cout << "What is your name? ";
-    std::cin >> string;
-    std::cout << "What an interesting name, " << string << std::endl;
+    std::cin >> str;
+    std::cout << "What an interesting name, " << str << std::endl;
 }
 #+end_src
+
+#+NAME: cinmoment
+#+begin_src cpp :exports results :noweb strip-export :results code :var str=cin
+#include<iostream>
+int main() {
+    std::cout << "What is your name? " << std::endl;
+    std::cout << "What an interesting name, " << str << std::endl;
+}
+#+end_src
+
 When we execute our code we can notice our code will stop after outputting:
 #+begin_src
 What is your name?
@@ -35,19 +51,21 @@ What is your name?
 From here we can write anything and press enter to conclude the input. Let's try two differnt, inputs.
 
 Here we'll input "Kris". Our output is:
-#+CALL: Personalized Greeting[:cmdline < cin1.txt]()
+#+CALL: cinmoment()
 #+RESULTS:
 #+begin_src cpp
-1.12346
+What is your name?
+What an interesting name, Kris
 #+end_src
 
-And here we'll input "Could". Our output is:
-#+CALL: Personalized Greeting[:cmdline < cin2.txt]()
+And here we'll input "Cloud". Our output is:
+#+CALL: cinmoment()
 #+RESULTS:
 #+begin_src cpp
 What is your name?
 What an interesting name, Cloud
 #+end_src
+
 Now our program can interact with the user. The user can influence what the program does based on the input provided.
 
 An important thing to note is that the input will always be read as a string so if we're trying to grab user input as a different data typer there are a variety of manipulations we'll need to apply.
@@ -85,6 +103,58 @@ Now our output is:
 1.1234567891234568
 #+end_src
 We have changed the level of decimal precision from 6 digits to 17 digits.
+** string - wait this is a library?
+~std::string~ is actually from the ~#include<string>~ library! But how are we able to use it if we haven't declared the library?
+
+As it turns out, different C++ libraries reference each other! In this scenario, this confusion likely would result from ~#include<iostream>~ which includes ~std::string~ from ~#include<sting>~ as a part of it's library.
+
+One useful function from ~#include<string>~ is ~std::getline(istream, std::string, char)~ which takes in 3 parameters.
+- ~istream~ -> This is the Input ~stream~ object that getline will read from, like ~std::cin~ and other objects we'll learn about later like ~std::stringstream~ objects ~std::ifstream~ objects.
+- ~std::string~ -> This is the variable that will store the data read from the ~istream~ object.
+- ~char~ -> This ~char~ marks when to stop taking in input from ~istream~ object, this parameter is optional to specify and if left unspecified ~getline()~ will use whitespace as it's default delimiter.
+What's useful about ~std::getline()~ is that we now have more granular control over our input. For example,
+#+NAME: Failed input
+#+begin_src cpp :export both :noweb strip-export :results code :tangle cinfailure.cpp
+#include<iostream>
+#include<string>
+int main () {
+    std::string str;
+    std::cout << "First and Last Name: ";
+    std::cin >> str;
+    std::cout << str << std::endl;
+}
+#+end_src
+#+begin_src cpp :export results :noweb strip-export :results code :var str=cin
+#include<iostream>
+#include<string>
+int main () {
+    std::cout << "First and Last Name: ";
+    std::cout << str << std::endl;
+}
+#+end_src
+If we input "Kris P" our output would be:
+#+RESULTS:
+#+begin_src cpp
+First and Last Name: Kris
+#+end_src
+This is because ~std::cin~ by default uses whitespace as it's delimiter to stop reading the line.
+
+But with a similar implementation with ~std::getline()~ and the same input of "Kris P"
+#+NAME: Successful input
+#+begin_src cpp :export both :noweb strip-export :results code :tangle getlinesuccess.cpp
+#include<iostream>
+#include<string>
+int main () {
+    std::string str;
+    std::cout << "First and Last Name: ";
+    std::getline(std::cin,str,'\n');
+    std::cout << str << std::endl;
+}
+#+end_src
+Our output would now be:
+#+begin_src
+First and Last Name: Kris P
+#+end_src
 ** FStream - a library for reading and outputing to files
 On top of standard input and output we can also manipulate and read files utilizing ~fstream~.
 

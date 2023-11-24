@@ -5,4 +5,8 @@
 - [[#contributing][Contributing]]
 
 * Introduction
+This is a repo containing examples of c++ code, syntax and data structures
+
+*PLEASE* do not upload any code from exams, tests, or other private materials a good rule of thumb is if you couldn't find it in a book in a library you probably shouldn't upload it here.
 * Contributing
+If you find any gaps in knowledge or any incorrect information please open up an issue and I'll try too look into it! Feel free to also submit pull requests if you know how to correct one of the issues in the issue tracker! Suggestions are also welcome!
