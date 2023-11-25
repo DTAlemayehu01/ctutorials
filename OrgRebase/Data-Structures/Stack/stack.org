@@ -1,8 +1,358 @@
 #+title: Stack
 
 * Table of Contents :toc:
-- [[#objective][Objective]]
-- [[#stack][Stack]]
+- [[#stack-explaination][Stack Explaination]]
+- [[#stack-declaration][Stack Declaration]]
+  - [[#linked-list-based][Linked List Based]]
+  - [[#array-based][Array Based]]
+- [[#stack-definitions][Stack Definitions]]
+  - [[#linked-list-based-1][Linked List Based]]
+  - [[#array-based-1][Array Based]]
 
-* Objective
-* Stack
+* Stack Explaination
+Imagine a stack of plates. You remove a plate by taking a plate off the stack one by one.
+
+Examples IRL:
+- Undo/Redo
+- Call Stack
+* Stack Declaration
+** Linked List Based
+Here is a Declartion of a Stack DS
+#+NAME:Stack LL Declaration
+#+begin_src cpp
+#ifndef STACK_H_
+#define STACK_H_
+#include<iostream>
+#include<string>
+
+struct Node{
+    type key;
+    Node *next;
+}
+
+class Stack {
+    private:
+        Node* StackHead;
+        int maxSize;
+        int numOfElements;
+    public;
+        Stack();
+        ~Stack();
+        bool isEmpty();
+        bool isFull();
+        void push(type key);
+        void pop();
+        Node* peek();
+        int size();
+};
+#+end_src
+#+begin_src cpp :exports none :noweb strip-export :tangle stackLL.hpp
+#ifndef STACK_H_
+#define STACK_H_
+#include<iostream>
+#include<string>
+
+struct Node{
+    std::string key;
+    Node *next;
+}
+
+class Stack {
+    private:
+        Node* StackHead;
+        int maxSize;
+        int numOfElements;
+    public;
+        Stack();
+        ~Stack();
+        bool isEmpty();
+        bool isFull();
+        void push(std::string key);
+        void pop();
+        Node* peek();
+        int size();
+};
+#+end_src
+** Array Based
+#+NAME:Stack AA Declaration
+#+begin_src cpp
+#ifndef STACK_H_
+#define STACK_H_
+#include<iostream>
+#include<string>
+
+class Stack {
+    private:
+        int maxSize;
+        int StackHead;
+        type *stack;
+    public;
+        Stack();
+        Stack(int size);
+        ~Stack();
+        bool isEmpty();
+        bool isFull();
+        void push(type key);
+        void pop();
+        Node* peek();
+        int size();
+};
+#+end_src
+#+begin_src cpp :exports none :noweb strip-export :tangle stackArray.hpp
+#ifndef STACK_H_
+#define STACK_H_
+#include<iostream>
+#include<string>
+
+class Stack {
+    private:
+        int maxSize;
+        int StackHead;
+        int numOfElments;
+        type *stack;
+    public;
+        Stack();
+        Stack(int size);
+        ~Stack();
+        bool isEmpty();
+        bool isFull();
+        void push(type key);
+        void pop();
+        Node* peek();
+        int size();
+};
+#+end_src
+* Stack Definitions
+** Linked List Based
+*** Private
+- ~Node* StackHead~ -> points to stack top node
+- ~int maxSize~ -> stores the maximum amount of elements allowed in stack, optional for infinite size stacks
+- ~int numOfElements~ -> stores the number of elements in the stack
+*** Public
+~Stack()~ -> Constructs the class
+#+NAME: Stack LL Constructor
+#+begin_src cpp
+Stack::Stack(){
+    StackHead = nullptr;
+    numOfElements = 0;
+    std::cout << " Enter a max size: " << std::endl;
+    cin >> maxSize;
+}
+#+end_src
+~~Stack()~ -> Deconstructs the class
+#+NAME: Stack LL Deconstructor
+#+begin_src cpp
+Stack::~Stack(){
+    Node* crawler = StackHead;
+    while(crawler != nullptr){
+        crawler = crawler->next;
+        delete StackHead;
+        StackHead = crawler;
+    }
+}
+#+end_src
+~isEmpty()~ -> checks if Stack is empty
+#+NAME Stack LL Empty Check
+#+begin_src cpp
+bool Stack::isEmpty(){
+    if(numOfElements == 0 || StackHead == nullptr){
+        return true;
+    } else {
+        return false;
+    }
+}
+#+end_src
+~isFull()~ -> checks if Stack is full
+#+NAME: Stack LL Full Check
+#+begin_src cpp
+bool Stack::isFull(){
+    if(numOfElements == maxSize) {
+        return true;
+    } else {
+        return false;
+    }
+}
+#+end_src
+~push(type key)~ -> adds item top of stack
+#+NAME: Stack LL Push
+#+begin_src cpp
+void Stack::push(type key){
+    Node* newNode = new Node;
+    Node->key = key;
+    if(isEmpty()){
+        StackHead = newNode;
+        StackHead->next = nullptr;
+    } else if (!isFull()){
+        newNode->next = StackHead;
+        StackHead = newNode;
+    }
+}
+#+end_src
+#+NAME: Stack LL Tangle
+#+begin_src cpp :exports none
+void Stack::push(std::string key){
+    Node* newNode = new Node;
+    Node->key = key;
+    if(isEmpty()){
+        StackHead = newNode;
+        StackHead->next = nullptr;
+    } else if (!isFull()){
+        newNode->next = StackHead;
+        StackHead = newNode;
+    }
+}
+#+end_src
+~pop()~ -> removes item from the top of the stack
+#+NAME: Stack LL Pop
+#+begin_src cpp
+void Stack::pop(){
+    if(!isEmpty()){
+        Node* deleteNode = StackHead;
+        StackHead = StackHead -> next;
+        delete deleteNode;
+        deleteNode = nullptr;
+    }
+}
+#+end_src
+~peek()~ -> returns a pointer to ~StackHead~
+#+NAME: Stack LL Peek
+#+begin_src cpp
+Node* Stack::peek(){
+    return StackHead;
+}
+#+end_src
+~size()~ -> returns the number of elements in the stack
+#+NAME: Stack LL Size
+#+begin_src cpp
+int Stac::size(){
+    return numOfElements;
+}
+#+end_src
+#+NAME: Stack LL
+#+begin_src cpp :noweb strip-export :exports none :tangle stackLL.cpp
+#include "stackLL.hpp"
+
+<<Stack LL Constructor>>
+
+<<Stack LL Deconstructor>>
+
+<<Stack LL Empty Check>>
+
+<<Stack LL Full Check>>
+
+<<Stack LL Tangle>>
+
+<<Stack LL Pop>>
+
+<<Stack LL Peek>>
+
+<<Stack LL Size>>
+#+end_src
+** Array Based
+*** Private
+- ~int maxSize~ -> stores max Size of stack, mandatory for array implementation
+- ~int StackHead~ -> stores the index of the head of the stack
+- ~type* stack~ -> points to the stack array of type ~type~ on the heap
+*** Public
+~Stack()~ -> Constructs the class
+#+NAME: Stack Array Constructor
+#+begin_src cpp
+Stack::Stack(){
+    StackHead = -1;
+    numOfElements = 0;
+    std::cout << " Enter a max size: " << std::endl;
+    cin >> maxSize;
+    stack = new int [maxSize];
+}
+#+end_src
+~~Stack()~ -> Deconstructs the class
+#+NAME: Stack Array Deconstructor
+#+begin_src cpp
+Stack::~Stack(){
+    delete[] stack;
+}
+#+end_src
+~isEmpty()~ -> checks if Stack is empty
+#+NAME Stack Array Empty Check
+#+begin_src cpp
+bool Stack::isEmpty(){
+    if(StackHead == -1){
+        return true;
+    } else {
+        return false;
+    }
+}
+#+end_src
+~isFull()~ -> checks if Stack is full
+#+NAME: Stack Array Full Check
+#+begin_src cpp
+bool Stack::isFull(){
+    if(StackHead+1 == maxSize) {
+        return true;
+    } else {
+        return false;
+    }
+}
+#+end_src
+~push(type key)~ -> adds item top of stack
+#+NAME: Stack Array Push
+#+begin_src cpp
+void Stack::push(type key){
+    if(!isFull()){
+        StackHead++;
+        stack[StackHead] = key;
+    }
+}
+#+end_src
+#+NAME: Stack Array Tangle
+#+begin_src cpp :exports none
+void Stack::push(std::string key){
+    if(!isFull()){
+        StackHead++;
+        stack[StackHead] = key;
+    }
+}
+#+end_src
+~pop()~ -> removes item from the top of the stack
+#+NAME: Stack Array Pop
+#+begin_src cpp
+void Stack::pop(){
+    if(!isEmpty()){
+        StackHead--;
+    }
+}
+#+end_src
+~peek()~ -> returns key at ~StackHead~
+#+NAME: Stack Array Peek
+#+begin_src cpp
+Node* Stack::peek(){
+    return stack[StackHead];
+}
+#+end_src
+~size()~ -> returns the number of elements in the stack
+#+NAME: Stack LL Size
+#+begin_src cpp
+int Stac::size(){
+    return StackHead + 1;
+}
+#+end_src
+#+NAME: Stack Array
+#+begin_src cpp :noweb strip-export :exports none :tangle stackArray.cpp
+#include "stackArray.hpp"
+
+<<Stack Array Constructor>>
+
+<<Stack Array Deconstructor>>
+
+<<Stack Array Empty Check>>
+
+<<Stack Array Full Check>>
+
+<<Stack Array Tangle>>
+
+<<Stack Array Pop>>
+
+<<Stack Array Peek>>
+
+<<Stack Array Size>>
+#+end_src

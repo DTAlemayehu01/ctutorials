@@ -1,7 +1,7 @@
 #+title: Ctutorial Todos
 
 * TODO Write Org Sections [0/3]
-** TODO Basics [4/9]
+** TODO Basics [5/8]
 *** DONE Hello World
 CLOSED: [2023-11-09 Thu 02:02]
 - CLOSING NOTE [2023-11-09 Thu 02:02] \\
@@ -33,20 +33,21 @@ CLOSED: [2023-11-23 Thu 03:37]
 - [ ] StringStream
 - [X] CMath
 - [ ] CCType
-- [ ] Custom Libraries, .hpp files
+- [ ] Custom Libraries, .hpp files, segment between driver, definition, and declaration
 - [ ] Stack
 - [ ] Queue
 - [X] Vector
-*** TODO Functions [/]
-+ [ ] Basic Functions [/]
-  + [ ] Declaration vs Definition
-  + [ ] Recusrive function
-+ [ ] Int main
-+ [ ] Command line arguments
+*** DONE Functions [3/3]
+CLOSED: [2023-11-25 Sat 14:17]
+- CLOSING NOTE [2023-11-25 Sat 14:17]
++ [X] Basic Functions [2/2]
+  + [X] Declaration vs Definition
+  + [X] Recusrive function
++ [X] Int main
++ [X] Command line arguments
 *** TODO Classes [/]
 - [ ] Structs
 - [ ] Class Info
-- [ ] Header Files
 *** TODO Pointers and Memory [0/6]
 - [ ] Basics
 - [ ] Heap
@@ -54,31 +55,33 @@ CLOSED: [2023-11-23 Thu 03:37]
 - [ ] Pass-By-XYZ
 - [ ] array doubling
 - [ ] Struct and class ptrs
-** TODO Data Structures [1/8]
+** TODO Data Structures [2/8]
 *** DONE Debuggers Breakdown
 CLOSED: [2023-11-23 Thu 18:55]
 - CLOSING NOTE [2023-11-23 Thu 18:55]
 *** TODO Linked Lists [0/3]
-**** [ ] Singly Linked List
-**** [ ] Doubly Linked List
-**** [ ] Circular Linked List
-*** TODO Stack [0/2]
-**** [ ] Array Based
-**** [ ] Linked List Based
+- [ ] Singly Linked List
+- [ ] Doubly Linked List
+- [ ] Circular Linked List
+*** DONE Stack [2/2]
+CLOSED: [2023-11-25 Sat 14:17]
+- CLOSING NOTE [2023-11-25 Sat 14:17]
+- [X] Array Based
+- [X] Linked List Based
 *** TODO Queue [0/2]
-**** [ ] Circular Array Based
-**** [ ] Linked List Based
+- [ ] Circular Array Based
+- [ ] Linked List Based
 *** TODO Binary Tree [0/2]
-**** [ ] Binary Search
-**** [ ] Red-Black Tree
+- [ ] Binary Search
+- [ ] Red-Black Tree
 *** TODO Graph [0/4]
-**** [ ] Undirected Graph
-**** [ ] Directed Graph
-**** [ ] Unweighted Graph
-**** [ ] Weighted Graph
+- [ ] Undirected Graph
+- [ ] Directed Graph
+- [ ] Unweighted Graph
+- [ ] Weighted Graph
 *** TODO Hash DS [0/3]
-**** [ ] Hash Division
-**** [ ] Hash Muliplication
+- [ ] Hash Division
+- [ ] Hash Muliplication
 *** TODO Misc Data Structures [0/2]
 - [ ] Min/Max Heap
 - [ ] Priority Queue

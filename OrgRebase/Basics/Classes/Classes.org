@@ -1,8 +1,11 @@
 #+title: Classes
 
 * Table of Contents :toc:
-- [[#objectives][Objectives]]
-- [[#get-and-set][Get and Set]]
+- [[#objectives-delve-into-object-oriented-programming][Objectives: Delve into Object Oriented Programming]]
+- [[#structs][Structs]]
+- [[#classes][Classes]]
 
-* Objectives
-* Get and Set
+* Objectives: Delve into Object Oriented Programming
+Here we'll go more into depth about the defining feature of Object Oriented Programming, Structs and Classes
+* Structs
+* Classes

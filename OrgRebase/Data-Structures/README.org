@@ -1,0 +1,6 @@
+#+title: Readme
+
+* Something?
+Each data structure will now be split into two parts. A declaration, and definition. We'll go over step by step the definition
+
+Sometimes our data structures can have ambigious types, we'll indicate as such with ~type~. However, in the cpp/hpp files we will default to using ~std::string~.
