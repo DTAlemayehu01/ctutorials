@@ -6,10 +6,230 @@
 - [[#int-main][int main()]]
 
 * Objective: Learn about functions in C++
-Here we'll learn more about ~int main()~ and how we segment code in ~C++~
+Here we'll learn more about ~int main()~ and how we segment code in ~C++~ into named sections.
 * Making a Function
 When making a new function, one must consider the three following items:
 - Parameters: what inputs should the function require before executing
 - Code: what should the function do with those inputs, if any
-- Return: should the function finish and come back with a ~bool~ evaluation? what about a string? or what if the function doesn't need to return anything at all?
+- Return: should the function finish and come back with a ~bool~ evaluation? what about a ~std::string~? or what if the function doesn't need to return anything at all?
+You'll always need code in a function, otherwise it'd just be an empty function, but return types and inputs are optional. Here's an example of an empty function in C++.
+#+NAME: Igor Function Definition
+#+begin_src cpp :exports code :tangle no
+void igor() {
+    std::cout <<  "Welcome to the Velvet Room!" << std::endl;
+}
+#+end_src
+The function's name is ~igor()~ and it has no input parameters. It also returns no data like ~int~, ~char~, etc. The function's /data type/ is ~void~. All functions need a data type much like variables.
+
+For example, ~int main()~ is also a function but with the /data type/ of ~int~. We'll go more in depth about the special behavior of ~int main()~ later on.
+
+Our function ~igor()~ is cool it won't automatically execute like ~int main()~ if it's in a .cpp file by itself. So instead, we'll have to get ~int main()~ to be made aware of the function and to /call/ the function. Here's one example of how we can do that below.
+#+NAME: Functions in Main
+#+begin_src cpp :exports both :noweb strip-export :results code :tangle basicfunction.cpp
+#include<iostream>
+void igor();
+
+int main () {
+    igor();
+    return 0;
+}
+
+<<Igor Function Definition>>
+#+end_src
+And we can evaluate the result to be:
+#+RESULTS: Functions in Main
+#+begin_src cpp
+Welcome to the Velvet Room!
+#+end_src
+Here we have a function /declaration/, where we determine it's return type and input parameters. Later on we /define/ the exact execution of ~igor()~ below ~int main()~
+
+What's unique about C++ is that a function /declaration/ and a function /defintion/ can be separated. You could also have something like:
+#+NAME: Functions in Main 2
+#+begin_src cpp
+#include<iostream>
+<<Igor Function Definition>>
+
+int main () {
+    igor();
+    return 0;
+}
+#+end_src
+And that would be valid as well since we both /declare/ the function's type, and then /define/ it's code. There's a section on libraries that explains why one would want to separate a /declaration/ from a /definition/ and it mainly boils down to how we can separate code from one .cpp file to multiple .cpp files in C++.
+
+One thing you can't do with C++ functions is nest definitions. Practically speaking this means we can't define functions inside of ~int main()~ but this applies to other functions as well. Additionally, you must declare the function BEFORE calling it with another function. Something like:
+#+begin_src cpp
+#include<iostream>
+
+int func1(int x){
+    return 2 + func2(x);
+}
+
+int func2(int x){
+    return x;
+}
+
+int main(){
+    std::cout << func1(2) << std::endl;
+}
+#+end_src
+Is invalid because ~func2~ is called in ~func1~ before it's declared.
+
+Let's expand the ability ~igor()~ by allowing it to greet us more personally. We can achieve this utilizing input parameters. Let's also give it a return type of ~std::string~ to explore how returns work.
+#+NAME: Igor Function Definition v2
+#+begin_src cpp :exports code
+std::string igor(std::string name) {
+    return "How goes the rehabilitation? " + name + ".";
+}
+#+end_src
+This function has been assigned the type ~std::string~, and if we look at the data following the keyword ~return~ we notice that the data is like that of a string. When a function has an actual data type, not ~void~ it must be acompanied with a ~return~ statement that has the corresponding data type.
+
+This function also takes in one input. This input must be a ~std::string~. And as seen in the function the name for the input, ~name~ is referenced in the return statement. To call this function in actual code we can do the following:
+#+NAME: Functions in Main 2
+#+begin_src cpp :exports both :noweb strip-export :results code :tangle fullfunction.cpp
+#include<iostream>
+#include<string>
+
+std::string igor(std::string name);
+
+int main () {
+    std::cout << igor("Trickster") << std::endl;
+}
+
+<<Igor Function Definition v2>>
+#+end_src
+And our output will be:
+#+RESULTS: Functions in Main 2
+#+begin_src cpp
+How goes the rehabilitation? Trickster.
+#+end_src
+Our intput into the function was the ~std::string~ "trickster" and as observed our output mirrors the function's ~return~ statement if ~std::string name~ was replaced with "trickster".
+
+Essentially, one can think of a function replacing where it's called with the data it's returning.
+
+However, when using the ~return~ keyword, it's important to note that ~return~ exits the function. In other words if we had code like:
+#+begin_src cpp
+std::string igor(std::string name) {
+    return name;
+    std::cout << "We have returned " << name << std::endl;
+}
+#+end_src
+The second line in our function would NOT execute. This is because once the function executes the ~return~ it returns the data in the line and exits the function.
+
+What would happen if we put both ~igor()~ functions in ~int main()~?
+#+NAME: Function overload
+#+begin_src cpp :exports both :noweb strip-export :results code :tangle functionoverloading.cpp
+#include<iostream>
+#include<string>
+
+void igor();
+
+std::string igor(std::string name);
+
+int main() {
+    igor();
+    std::cout << igor("Trickster") << std::endl;
+}
+
+<<Igor Function Definition>>
+
+<<Igor Function Definition v2>>
+#+end_src
+The output would be:
+#+RESULTS: Function overload
+#+begin_src cpp
+Welcome to the Velvet Room!
+How goes the rehabilitation? Trickster.
+#+end_src
+This technique is called function overloading, it's where we create a function with the same name but different inputs such that when calling the same function but giving it different data would cause different results. Although we do change the /type/ of ~igor()~ from ~void~ to ~std::string~ we can't overload by ~return~ type.
 * int main()
+~int main()~ does infact have a ~return~ type of ~int~. When we normally write a program in ~int main()~ we conclude it's execution with ~return 0;~. This is good practice as we can check the exit code of our program through a debugger and ~0~ or ~-1~ generally represents a successful execution.
+
+But if there's an unexpected input in our program we can use the properties of ~return~ to exit our program early.
+
+For example, let's say we were expecing an ~int~ input but instead recieved a ~char~ input. We can have ~int main()~ to return an error number to correspond to the edge case of recieving an unexpected input, like in the following example below:
+#+NAME: Main Multi Return
+#+begin_src cpp :exports both :noweb strip-export :results code :tangle mainreturns.cpp
+#include<iostream>
+
+int main () {
+    int num;
+    std::cout << "Enter a Number: ";
+    std::cin >> num;
+    if(std::cin.fail()){
+        std::cout << "Not a number." << std::endl;
+        return 1;
+    }
+    std::cout << "Your number is " << num << "." << std::endl;
+    return 0;
+}
+#+end_src
+Let's say there are two different inputs. "2" and "Hi".
+For the input of "2" the output is:
+#+begin_src
+Enter a Number: 2
+Your number is 2.
+#+end_src
+For the input of "Hi" the output is:
+#+begin_src
+Enter a Number: Hi
+Not a number.
+#+end_src
+The ~return~ in the 2nd senario stops the code from executing the last two lines of code in ~int main()~ on top of returning a value of ~1~ so that when we run our debugger we know that this code is recieving invalid input when ~std::cin~ is called on ~num~.
+
+~int main()~ is actually capable of having input parameters as well. This is how we can have CLI-arguments when we're running our program. Something like:
+#+begin_src
+./a.out arg1 arg2 arg3 etc...
+#+end_src
+The two parameters ~int main()~ takes are:
+- ~int argc~ -> This ~int~ stores the number of arguments passed in. One thing that's important to note however is that ~./a.out~ actually counts as an argument so if we had something like
+#+begin_src
+./a.out arg1 arg2
+#+end_src
+~int argc = 3~
+- ~char* argv[]~ -> is an array of pointers to ~char~ (more on that later), for now it's easier to assume that it means that each index in the array stores each argument, including ~./a.out~ with our example again:
+#+begin_src
+./a.out arg1 arg2
+#+end_src
+Our ~char* argv[]~ array would look something like
+#+begin_src
+argv[0] -> ./a.out
+argv[1] -> arg1
+argv[2] -> arg2
+#+end_src
+Let's say we want to make a program print a ~std::string~ based on one argument. The following code would achieve that.
+#+NAME: Args
+#+begin_src cpp :exports both :noweb strip-export :results code :tangle args.cpp
+#include<iostream>
+
+int main (int argc, char* argv[]) {
+    if(argc != 2) {
+        std::cout << "Expected 2 args." << std::endl;
+        return 1;
+    }
+    std::cout << "With the exception of course of " << argv[1] << std::endl;
+    return 0;
+}
+#+end_src
+If we execute
+#+begin_src
+./a.out Gojo
+#+end_src
+Our output would be:
+#+CALL: Args[:cmdline Gojo]()
+#+RESULTS:
+#+begin_src cpp
+With the exception of course of Gojo
+#+end_src
+And if we execute
+#+begin_src
+./a.out Satoru Gojo
+#+end_src
+Our output would be:
+#+CALL: Args[:cmdline Satoru Gojo]()
+#+RESULTS:
+#+begin_src cpp
+Expected 2 args.
+#+end_src
+Because ~./a.out Satoru Gojo~ has three arguments: ~./a.out~, ~Satoru~, and ~Gojo~.
+
+Command Line Arguments are all strings so if you want to program code to read ~ints~ from the CLI the data may require data conversions.

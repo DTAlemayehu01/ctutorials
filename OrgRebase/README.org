@@ -3,10 +3,20 @@
 * Table of Contents :toc:
 - [[#introduction][Introduction]]
 - [[#contributing][Contributing]]
+- [[#credits][Credits]]
 
 * Introduction
-This is a repo containing examples of c++ code, syntax and data structures
+This is a repo containing examples of c++ code, syntax, and data structures
 
-*PLEASE* do not upload any code from exams, tests, or other private materials a good rule of thumb is if you couldn't find it in a book in a library you probably shouldn't upload it here.
+These notes are intended for learning and for referencing when building project
+
+*PLEASE* do not sumbit any issues or pull requests featuring any code or text from exams, tests, or other private materials a good rule of thumb is if you couldn't find it in a book in a library you probably shouldn't upload it here.
 * Contributing
 If you find any gaps in knowledge or any incorrect information please open up an issue and I'll try too look into it! Feel free to also submit pull requests if you know how to correct one of the issues in the issue tracker! Suggestions are also welcome!
+* Credits
+This repository/knowledge base was also built with help from the following:
+- Websites Used (Great for Further Reading!):
+  - https://cplusplus.com/
+  - https://en.cppreference.com
+  - https://www.geeksforgeeks.org/c-plus-plus/
+- Contributors:

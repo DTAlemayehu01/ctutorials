@@ -1,8 +1,0 @@
-#+title: Vector
-
-* Table of Contents :toc:
-- [[#objective][Objective]]
-- [[#vector][Vector]]
-
-* Objective
-* Vector

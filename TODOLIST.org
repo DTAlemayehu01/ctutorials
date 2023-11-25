@@ -26,13 +26,14 @@ CLOSED: [2023-11-23 Thu 03:37]
 - [X] While Loops
 - [X] Do While Loops
 - [X] For Loops
-*** TODO Libraries [5/9]
+*** TODO Libraries [5/10]
 - [X] IOStream
 - [X] Fstream
 - [X] string
 - [ ] StringStream
 - [X] CMath
 - [ ] CCType
+- [ ] Custom Libraries, .hpp files
 - [ ] Stack
 - [ ] Queue
 - [X] Vector
@@ -81,15 +82,18 @@ CLOSED: [2023-11-23 Thu 18:55]
 *** TODO Misc Data Structures [0/2]
 - [ ] Min/Max Heap
 - [ ] Priority Queue
-** TODO Main OrgReadme [0/4]
+** TODO Main OrgReadme [1/3]
 - [ ] Heading Links, ToC to other org files
-- [ ] Introduction
+- [X] Introduction
 - [ ] Contribution
-* TODO Fix Errors in Branches [1/17]
+* TODO Fix Errors in Branches [1/30]
 - [X] arrays.cpp
   matrix references item out of bounds, fixed in OrgRebase branch
+- [ ] Check all org files for proper referencing
+- [ ] Check all cpp files for good practices
+- [ ] Make note in readme for <<>> text in cpp
 - [ ] Hello-World.org not displaying cpp output
-  so i can't use the export option to display both #+Results: and the code if both are under different headings
+  so i can't use the export option to display both #+Results: and the code if both are under different headings, I fixed this for now by making an extra code block at the bottom that only exports results, I might remove the headings in this org file
 - [ ] Get 4th level heading to appear in ToC of variables.org
 - [ ] Explain multivariable declaration in c++
 - [ ] Edit various abiguous variable files to utilize cin, rather than expecting user to edit code files themselves.
@@ -106,3 +110,14 @@ CLOSED: [2023-11-23 Thu 18:55]
 - [ ] Make notes on how getline can mess up/common pitfalls
 - [ ] Make something on macro definitions
 - [ ] Consider making CPP libaries it's own section or split into basic libraries for basic section, advanced libraries for advanced section, etc.
+- [ ] Expand on declarations and definitions of functions and such in C++?
+- [ ] functions.org might require more headings?
+- [ ] Possible separate the data structures notes from the basics?
+- [ ] Learn about exception handling?
+- [ ] Figure out solution for "cin"
+- [ ] Add to libraries a note on "cin.fail()"
+- [ ] Functions.org might need headings
+- [ ] I have a "more on that later" thing in functions.org
+  Maybe declare an order of reading? That might defeat the purpose of the study guide nature of this repo
+- [ ] In functions.org i say "all cli args are strings" this might not be necesarily correct and requires review
+- [ ] I need to check to make sure each tangled file is valid code because org-babel is limited and won't let me evaluate certain code
