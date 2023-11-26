@@ -89,7 +89,7 @@ CLOSED: [2023-11-25 Sat 14:17]
 - [ ] Heading Links, ToC to other org files
 - [X] Introduction
 - [ ] Contribution
-* TODO Fix Errors in Branches [1/35]
+* TODO Fix Errors in Branches [1/37]
 - [X] arrays.cpp
   matrix references item out of bounds, fixed in OrgRebase branch
 - [ ] Check all org files for proper referencing
@@ -129,3 +129,5 @@ CLOSED: [2023-11-25 Sat 14:17]
 - [ ] Go more indepth in debuggers.md
 - [ ] Add on to properties of Stacks and Graphs in stacks.org and graphs.org
 - [ ] TEST dijsktraTraversal in graphs.org
+- [ ] CHECK DFT in graph.org
+- [ ] Create search() in graph.org

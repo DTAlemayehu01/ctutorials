@@ -11,9 +11,18 @@
 * Graph Properties
 You know those internconnectivity webs? Those as esentially what graphs are.
 
+Parts of a Graph:
+- Vertex: A node on a graph that stores data
+- Edge: A connection between two verticies
+
 A graph has 2 primary properties.
 1. Is the graph directed or undirected? In other words, for all nodes, if there is an edge, can it be traversed both ways?
 2. Is the graph weighted or unweighted? In other words, are all edges equal, or are the numeric values representing the preference to traversing that edge over another edge?
+
+Three methods for traversal:
+1. Breadth First Traversal (BFT): Start from a vertex then visit each vertex adjacent to that vertex.
+2. Depth First Traversal (DFT): Start from a vertex, and visit an adjacent vertex until you can't traverse the graph any further. Then go back to the previous node and take the other traversal route.
+3. Dijkstra's Traversal: Like BFT but accounting for weight
 
 Real Life Examples:
 Google Maps
@@ -56,7 +65,7 @@ class Graph {
         void BFT(<<type>> keyStart);
         void BFS(<<type>> keyStart, <<type>> searchKey);
         void DFTStack(<<type>> keyStart);
-        void DFTRecusriveHelper(<<type>> keyStart);
+        void DFTRecusriveHelper(vector* v);
         void DFTRecusrive(<<type>> keyStart);
         void dijkstraTraversal(<<type>> keyStart, <<type>> searchKey);
 };
@@ -262,13 +271,10 @@ void Graph::BFS(<<type>> keyStart, <<type>> searchKey){
 }
 #+end_src
 - ~void DFTStack(<<type>> keyStart)~ -> DFT algorithm starting from ~vertex~ storing ~keyStart~, implemented utilizing ~Stack~ data strucuture.
-- ~void DFTRecursiveHelper(<<type>> keyStart)~ and ~void DFTRecursive(<<type>> keyStart) -> same as ~DFTStack()~ but utilizing recursion
-- ~void dijkstraTraversal(<<type>> keyStart, <<type>> searchKey)~ -> Dijkstra's graph traversal for /weighted/ ~Graphs~.
-#+NAME: dijsktraTraversal
+#+NAME: DFT Stack
 #+begin_src cpp :exports code :noweb strip-export
-void Graph::dijsktraTraversal(<<type>> keyStart, <<type>> searchKey){
+void Graph::DFTStack(<<type>> keyStart){
     vertex* vStart;
-    vertex* vDest;
     vertex* pop;
     int size = verticies.size();
 
@@ -280,42 +286,124 @@ void Graph::dijsktraTraversal(<<type>> keyStart, <<type>> searchKey){
     for(int i = 0; i < size; i++) {
         if(verticies[i]->key == keyStart) {
             vStart = verticies[i];
-        }
-        if(verticies[i]->key == searchKey) {
-            vDest = verticies[i];
+            break;
         }
     }
 
-    vector<vertex*> solvedList;
-    solvedList.push(vStart);
+    if(!vStart){
+        return;
+    }
+
+    stack<vertex*> s;
+    s.push(vStart);
 
     vStart->visited = true;
 
-    while(solvedList.size()) {
-        pop = Q.front();
-        Q.pop();
+    while(s.size()) {
+        pop = s.front();
+        s.pop();
         if(!pop->visited) {
             pop->visited = true;
         }
         size = pop->adj.size();
         for(int i = 0; i < size; i++) {
             if(!pop->adj[i].v->visited) {
-                Q.push(pop->adj[i].v);
+                s.push(pop->adj[i].v);
                 pop->adj[i].v->previous = pop;
                 pop->adj[i].v->distance = pop->distance+1;
             }
         }
-        if(pop == vDest){
+    }
+}
+#+end_src
+- ~void DFTRecursiveHelper(<<type>> keyStart)~ and ~void DFTRecursive(vertex* v) -> same as ~DFTStack()~ but utilizing recursion
+#+NAME: DFT Recursive
+#+begin_src cpp :exports code :noweb strip-export
+void Graph::DFTRecursiveHelper(vertex* v){
+    v->visited = true;
+    int adjSize = v->adj.size();
+    for(int i = 0; i < adjSize; i++){
+        if(!v->adj[i]->visited){
+            depthFirstRecurse(v->adj[i]);
+        }
+    }
+}
+
+void Graph::DFTRecursive(<<type>> keyStart){
+    int size = verticies.size();
+    vertex* vStart;
+    for(int i = 0; i < size; i++){
+        if(verticies[i]->key == keystart){
+            vStart = verticies[i];
             break;
         }
     }
-    if(!vDest->visited){
-        std::cout << "No path from start to end" << std::endl;
+    DFTRecursiveHelper(vStart);
+}
+#+end_src
+- ~void dijkstraTraversal(<<type>> keyStart, <<type>> searchKey)~ -> Dijkstra's graph traversal for /weighted/ ~Graphs~. (NEEDS TESTING)
+#+NAME: dijsktraTraversal
+#+begin_src cpp :exports code :noweb strip-export
+void Graph::dijsktraTraversal(<<type>> keyStart, <<type>> searchKey){
+    vertex* vStart;
+    int minDist;
+    int size = verticies.size();
+    int adjSize;
+    bool allSolved = false;
+
+    for(int i = 0; i < size; i++){
+        verticies[i]->visited = false;
+        verticies[i]->distance = 0;
     }
 
-    vertex* crawler = pop;
-    while(crawler) {
-        crawler = crawler->previous;
+    for(int i = 0; i < size; i++) {
+        if(verticies[i]->key == keyStart) {
+            vStart = verticies[i];
+        }
+    }
+
+    if(!vStart){
+        return;
+    }
+
+    vector<vertex*> solvedList;
+    solvedList.push_back(vStart);
+
+    vStart->visited = true;
+    while(!allSolved){
+        minDist = 99999999999;
+
+        vertex *solvedV = nullptr;
+        allSolved = true;
+
+        size = solvedList.size();
+        for(int i = 0; i < solvedList; i++){
+            vector *s = solvedList[i];
+
+            adjSize = s->adj.size();
+            for(int j=0; j < adjSize; j++){
+                if(!s->adj[j].v->solve){
+                    int dist = s->distance + s->adj[j].weight;
+
+                    if(dist < minDist){
+                        solvedV = s->adj[j].v;
+                        minDist = dist;
+                    }
+                    allSolved = false;
+                }
+            }
+        }
+        if(!allSolved){
+            solvedV->distance = minDist;
+            solvedV->solved = true;
+            solvedList.push_back(solvedV);
+        }
     }
 }
+#+end_src
+#+NAME: Graph Definition
+#+begin_src cpp :exports none :noweb strip-export :tangle graph.cpp :var <<type>>=std::string
+#include "graph.hpp"
+
+
 #+end_src
