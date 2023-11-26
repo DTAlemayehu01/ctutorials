@@ -1,7 +1,7 @@
 #+title: Stack
 
 * Table of Contents :toc:
-- [[#stack-explaination][Stack Explaination]]
+- [[#stack-properties][Stack Properties]]
 - [[#stack-declaration][Stack Declaration]]
   - [[#linked-list-based][Linked List Based]]
   - [[#array-based][Array Based]]
@@ -9,7 +9,7 @@
   - [[#linked-list-based-1][Linked List Based]]
   - [[#array-based-1][Array Based]]
 
-* Stack Explaination
+* Stack Properties
 Imagine a stack of plates. You remove a plate by taking a plate off the stack one by one.
 
 Examples IRL:
@@ -28,7 +28,7 @@ Here is a Declartion of a Stack DS
 struct Node{
     type key;
     Node *next;
-}
+};
 
 class Stack {
     private:
@@ -124,11 +124,13 @@ class Stack {
 #+end_src
 * Stack Definitions
 ** Linked List Based
-*** Private
+*** struct Node
+*** class Stack
+**** Private
 - ~Node* StackHead~ -> points to stack top node
 - ~int maxSize~ -> stores the maximum amount of elements allowed in stack, optional for infinite size stacks
 - ~int numOfElements~ -> stores the number of elements in the stack
-*** Public
+**** Public
 ~Stack()~ -> Constructs the class
 #+NAME: Stack LL Constructor
 #+begin_src cpp
@@ -249,11 +251,12 @@ int Stac::size(){
 <<Stack LL Size>>
 #+end_src
 ** Array Based
-*** Private
+*** class Stack
+**** Private
 - ~int maxSize~ -> stores max Size of stack, mandatory for array implementation
 - ~int StackHead~ -> stores the index of the head of the stack
 - ~type* stack~ -> points to the stack array of type ~type~ on the heap
-*** Public
+**** Public
 ~Stack()~ -> Constructs the class
 #+NAME: Stack Array Constructor
 #+begin_src cpp

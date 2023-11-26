@@ -1,11 +1,76 @@
 #+title: Graph
 
 * Table of Contents :toc:
-- [[#explanation][Explanation]]
+- [[#graph-properties][Graph Properties]]
 - [[#graph-declarations][Graph Declarations]]
 - [[#graph-definitions][Graph Definitions]]
+  - [[#struct-edge][struct Edge]]
+  - [[#struct-vertex][struct Vertex]]
+  - [[#class-graph][class Graph]]
 
-* Explanation
+* Graph Properties
 You know those internconnectivity webs? Those as esentially what graphs are.
+
+A graph has 2 primary properties.
+1. Is the graph directed or undirected? In other words, for all nodes, if there is an edge, can it be traversed both ways?
+2. Is the graph weighted or unweighted? In other words, are all edges equal, or are the numeric values representing the preference to traversing that edge over another edge?
+
+Real Life Examples:
+Google Maps
 * Graph Declarations
+Here is the declaration for a graph, that supports all different types of graphs.
+#+NAME: Graph Declaration
+#+begin_src cpp :exports code :noweb strip-export :tangle graph.hpp
+#ifndef GRAPH_H_
+#define GRAPH_H_
+#include<string>
+
+struct Edge {
+    vertex * v;
+    int weight;
+};
+
+struct Vertex {
+    <<type>> key;
+    int distance = 0;
+    bool visited = false;
+    vector<edge> adj;
+    vertex *previous = nullptr;
+};
+
+class Graph {
+    private:
+        vector<vertex*> verticies;
+    public:
+        void insertVertex(<<type>> key);
+        void addEdge(<<type>> startValue, <<type>> endValue);
+        void addEdge(<<type>> startValue, <<type>> endValue, int weight);
+        void deleteVertex(<<type>> value);
+        void deleteEdge(<<type>> startValue, <<type>> endValue);
+        void displayGraph();
+        void search(<<type>> value); //?
+        void BFT(<<type>> keyStart);
+        void BFS(<<type>> keyStart, <<type>> searchKey);
+        void DFTStack(<<type>> keyStart);
+        void DFTRecusriveHelper(<<type>> keyStart);
+        void DFTRecusrive(<<type>> keyStart);
+        void dijkstraTraversal(<<type>> keyStart);
+};
+#+end_src
 * Graph Definitions
+** struct Edge
+- ~vertex * v~ -> a pointer to a ~Vertex~ in the ~Graph~
+- ~int weight~ -> the weight of the ~edge~, mandatory for /weighted/ graphs
+** struct Vertex
+- ~<<type>> key~ -> data of a nonspecific type, what is supposed to be stored in a ~Vertex~ of the ~Graph~
+- ~int distance~ -> stores the distance from the starting ~Vertex~ in traversal algorithms, default of ~0~
+- ~bool visited~ -> stores if a vertex has been visited/solved during traversal algorithms, default of ~false~
+- ~vector<edge> adj~ -> stores the adjacency list of verticies the ~Vertex~ is connected to through the ~vector~ of ~edge~ structs
+- ~vertex * previous~ -> stores the previous ~vertex~ traversed during traversal algorithms, optional but useful if trying to note paths during traversal
+** class Graph
+*** private
+- ~vector<vertex*> verticies~ -> stores all ~verticies~ in the ~Graph~
+*** public
+- ~void insertVertex(<<type>> key)~ -> inserts a new ~vertex~ in the graph storing the data of a nonspecific type in the ~vertex~
+- ~void addEdge(<<type>> startValue, <<type>> endValue)~ -> inserts an unweighted ~Edge~ directed from the ~vertex~ storing ~startValue~ to the ~vertex~ storing ~endValue~. Can call the function ~addEdge(endValue, startValue)~ in the function to make it an undirected edge.
+- ~void addEdge(<<type>> startValue, <<type>> endValue, int weight)~ -> inserts an weighted ~Edge~ of ~int weight~ directed from the ~vertex~ storing ~startValue~ to the ~vertex~ storing ~endValue~.
