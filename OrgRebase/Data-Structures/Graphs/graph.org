@@ -1,8 +1,11 @@
 #+title: Graph
 
 * Table of Contents :toc:
-- [[#objective][Objective]]
-- [[#graph][Graph]]
+- [[#explanation][Explanation]]
+- [[#graph-declarations][Graph Declarations]]
+- [[#graph-definitions][Graph Definitions]]
 
-* Objective
-* Graph
+* Explanation
+You know those internconnectivity webs? Those as esentially what graphs are.
+* Graph Declarations
+* Graph Definitions

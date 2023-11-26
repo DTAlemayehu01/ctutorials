@@ -89,7 +89,7 @@ CLOSED: [2023-11-25 Sat 14:17]
 - [ ] Heading Links, ToC to other org files
 - [X] Introduction
 - [ ] Contribution
-* TODO Fix Errors in Branches [1/30]
+* TODO Fix Errors in Branches [1/33]
 - [X] arrays.cpp
   matrix references item out of bounds, fixed in OrgRebase branch
 - [ ] Check all org files for proper referencing
@@ -124,3 +124,6 @@ CLOSED: [2023-11-25 Sat 14:17]
   Maybe declare an order of reading? That might defeat the purpose of the study guide nature of this repo
 - [ ] In functions.org i say "all cli args are strings" this might not be necesarily correct and requires review
 - [ ] I need to check to make sure each tangled file is valid code because org-babel is limited and won't let me evaluate certain code
+- [ ] Explain #indef and #define
+- [ ] Explain function recursion
+- [ ] Go more indepth in debuggers.md
