@@ -1,0 +1,209 @@
+#+title: Statements
+
+* Table of Contents :toc:
+- [[#objective-conditional-code-execution][Objective: Conditional Code Execution]]
+- [[#comparision-operators][Comparision Operators]]
+- [[#if-statements][If Statements]]
+- [[#switch-statements][Switch Statements]]
+
+* Objective: Conditional Code Execution
+In this section we'll learn about conditonal operations in C++ and conditional operations.
+* Comparision Operators
+All data types in c++ can be compared. However, ther eare some restrictions on what data types can be compared to what datatypes.
+- ~ints~, ~floats~, and ~doubles~ can all be freely compared with each other
+- ~std::sting~ and ~char~ can only be compared with data of the same type, and they're compared based on the
+- And ~bool~ can only utilize equality comparisons, not true and false comparisons.
+And there's specific syntax for comparing the different data types
+- ~a == b~ -> a is equal to b
+- ~a != b~ -> a not equal to b
+- ~a <  b~ -> a less than b
+- ~a >  b~ -> a less than b
+- ~a <= b~ -> a less than or equal to b
+- ~a >= b~ -> a greater than or equal to b
+With numbers the comparision is fairly intutitive however for ~std::strings~ and ~chars~ the comparision is different. Observe the example below.
+#+NAME: String Bool
+ #+begin_src cpp :exports both :noweb strip-export :results code :tangle stringcheck.cpp
+#include<iostream>
+int main () {
+    bool stringcheck = "a" < "b";
+    std::cout << stringcheck << std::endl;
+}
+ #+end_src
+The output should be:
+ #+RESULTS:
+ #+begin_src cpp
+ 1
+ #+end_src
+ Something important to note about the output is that when printing ~bool~ data the result will either be a ~0~ for false or ~1~ for true.
+
+ So when reading our output we notice that the statement ~"a" < "b"~ is true as the output is ~1~.
+* If Statements
+Using comparision operators we now have our program "choose" to execute lines of code based on whether certain conditions are met. This is done with ~if~ Statements. Below is an introduction to ~if~ and ~else~.
+#+NAME: IfStatement
+#+begin_src cpp :export both :noweb strip-export :results code
+#include<iostream>
+int main(){
+    if(isChromeJunkie){
+        std::cout << "Got any brain in that chrome dome?" << std::endl;
+    } else {
+        std::cout << "Right to the top of Arasaka Tower!" << std::endl;
+    }
+}
+#+end_src
+#+NAME: IfStatement EX 1
+#+begin_src cpp :export none :noweb strip-export :tangle ifelsestatement.cpp
+#include<iostream>
+int main(){
+    //be sure to assign isChromeJunkie a value in order to compile
+    bool isChromeJunkie;
+    if(isChromeJunkie){
+        std::cout << "Got any brain in that chrome dome?" << std::endl;
+    } else {
+        std::cout << "Right to the top of Arasaka Tower!" << std::endl;
+    }
+}
+#+end_src
+/If/ ~isChomeJunkie~ is ~true~ the output will be:
+#+CALL: IfStatement[:var isChromeJunkie=1]()
+#+RESULTS:
+#+begin_src cpp
+Got any brain in that chrome dome?
+#+end_src
+/Else If/ ~isChromeJunkie~ is ~false~ the output will be:
+#+CALL: IfStatement[:var isChromeJunkie=0]()
+#+RESULTS:
+#+begin_src cpp
+Right to the top of Arasaka Tower!
+#+end_src
+Our two keywords to take note of are ~if~ and ~else~. When writting ~if~ Statements boolean evaluations are input into the parenthesis and if the whole thing evaluates to ~true~ it executes the code contained in the curly braces.
+
+However, /if/ the evaluation is false it moves down to the ~else~ Statement. ~else~ Statements are unique in that they don't need to meet any conditions for execution other than that all other previous ~if~ statements haven't been executed.
+
+But, There is a 3rd type of statement called ~if else~ Statement. It operates similarly to ~else~ Statements in that it requires all previous if statements to fail. But it differentiates in that it still requires certain conditions to be true in order to execute it's contained code, like an ~if~ Statement.
+
+With ~if~, ~else~ and ~if else~ we can chain more complex conditionals. Especially with the help of three more logical operators.
+- ~a && b~ -> With this operator ~a~ AND ~b~ must be true for the combined statement to be ~true~. Else, it would be ~false~.
+- ~a || b~ -> With this operator ~a~ AND/OR ~b~ must be true for the combined statement to be ~true~. Else it would be ~false~.
+- ~!a~     -> The ~!~ flips the boolean evalutaion of ~a~. So if ~a~ is ~false~ and ~!a~ is ~true~. If ~a~ is ~true~ then ~!a~ is ~false~.
+Take the following code example below.
+#+NAME: IfStatement EX 2
+#+begin_src cpp :export none :noweb strip-export :tangle complexifstatement.cpp
+#include<iostream>
+int main(){
+    //be sure to assign the following variables a value in order to compile
+    bool isWitch;
+    bool isFemale;
+    if(isWitch && isFemale){
+        std::cout << "Don't Fuck with a witch!" << std::endl;
+    } else if (isWitch || isFemale){
+        std::cout << "If you need to learn how to talk to a lady, ask your mother!" << std::endl;
+    } else {
+        std::cout << "Hello there, Cheshire!" << std::endl;
+    }
+}
+#+end_src
+#+NAME: ComplexIfStatement
+#+begin_src cpp :export both :noweb strip-export :results code
+#include<iostream>
+int main(){
+    if(isWitch && isFemale){
+        std::cout << "Don't Fuck with a witch!" << std::endl;
+    } else if (!isWitch && isFemale){
+        std::cout << "If you need to learn how to talk to a lady, ask your mother!" << std::endl;
+    } else if (isWitch || isFemale) {
+        std::cout << "You're absolutely delusional!" << std::endl;
+    } else {
+        std::cout << "Hello there, Cheshire!" << std::endl;
+    }
+}
+#+end_src
+There are 4 scenarios so 4 possible outputs.
+
+If both ~isWitch~ and ~isFemale~ are true the result is:
+#+CALL: ComplexIfStatement[:var isWitch=1 isFemale=1]()
+#+RESULTS:
+#+begin_src cpp
+Don't Fuck with a witch!
+#+end_src
+If ~isWitch~ is false and ~isFemale~ is true the result is:
+#+CALL: ComplexIfStatement[:var isWitch=0 isFemale=1]()
+#+RESULTS:
+#+begin_src cpp
+If you need to learn how to talk to a lady, ask your mother!
+#+end_src
+If ~isWitch~ is true and ~isFemale~ is false the result is:
+#+CALL: ComplexIfStatement[:var isWitch=1 isFemale=0]()
+#+RESULTS:
+#+begin_src cpp
+You're absolutely delusional!
+#+end_src
+If both ~isWitch~ and ~isFemale~ are false the result is:
+#+CALL: ComplexIfStatement[:var isWitch=0 isFemale=0]()
+#+RESULTS:
+#+begin_src cpp
+Hello there, Cheshire!
+#+end_src
+Just note that you don't always have to use variables in ~if~ statements. You could also write something like ~if (2 < 7) {}~ and that would still be valid syntax.
+* Switch Statements
+Sometimes ~if~ Statements can get really long and tedious, so C++ has a thing called ~switch~ Statements to make them more readable.
+
+Let's say I want to print a certain phrase /if/ a variable is a certain value. We can use the switch statement below to achieve that.
+#+NAME: Basic Switch
+#+begin_src cpp :exports both :noweb strip-export :results code
+#include<iostream>
+int main () {
+    switch (numberOfShoes) {
+        case 0:
+            std::cout << "No Drip" << std::endl;
+            break;
+        case 1:
+            std::cout << "Some Drip" << std::endl;
+        default:
+            std::cout << "How many shoes was that?" << std::endl;
+            break;
+    }
+}
+#+end_src
+#+NAME: Basic Switch
+#+begin_src cpp :exports none :noweb strip-export :tangle basicswitch.cpp
+#include<iostream>
+int main () {
+    //be sure to assign a value so the program can compile
+    int numberOfShoes;
+    switch (numberOfShoes) {
+        case 0:
+            std::cout << "No Drip" << std::endl;
+            break;
+        case 1:
+            std::cout << "Some Drip" << std::endl;
+            break;
+        default:
+            std::cout << "How many shoes was that?" << std::endl;
+            break;
+    }
+}
+#+end_src
+If ~numberOfShoes = 0~ the output is:
+#+CALL: Basic Switch[:var numberOfShoes=0]()
+#+RESULTS:
+#+begin_src cpp
+No Drip
+#+end_src
+If ~numberOfShoes = 1~ the output is:
+#+CALL: Basic Switch[:var numberOfShoes=1]()
+#+RESULTS:
+#+begin_src cpp
+Some Drip
+How many shoes was that?
+#+end_src
+If ~numberOfShoes != 0~ /and/ ~numberOfShoes != 1~ the output is:
+#+CALL: Basic Switch[:var numberOfShoes=2]()
+#+RESULTS:
+#+begin_src cpp
+How many shoes was that?
+#+end_src
+Some keywords to go over:
+- ~switch~ -> this declares the start of a switch statement.
+- ~case~ -> behaves similar to ~if~. When the variable passed into the swithc statement is equal to the ~case~ value the code executes down until...
+- ~break~ -> informs the switch statement when to stop executing code. Without ~break~ we can make overflow cases like in the second example where both ~case 1~ and the ~default~ case are executed and where ~case 0~ only executes the code it contains.
+- ~default~ -> this case executes by itself if none of the other ~case~ values are matched. Like in our 3rd example, because the ~case~ value is neither 1 or 2 the default case get's executed.

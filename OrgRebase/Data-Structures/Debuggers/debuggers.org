@@ -1,0 +1,54 @@
+#+title: Debuggers
+
+* Table of Contents :toc:
+- [[#objective-learn-about-debuggers][Objective: Learn about Debuggers]]
+- [[#valgrind][Valgrind]]
+- [[#gdb-gnu-debugger][GDB (GNU DeBugger)]]
+
+* Objective: Learn about Debuggers
+With knowledge of pointers, the potential for /segmentation faults/ is far more significant, especially in a data structures context so being able to utilize debuggers is something that will be important to study. We go over two below.
+
+* Valgrind
+
+A program tool for memory debugging, memory leak detection, and profiling
+
+It's name is a reference to the main enterance of Valhalla from Norse Mythology
+
+Examples:
+
+#+begin_src
+valgrind --tool=memcheck ./a.out
+valgrind --tool=memcheck --leak-check=yes ./a.out
+#+end_src
+
+Note when compiling to debug code use '-g' to keep deubbing information in the exec file, it allows errors on precise line numbers
+
+* GDB (GNU DeBugger)
+
+Supports for many languages including C and C++ and Assembly x86 x64
+
+Allows for program execution with greater control
+- you can pause a program at a place
+- inspect the value of any variables at place, and
+- makes it easy to hunt for run-time errors like segmentation faults.
+
+GDB manual: http:/sourceware.org/gdb/current/onlinedocs/gdbtoc.html
+
+Examples:
+#+begin_src
+gdb ./a.out
+#+end_src
+
+This stages program to execute under the ~gdb~ debugger.
+
+Options:
+#+begin_src
+run - executes program, returns where possible run-time errors are occuring, stops at breakpoints
+break <file:n> - sets a breakpoint at a specific line 'n' in cpp file 'file'
+break <function> - sets a breakpoint at a function 'n' in compiled file
+continue - continues to next program or program end
+step - steps into next line (will enter functions)
+next - goes to next line in file (won't enter functions)
+p <format char> <var> - prints data stored in variable
+x /x <var> - prints var and deferenced mem location var point to
+#+end_src

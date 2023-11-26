@@ -1,0 +1,430 @@
+#+title: Graph
+
+#+NAME: type
+#+begin_src :exports none
+std::string
+#+end_src
+
+* Table of Contents :toc:
+- [[#graph-properties][Graph Properties]]
+- [[#graph-declarations][Graph Declarations]]
+- [[#graph-definitions][Graph Definitions]]
+  - [[#struct-edge][struct Edge]]
+  - [[#struct-vertex][struct Vertex]]
+  - [[#class-graph][class Graph]]
+
+* Graph Properties
+You know those internconnectivity webs? Those as esentially what graphs are.
+
+Parts of a Graph:
+- Vertex: A node on a graph that stores data
+- Edge: A connection between two verticies
+
+A graph has 2 primary properties.
+1. Is the graph directed or undirected? In other words, for all nodes, if there is an edge, can it be traversed both ways?
+2. Is the graph weighted or unweighted? In other words, are all edges equal, or are the numeric values representing the preference to traversing that edge over another edge?
+
+Three methods for traversal:
+1. Breadth First Traversal (BFT): Start from a vertex then visit each vertex adjacent to that vertex.
+2. Depth First Traversal (DFT): Start from a vertex, and visit an adjacent vertex until you can't traverse the graph any further. Then go back to the previous node and take the other traversal route.
+3. Dijkstra's Traversal: Like BFT but accounting for weight
+
+Real Life Examples:
+Google Maps
+* Graph Declarations
+Here is the declaration for a graph, that supports all different types of graphs.
+#+NAME: Graph Declaration
+#+begin_src cpp :exports code :noweb strip-export :tangle graph.hpp
+#ifndef GRAPH_H_
+#define GRAPH_H_
+#include<string>
+#include<stack>
+#include<queue>
+
+struct Edge {
+    vertex * v;
+    int weight;
+};
+
+struct Vertex {
+    <<type>> key;
+    int distance = 0;
+    bool visited = false;
+    vector<edge> adj;
+    vertex *previous = nullptr;
+};
+
+class Graph {
+    private:
+        vector<vertex*> verticies;
+    public:
+        Graph();
+        ~Graph();
+        void insertVertex(<<type>> key);
+        void addEdge(<<type>> startValue, <<type>> endValue);
+        void addEdge(<<type>> startValue, <<type>> endValue, int weight);
+        void deleteVertex(<<type>> value);
+        void deleteEdge(<<type>> startValue, <<type>> endValue);
+        void displayGraph();
+        void search(<<type>> value); //?
+        void BFT(<<type>> keyStart);
+        void BFS(<<type>> keyStart, <<type>> searchKey);
+        void DFTStack(<<type>> keyStart);
+        void DFTRecusriveHelper(vector* v);
+        void DFTRecusrive(<<type>> keyStart);
+        void dijkstraTraversal(<<type>> keyStart, <<type>> searchKey);
+};
+#+end_src
+* Graph Definitions
+** struct Edge
+- ~vertex * v~ -> a pointer to a ~Vertex~ in the ~Graph~
+- ~int weight~ -> the weight of the ~edge~, mandatory for /weighted/ graphs
+** struct Vertex
+- ~<<type>> key~ -> data of a nonspecific type, what is supposed to be stored in a ~Vertex~ of the ~Graph~
+- ~int distance~ -> stores the distance from the starting ~Vertex~ in traversal algorithms, default of ~0~
+- ~bool visited~ -> stores if a vertex has been visited/solved during traversal algorithms, default of ~false~
+- ~vector<edge> adj~ -> stores the adjacency list of verticies the ~Vertex~ is connected to through the ~vector~ of ~edge~ structs
+- ~vertex * previous~ -> stores the previous ~vertex~ traversed during traversal algorithms, optional but useful if trying to note paths during traversal
+** class Graph
+*** private
+- ~vector<vertex*> verticies~ -> stores all ~verticies~ in the ~Graph~
+*** public
+- ~Graph()~ -> class constructor
+- ~~Graph()~ -> class deconstructor
+- ~void insertVertex(<<type>> key)~ -> inserts a new ~vertex~ in the graph storing the data of a nonspecific type in the ~vertex~
+#+NAME: Insert Vertex
+#+begin_src cpp :exports both :noweb strip-export
+void Graph::addVertex(<<type>> key) {
+    int size = verticies.size();
+    for(int i = 0; i < size; i++) {
+        if(verticies[i]->key == key) {
+            return;
+        }
+    }
+    vertex *newVertex = new vertex;
+    newVertex->key = key;
+    verticies.push_back(newVertex);
+}
+#+end_src
+- ~void addEdge(<<type>> startValue, <<type>> endValue)~ -> inserts an unweighted ~Edge~ directed from the ~vertex~ storing ~startValue~ to the ~vertex~ storing ~endValue~. Can call the function ~addEdge(endValue, startValue)~ in the function to make it an undirected edge.
+#+NAME: Add Unweighted Edge
+#+begin_src cpp :exports both :noweb strip-export
+void Graph::addEdge(<<type>> startValue, <<type>> endValue) {
+    vertex* start = nullptr;
+    vertex* end = nullptr;
+    int size = verticies.size();
+    for(int i = 0; i < size; i++){
+        if(verticies[i]->key == startValue) {
+            start = verticies[i];
+        }
+        if(verticies[i]->key == endValue) {
+            end = verticies[i];
+        }
+    }
+    if(!start || !end) {
+        return;
+    }
+    if(start == end) {
+        return;
+    }
+    Edge startToEnd;
+    startToEnd.v = end;
+    start->adj.push_back(startToEnd);
+}
+#+end_src
+- ~void addEdge(<<type>> startValue, <<type>> endValue, int weight)~ -> inserts an weighted ~Edge~ of ~int weight~ directed from the ~vertex~ storing ~startValue~ to the ~vertex~ storing ~endValue~.
+#+NAME: Add Weighted Edge
+#+begin_src cpp :exports both :noweb strip-export
+void Graph::addEdge(<<type>> startValue, <<type>> endValue, int weight) {
+    vertex* start = nullptr;
+    vertex* end = nullptr;
+    int size = verticies.size();
+    for(int i = 0; i < size; i++){
+        if(verticies[i]->key == startValue) {
+            start = verticies[i];
+        }
+        if(verticies[i]->key == endValue) {
+            end = verticies[i];
+        }
+    }
+    if(!start || !end) {
+        return;
+    }
+    if(start == end) {
+        return;
+    }
+    Edge startToEnd;
+    startToEnd.v = end;
+    startToEnd.weight = weight;
+    start->adj.push_back(startToEnd);
+}
+#+end_src
+- ~void deleteVertex(<<type>> value)~ -> deletes the ~vertex~ storing ~value~ from the ~Graph~ (make sure all edges are deleted)
+- ~void deleteEdge(<<type>> startValue, <<type>> endValue)~ -> deletes the ~Edge~ directed from the ~vertex~ storing ~startValue~ from the ~Vertex~ storing ~endValue~
+- ~void displayGraph()~ -> displays the ~Graph~ in output, our implementation outputs the ~key~ of each ~vertex~ and the ~key~ of each ~Edge~ connected to the ~vertex~ on the same line.
+#+NAME: Display Graph
+#+begin_src cpp :exports both: noweb strip-export
+void Graph::displayGraph(){
+    int sizeVs = verticies.size();
+    int size = 0;
+    for(int i = 0; i < sizeVs; i++){
+        std::cout << verticies[i]->key << " ";
+        size = verticies[i]->adj.size();
+        for(int j = 0; j < size; j++) {
+            std::cout << verticies[i]->adj[j].v->key << " ";
+        }
+        std::cout << std:endl;
+    }
+}
+#+end_src
+- ~void BFT(<<type>> keyStart)~ -> generic BFT starting from the ~Vertex~ storing ~keyStart~
+#+NAME: BFT
+#+begin_src cpp :exports code :noweb strip-export
+void Graph::BFT(<<type>> keyStart){
+    vertex* vStart;
+    vertex* pop;
+    int size = verticies.size();
+
+    for(int i = 0; i < size; i++){
+        verticies[i]->visited = false;
+        verticies[i]->distance = 0;
+    }
+
+    for(int i = 0; i < size; i++) {
+        if(verticies[i]->key == keyStart) {
+            vStart = verticies[i];
+            break;
+        }
+    }
+
+    queue<vertex*> Q;
+    Q.push(vStart);
+
+    vStart->visited = true;
+
+    while(Q.size()) {
+        pop = Q.front();
+        Q.pop();
+        if(!pop->visited) {
+            pop->visited = true;
+        }
+        size = pop->adj.size();
+        for(int i = 0; i < size; i++) {
+            if(!pop->adj[i].v->visited) {
+                Q.push(pop->adj[i].v);
+                pop->adj[i].v->previous = pop;
+                pop->adj[i].v->distance = pop->distance+1;
+            }
+        }
+    }
+}
+#+end_src
+- ~void BFS(<<type>> keystart, <<type>> searchKey)~ -> BFS algorithm for /unweighted/ ~Graphs~ starting from the ~vertex~ storing ~keyStart~ to the shortest distance to ~searchKey~, for weighted graphs see ~dijkstraTraversal()~
+#+NAME: BFS
+#+begin_src cpp :exports code :noweb strip-export
+void Graph::BFS(<<type>> keyStart, <<type>> searchKey){
+    vertex* vStart;
+    vertex* vDest;
+    vertex* pop;
+    int size = verticies.size();
+
+    for(int i = 0; i < size; i++){
+        verticies[i]->visited = false;
+        verticies[i]->distance = 0;
+    }
+
+    for(int i = 0; i < size; i++) {
+        if(verticies[i]->key == keyStart) {
+            vStart = verticies[i];
+        }
+        if(verticies[i]->key == searchKey) {
+            vDest = verticies[i];
+        }
+    }
+
+    queue<vertex*> Q;
+    Q.push(vStart);
+
+    vStart->visited = true;
+
+    while(Q.size()) {
+        pop = Q.front();
+        Q.pop();
+        if(!pop->visited) {
+            pop->visited = true;
+        }
+        size = pop->adj.size();
+        for(int i = 0; i < size; i++) {
+            if(!pop->adj[i].v->visited) {
+                Q.push(pop->adj[i].v);
+                pop->adj[i].v->previous = pop;
+                pop->adj[i].v->distance = pop->distance+1;
+            }
+        }
+        if(pop == vDest){
+            break;
+        }
+    }
+    if(!vDest->visited){
+        std::cout << "No path from start to end" << std::endl;
+    }
+
+    vertex* crawler = pop;
+    while(crawler) {
+        crawler = crawler->previous;
+    }
+}
+#+end_src
+- ~void DFTStack(<<type>> keyStart)~ -> DFT algorithm starting from ~vertex~ storing ~keyStart~, implemented utilizing ~Stack~ data strucuture.
+#+NAME: DFT Stack
+#+begin_src cpp :exports code :noweb strip-export
+void Graph::DFTStack(<<type>> keyStart){
+    vertex* vStart;
+    vertex* pop;
+    int size = verticies.size();
+
+    for(int i = 0; i < size; i++){
+        verticies[i]->visited = false;
+        verticies[i]->distance = 0;
+    }
+
+    for(int i = 0; i < size; i++) {
+        if(verticies[i]->key == keyStart) {
+            vStart = verticies[i];
+            break;
+        }
+    }
+
+    if(!vStart){
+        return;
+    }
+
+    stack<vertex*> s;
+    s.push(vStart);
+
+    vStart->visited = true;
+
+    while(s.size()) {
+        pop = s.front();
+        s.pop();
+        if(!pop->visited) {
+            pop->visited = true;
+        }
+        size = pop->adj.size();
+        for(int i = 0; i < size; i++) {
+            if(!pop->adj[i].v->visited) {
+                s.push(pop->adj[i].v);
+                pop->adj[i].v->previous = pop;
+                pop->adj[i].v->distance = pop->distance+1;
+            }
+        }
+    }
+}
+#+end_src
+- ~void DFTRecursiveHelper(<<type>> keyStart)~ and ~void DFTRecursive(vertex* v) -> same as ~DFTStack()~ but utilizing recursion
+#+NAME: DFT Recursive
+#+begin_src cpp :exports code :noweb strip-export
+void Graph::DFTRecursiveHelper(vertex* v){
+    v->visited = true;
+    int adjSize = v->adj.size();
+    for(int i = 0; i < adjSize; i++){
+        if(!v->adj[i]->visited){
+            depthFirstRecurse(v->adj[i]);
+        }
+    }
+}
+
+void Graph::DFTRecursive(<<type>> keyStart){
+    int size = verticies.size();
+    vertex* vStart;
+    for(int i = 0; i < size; i++){
+        if(verticies[i]->key == keystart){
+            vStart = verticies[i];
+            break;
+        }
+    }
+    DFTRecursiveHelper(vStart);
+}
+#+end_src
+- ~void dijkstraTraversal(<<type>> keyStart, <<type>> searchKey)~ -> Dijkstra's graph traversal for /weighted/ ~Graphs~. (NEEDS TESTING)
+#+NAME: dijsktraTraversal
+#+begin_src cpp :exports code :noweb strip-export
+void Graph::dijsktraTraversal(<<type>> keyStart, <<type>> searchKey){
+    vertex* vStart;
+    int minDist;
+    int size = verticies.size();
+    int adjSize;
+    bool allSolved = false;
+
+    for(int i = 0; i < size; i++){
+        verticies[i]->visited = false;
+        verticies[i]->distance = 0;
+    }
+
+    for(int i = 0; i < size; i++) {
+        if(verticies[i]->key == keyStart) {
+            vStart = verticies[i];
+        }
+    }
+
+    if(!vStart){
+        return;
+    }
+
+    vector<vertex*> solvedList;
+    solvedList.push_back(vStart);
+
+    vStart->visited = true;
+    while(!allSolved){
+        minDist = 99999999999;
+
+        vertex *solvedV = nullptr;
+        allSolved = true;
+
+        size = solvedList.size();
+        for(int i = 0; i < solvedList; i++){
+            vector *s = solvedList[i];
+
+            adjSize = s->adj.size();
+            for(int j=0; j < adjSize; j++){
+                if(!s->adj[j].v->solve){
+                    int dist = s->distance + s->adj[j].weight;
+
+                    if(dist < minDist){
+                        solvedV = s->adj[j].v;
+                        minDist = dist;
+                    }
+                    allSolved = false;
+                }
+            }
+        }
+        if(!allSolved){
+            solvedV->distance = minDist;
+            solvedV->solved = true;
+            solvedList.push_back(solvedV);
+        }
+    }
+}
+#+end_src
+#+NAME: Graph Definition
+#+begin_src cpp :exports none :noweb strip-export :tangle graph.cpp
+#include "graph.hpp"
+
+<<Insert Vertex>>
+
+<<Add Unweighted Edge>>
+
+<<Add Weighted Edge>>
+
+<<Display Graph>>
+
+<<BFT>>
+
+<<BFS>>
+
+<<DFT Stack>>
+
+<<DFT Recursive>>
+
+<<dijsktraTraversal>>
+#+end_src

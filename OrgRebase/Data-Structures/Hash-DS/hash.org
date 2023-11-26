@@ -1,0 +1,8 @@
+#+title: Hash
+
+* Table of Contents :toc:
+- [[#objectives][Objectives]]
+- [[#hash][Hash]]
+
+* Objectives
+* Hash

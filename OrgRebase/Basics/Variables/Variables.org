@@ -1,0 +1,368 @@
+#+title: Variables
+
+* Table of Contents :toc:
+- [[#variables][Variables]]
+  - [[#objective-understand-the-basics-of-how-data-is-managed-in-c][Objective: Understand the basics of how data is managed in C++]]
+  - [[#section-1-variables-basics][Section 1: Variables Basics]]
+  - [[#section-2-arrays][Section 2: Arrays]]
+  - [[#section-3-variable-manipulation][Section 3: Variable Manipulation]]
+
+* Variables
+** Objective: Understand the basics of how data is managed in C++
+Here we'll showcase the basics of C++ data management, variables
+** Section 1: Variables Basics
+Definition: A variable is a way to store some type of data under a sort of "nickname". This is so that the computer can reuse this piece of information throught a computer program.
+
+Below here is an example of a variable
+#+NAME: Variable Example
+#+begin_src cpp :tangle no
+int num = 5;
+#+end_src
+Here we are storing a variable of the ~int~ type with the name ~num~ and it is storing the number 5.
+
+You can also just initalize an empty variable:
+#+NAME: Variable EX 2
+#+begin_src cpp :tangle no
+int num;
+#+end_src
+
+Even multiple!
+#+NAME: Variable EX 3
+#+begin_src cpp :tangle no
+int num1, num2;
+#+end_src
+
+There are a variety of variable datatypes so here's a list of the basic ones:
+- ~int~: short for /integer/, this variable datatype can only store whole numbers, positive or negative
+- ~char~: short for /character/, this variable stores a character, contained with ~' '~
+- ~bool~: short for /boolean/, this variable stores a value of /0/ or /1/, which represent /false/ and /true/ respectively. For now just know you can set ~bool~ vars equal to /false/ or /true/
+- ~std::string~: meaning a /string/ of /characters/, it can store a prose of characters and words of any length, it's best to imagine this data type as a "list" of /characters/ as there are a lot of special things that can be done with this data type, strings are contained with ~" "~
+- ~float~: not necesarily short for anything but it represents how it stores it's data. /Floats/ store /decimal/ numbers but because computers operate in the /base 2/ system they essentially need to make a number and float a decimal to the correct spot
+  - As an example if a computer wanted to represent the value ~5.13~ it first would need to represent the number ~513~ in binary and then float a decimal in between the 5 and the 1.
+- ~double~: a more accurate version of a float but takes up more memory as a trade-off.
+
+Variables are great because we just need to declare them once and they can be used anywhere.
+#+NAME: Variable-Story-Example
+#+begin_src cpp :exports both :noweb strip-export :results code :tangle variables.cpp
+#include<iostream>
+
+int main () {
+    int num = 20;
+    char favChar = 'A';
+    std::string name = "John";
+
+    std::cout << "There once was a man named " << name << "." << std::endl;
+    std::cout << "He was " << num << " years old." << std::endl;
+    std::cout << "His favorite letter is " << favChar << std::endl;
+    std::cout << "He liked his name " << name << " but he wanted to be older than " << num << "." << std:: endl;
+
+    return 0;
+}
+#+end_src
+The output should be:
+#+RESULTS: Variable-Story-Example
+#+begin_src cpp
+There once was a man named John.
+He was 20 years old.
+His favorite letter is A
+He liked his name John but he wanted to be older than 20.
+#+end_src
+
+As evidenced by the output, there are some commonly repeated words and numbers in this simple story like "John" and "20" and they're referenced with the varaibles ~std::string name~  and ~int num~. They're reused throught the program to output this data when called.
+
+But we don't have to store just one unit of data in each variable, we can store a list of data in all the variable types as well!
+** Section 2: Arrays
+Array: A List of a /predetermined/ size (set before compile time) of a specific data /type/.
+
+There are two different ways an array can be called.
+
+If you want an empty array (of ~ints~) of size 20 the declaration is.
+#+begin_src cpp
+int arrayOfNums[20];
+#+end_src
+The ~int~ array ~arrayOfNums~ now has 20 spots where data of ~int~ type can be inserted.
+
+If you already know what data you want in your array you can also declare it in the following way.
+#+NAME: Array
+#+begin_src cpp :tangle no
+int arrayOfNums[] = {4, 0, 8, 12};
+#+end_src
+Here I have an array of size 4 and an item in each array.
+
+You can even have arrays of arrays!
+#+NAME: Matrix
+#+begin_src cpp :tangle no
+int matrix[2][2] = {
+                    {2,4},
+                    {6,8}
+                    };
+#+end_src
+Here we have 2 arrays in the ~matrix~ array of size 2 each!
+
+The great part about arrays is that each item is still easily accessible thanks to indicies!
+
+For example, if I want to print the first element of ~arrayOfNums~ you'd write
+#+NAME: Array Printing EX 1
+#+begin_src cpp :exports both :noweb strip-export :results code :tangle array.cpp
+#include<iostream>
+int main () {
+    <<Array>>
+    std::cout << arrayOfNums[0] << std::endl;
+
+    return 0;
+}
+#+end_src
+Which outputs:
+#+RESULTS: Array Printing EX 1
+#+begin_src cpp
+4
+#+end_src
+
+If we recall the data stored in the array ~{4, 0, 8 ,12}~ we see that 4 is the first element despite being referenced in code as the 0th element. In arrays elements are indexed from 0 to /arraySize-1/ with ~arraySize~ being the number of elements in the array.
+
+With our matrix we can do a similar thing.
+
+For exa,ple, if we want to print out the first element in the second array we would write
+#+Name: Matrix Printing EX 1
+#+begin_src cpp :exports both :noweb strip-export :results code :tangle matrix.cpp
+#include<iostream>
+int main() {
+    <<Matrix>>
+    std::cout << matrix[1][0] << std::endl;
+
+    return 0;
+}
+#+end_src
+Which outputs:
+#+RESULTS: Matrix Printing EX 1
+#+begin_src cpp
+6
+#+end_src
+
+The first number is telling us to look at the 2nd list containing the 2 item array of ints, ~{6,8}~. The second number tells us to look at the first element of that array, 6.
+
+One serious limitation about arrays in C++ however is that they can not have their size changed (there are caveats to this that will be discussed later) like how they can be in other languages like Python.
+
+As a result, it is important to take care in noting the size of your array in your programs.
+
+If you try to access an item outside of the bounds of the array the result is a /segmentation fault/, this isn't the only thing that'll cause a /segmentation fault/ and we'll go over later in depth what exactly a segmentation fault is.
+
+For now, just remember to stay within the "bounds" (0,size-1) in your array.
+** Section 3: Variable Manipulation
+Sometimes, variable data needs to be adjusted.
+
+You can manually reassign data to a variable like such in the following example
+#+begin_src cpp
+int n = 5;
+n = 10;
+#+end_src
+In the example above, we had declared an ~int~ variable ~n~ storing the number 5. Because we had already declared var ~n~ of type ~int~ we do not need to redeclare it's type (that would result in an error) so we can simply just call var ~n~ and reassign it's value to 10.
+
+But sometimes we won't know what ~int~ or other data the variable needs to be assigned. Which is why there are methods for manipulating variables.
+*** Arithmetic
+With ~floats~, ~doubles~, and ~ints~ you can perform arithmetic operations on these variables and they'll follow PEMDAS rules in C++.
+
+In the following code examples below we can observe some addition syntax with ~int~ variables ~num1~ and ~num2~.
+
+Here we're adding two ~ints~ together and assigning the result to a variable.
+#+NAME: Add EX 1
+#+begin_src cpp :tangle no
+int num1 = 5 + 5;
+std::cout << num1 << std::endl;
+#+end_src
+You can also add a number variable to a number to. Here we're adding 5 to the previous variable ~num1~.
+#+NAME: Add EX 2
+#+begin_src cpp :tangle no
+int num2 = num1 + 5;
+std::cout << num2 << std::endl;
+#+end_src
+There are also shortcuts to doing simple things, like incrementing variables. Here we increment ~num2~ by exactly 1.
+#+NAME: Add EX 3
+#+begin_src cpp :tangle no
+num2++;
+std::cout << num2 << std::endl;
+#+end_src
+Finally we can also increment a variable by itself. Here we increment ~num2~ by a value of itself.
+#+NAME: Add EX 4
+#+begin_src cpp :tangle no
+num2 += num2;
+std::cout << num2 << std::endl;
+#+end_src
+So when we output the results we obtain the following
+#+NAME: Addtion
+#+begin_src cpp :exports results :noweb strip-export :results code :tangle addition.cpp
+#include<iostream>
+int main () {
+  <<Add EX 1>>
+  <<Add EX 2>>
+  <<Add EX 3>>
+  <<Add EX 4>>
+  return 0;
+}
+#+end_src
+
+#+RESULTS: Addtion
+#+begin_src cpp
+10
+15
+16
+32
+#+end_src
+
+What's great about these operations is that they're essentially interchangable up to a certain extent. For example, you could do ~x*=x~ to multiply a variable ~x~ by itself but you wouldn't be able to do ~x**~ but you could do ~x--~ to decriment ~x~ by 1.
+
+Another thing to note is that when doing arithmetic the variables don't have to be of the same type. You can /add/, /subtract/, /muliply/, and /divide/ any combination of ~ints~, ~doubles~, and ~floats~. However, when you include ~doubles~ and ~floats~ in the arithmetic the answer is always going to be a precise number rather an a whole number like with regular ~int~ arithmetic.
+
+Another useful operation that doesn't fall under the umbrella of traditionall arithmetic is the modulo operation. An example is shown below.
+#+NAME: Modulo Math
+#+begin_src cpp :tangle no
+int x = 20;
+std::cout << x%3 << std::endl;
+#+end_src
+Here we have an ~int~ variable ~x~ and performing the modulo operation with the number 3. The result is:
+#+NAME: Modulo Output
+#+begin_src cpp :exports results :noweb strip-export :results code :tangle modulo.cpp
+#include<iostream>
+int main () {
+  <<Modulo Math>>
+  return 0;
+}
+#+end_src
+
+#+RESULTS: Modulo Output
+#+begin_src cpp
+2
+#+end_src
+The modulo operation actually finds and returns the remainder of a number if it was divided by another number. In our previous example if we do 20/3 we are left with a remainder of 2 which is what was outputted.
+
+There are more advanced math functions we'll be able to do with the ~<cmath>~ library that will be delved into later but for now we can also talk about string manipulation.
+*** String/Char Manipulation
+We also have a variety of ways to manipulate the ~std::string~ and ~char~ data types too.
+
+One basic manipulation we can do is increment a ~char~. Because every ~char~ representable by C++ is a part of the ASCII table we can tie a direct number to the ~char~. Below is an example of us incrementing a ~char~ ~x~ by a unit of 1.
+#+NAME: Char Manipulation
+#+begin_src cpp :tangle no
+char x = 'a';
+std::cout << x << std::endl;
+x = x + 1;
+std::cout << x << std::endl;
+#+end_src
+The result is:
+#+Name: Char Eval
+#+begin_src cpp :exports results :noweb strip-export :results code :tangle char.cpp
+#include<iostream>
+int main () {
+    <<Char Manipulation>>
+    return 0;
+}
+#+end_src
+
+#+RESULTS: Char Eval
+#+begin_src cpp
+a
+b
+#+end_src
+One important thing to note when doing ~char~ arithmetic is that there are only 128 characters in the traditional ASCII table so be sure to note that you don't go over the maximum ASCII ~char~ value.
+
+We had previously discussed that ~std::strings~ are actually a "string of ~chars~". Utilizing what we know about arrays we can reference any character in the string. Like in the example below
+
+#+NAME: String Array
+#+begin_src cpp :tangle no
+std::string x = "I have friends!\nThey're cool!";
+std::cout << x << std::endl;
+std::cout << x[0] << std::endl;
+#+end_src
+
+#+Name: String Array Eval
+#+begin_src cpp :exports results :noweb strip-export :results code :tangle stringarray.cpp
+#include<iostream>
+int main () {
+    <<String Array>>
+    return 0;
+}
+#+end_src
+The output is:
+#+RESULTS: String Array Eval
+#+begin_src cpp
+I have friends!
+They're cool!
+I
+#+end_src
+Notice the first letter in the string is the capital /I/. And we reference the first letter by calling the ~std::string x~ variable and the ~[0]~ index.
+
+Note: In our output the string actually takes up two lines. This is because of ~\n~ which represents a line-break and can be used as a replacement for ~std::endl~.
+
+You can also concactenate strings which is combines the two strings into one. Check the following example below.
+#+NAME: Concactenation
+#+begin_src cpp :tangle no
+std::string x = "a";
+std::string y = "b";
+std::cout << x << std::endl;
+std::cout << y << std::endl;
+x = x + y;
+std::cout << x << std::endl;
+std::cout << y << std::endl;
+#+end_src
+
+#+Name: Concactenation Eval
+#+begin_src cpp :exports results :noweb strip-export :results code :tangle concactenation.cpp
+#include<iostream>
+int main () {
+    <<Concactenation>>
+    return 0;
+}
+#+end_src
+The output should be:
+#+RESULTS: Concactenation Eval
+#+begin_src cpp
+a
+b
+ab
+b
+#+end_src
+Above we declare ~std::strings~ ~x~ and ~y~ and print their values. Then we combine the ~std::string x~ with ~std::string y~ which results in the combined value of ~ab~. The value of ~y~ stays the same.
+
+~std::string~ also comes with useful methods that can be used on the variables to apply helpful manipulations. Observe the examples below.
+#+NAME: String functions
+#+begin_src cpp :tangle no
+std::string x = "Behold the Tenno, come to scavenge and desecrate this sacred realm.\nLook at them. They come to this place when they know they are not pure.\nMy brothers, did I not tell of this day? Did I not prophesise this moment?";
+std::cout << x << std::endl;
+std::cout << x.length() << std::endl;
+std::cout << x.find("I",0) << std::endl;
+std::cout << x.find("I",180) << std::endl;
+std::cout << x.substr(11,5) << std::endl;
+std::cout << x.substr(61,5) << std::endl;
+#+end_src
+
+#+Name: String functions eval
+#+begin_src cpp :exports results :noweb strip-export :results code :tangle stringfunctions.cpp
+#include<iostream>
+int main () {
+    <<String functions>>
+    return 0;
+}
+#+end_src
+The output should be:
+#+RESULTS: String functions eval
+#+begin_src cpp
+Behold the Tenno, come to scavenge and desecrate this sacred realm.
+Look at them. They come to this place when they know they are not pure.
+My brothers, did I not tell of this day? Did I not prophesise this moment?
+214
+157
+185
+Tenno
+realm
+#+end_src
+Here is an explaination of what each of the functions in the code is doing.
+- ~x.length()~ returns the length of the string which is /214/ characters.
+- ~x.find(std::string string, int index)~ takes ~std::string string~ and ~int index~ as inputs and returns index value of the first instance of that ~std:string string~ within ~std::string x~ startin from index ~int index~
+  - In the 5th line of the output we can see that "I" was found at the 157th index of ~std::string x~.
+  - But in the 6th line because we specified a different starting index the string "I" is said to be found at the 185th index of ~std::string x~
+- ~x.substr(int index, int size)~ takes ~int index~ and ~int size~ as inputs and returns the string in ~std::string x~ starting from index ~int index~ and ending at ~int size~ from ~int index~.
+  - In the 7th line we ask for the string of /size 5/ starting from /index 11/ in x which returns the string "Tenno" in the output.
+    - Notice that the 11th index in ~std::string x~ is "T" and that the string is 5 characters long.
+    - Also notice how the ~x.substr()~ reads from left to right. So in this example we wont get "the T" as our output because the first letter has to be "T"
+  - In the 8th line we ask for the string of /size 5/ again but starting from /index 61/ which retruns the string "realm".
+    - Notice that the 61st index in ~std::string x~ is "r" and that the string is 5 characters long.
+    - Also notice how the ~x.substr()~ reads from left to right again in this example. So in this example we wont get "red r" as our output because the first letter has to be "r"

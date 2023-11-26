@@ -1,0 +1,10 @@
+#+title: Miscds
+
+* Table of Contents :toc:
+- [[#objectives][Objectives]]
+- [[#minmax-heap][Min/Max Heap]]
+- [[#priority-queue][Priority Queue]]
+
+* Objectives
+* Min/Max Heap
+* Priority Queue

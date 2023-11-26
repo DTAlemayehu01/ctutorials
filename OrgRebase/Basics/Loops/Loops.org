@@ -1,0 +1,109 @@
+#+title: Loops
+
+* Table of Contents :toc:
+- [[#objective-understand-the-three-methods-for-repeating-code][Objective: Understand the three methods for repeating code]]
+- [[#while-loops][While Loops]]
+- [[#do-while-loops][Do While Loops]]
+- [[#for-loops][For Loops]]
+
+* Objective: Understand the three methods for repeating code
+Here we'll go over the 3 types of loops in C++.
+* While Loops
+Using the condtionals we learned about from the section on C++ statements we can make chucks of code repeat execution while that condtion remains true.
+
+Take for example the following loop.
+#+NAME: Elmo Vampire Counter
+#+begin_src cpp :export both :noweb strip-export :results code :tangle whilecounter.cpp
+#include<iostream>
+int main () {
+    int number = 1;
+    while(number < 6) {
+        std::cout << number << " mississippi" << std::endl;
+        number++;
+    }
+}
+#+end_src
+Which outputs:
+#+RESULTS: Elmo Vampire Counter
+#+begin_src cpp
+1 mississippi
+2 mississippi
+3 mississippi
+4 mississippi
+5 mississippi
+#+end_src
+Starting from our declared value for ~int number = 1~ the ~while~ loop executes the 2 line piece of code contained within. But on the next iteration, because we increment the ~number~ variable the ~std::cout~ statment changes slightly. However, we can only increment ~number~ so many times. After our 5th execution of the loop, because ~number = 6~ and ~6 < 6 == false~ the loop stops executing.
+* Do While Loops
+Similar to the ~while~ loop we have ~do-while~ loops. To observe how the two behave differently, an example is shown below.
+#+NAME: Elmo Vampire Counter 2
+#+begin_src cpp :export both :noweb strip-export :results code
+#include<iostream>
+int main () {
+    do {
+        std::cout << number << " mississippi" << std::endl;
+        number++;
+    } while(number < 6);
+}
+#+end_src
+#+NAME: Elmo Vampire Counter 2
+#+begin_src cpp :export none :noweb strip-export :tangle dowhilecounter.cpp
+#include<iostream>
+int main () {
+    //make sure to assign numbers to these variables.
+    int number;
+    do {
+        std::cout << number << " mississippi" << std::endl;
+        number++;
+    } while(number < 6);
+}
+#+end_src
+If we do ~number = 1~ again our output would look like:
+#+CALL: Elmo Vampire Counter 2[:var number=1]()
+#+RESULTS:
+#+begin_src cpp
+1 mississippi
+2 mississippi
+3 mississippi
+4 mississippi
+5 mississippi
+#+end_src
+But if we do ~number = 7~
+#+CALL: Elmo Vampire Counter 2[:var number=7]()
+#+RESULTS:
+#+begin_src cpp
+7 mississippi
+#+end_src
+Why is it that ~7 mississippi~ is printed to the console despite ~7 < 6 == false~? It because of how ~do-while~ loops check conditions.
+
+A ~do-while~ loop will check conditions after the code in the loop is executed. Effectively, this means the code in the ~do-while~ loop is garunteed to execute AT LEAST once. In the 2nd example the code does execute one, when ~number = 7~. But then ~number~ is incremented thus that ~number = 8~ and since ~8 < 7 == false~ the ~do-while~ loop closes.
+* For Loops
+We can also make loops execute a specific amount of times rather than based on a boolean condition. This is done with ~for~ loops.
+
+Below is the "Mississippi" counter done again using a ~for~ loop.
+#+NAME: Elmo Vampie Counter 3
+#+begin_src cpp :export both :noweb strip-export :results code :tangle forloop.cpp
+#include<iostream>
+int main () {
+    for(int i = 1; i < 6; i++) {
+        std::cout << i << " mississippi" << std::endl;
+    }
+}
+#+end_src
+The output should be:
+#+RESULTS: Elmo Vampie Counter 3
+#+begin_src cpp
+1 mississippi
+2 mississippi
+3 mississippi
+4 mississippi
+5 mississippi
+#+end_src
+As it turns out, the ~for~ loop implementation looks fairly similar to the ~while~ loop implementation.
+- We have an ~int~ variable ~i~ locally declared within the loop.
+- We use a conditional ~int < 6~ to specify the number of times we want the loop to run.
+- And we increment ~i~ each time with ~i++~
+
+All three loop examples have different use cases for where they'd be useful and when they're interchangeable. But as a general rule of thumb here are some guidelines for picking which loop.
+- ~for~ loops are useful when you have in mind a very specific amount of times you want to loop through a chunk of code. In other words, you can represent the amount of times you need to loop as an ~int~.
+- ~while~ loops are useful when you have in mind certain conditions you want code to repeat but those conditions may change while that code is looping. In other words, when you might not be able to represent the amount of times you need your code to loop as an ~int~.
+- The condtions for using a ~do-while~ loop are very similar to that of a ~while~ loop but with the key distinction that you ALWAYS want the code in a loop to execute a minimum of one time.

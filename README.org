@@ -1,0 +1,9 @@
+#+title: Readme
+
+* HI!
+This is a Temporary Readme! All the information on code examples and such can be found in /OrgRebase
+- C++ basic syntax can be found in '/OrgRebase/Basics'
+- Data Structures can be found in '/OrgRebase/Data-Structures'
+Note a lot of the project is currently unfinished, checkout TODOLIST.org to see what progress has been made and where things needs to be fixed
+
+Feel free to report any issues in the repo you find.

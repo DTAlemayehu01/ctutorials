@@ -1,0 +1,8 @@
+#+title: Bst
+
+* Table of Contents :toc:
+- [[#objective][Objective]]
+- [[#binary-trees][Binary Trees]]
+
+* Objective
+* Binary Trees

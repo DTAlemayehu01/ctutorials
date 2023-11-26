@@ -1,0 +1,136 @@
+#+title: Ctutorial Todos
+
+* TODO Write Org Sections [0/3]
+** TODO Basics [5/8]
+*** DONE Hello World
+CLOSED: [2023-11-09 Thu 02:02]
+- CLOSING NOTE [2023-11-09 Thu 02:02] \\
+  Wrote hello.cpp tangle
+*** DONE Variables [3/3]
+CLOSED: [2023-11-21 Tue 21:23]
+- CLOSING NOTE [2023-11-21 Tue 21:23]
+- [X] Data Types
+- [X] Arrays
+- [X] Variable Manipulation [2/2]
+  - [X] Arithmetic
+  - [X] Concactenation
+*** DONE Statements [3/3]
+CLOSED: [2023-11-23 Thu 02:54]
+- CLOSING NOTE [2023-11-23 Thu 02:54]
+- [X] Conditionals
+- [X] If Statements
+- [X] Switch Statements
+*** DONE Loops [3/3]
+CLOSED: [2023-11-23 Thu 03:37]
+- CLOSING NOTE [2023-11-23 Thu 03:37]
+- [X] While Loops
+- [X] Do While Loops
+- [X] For Loops
+*** TODO Libraries [5/10]
+- [X] IOStream
+- [X] Fstream
+- [X] string
+- [ ] StringStream
+- [X] CMath
+- [ ] CCType
+- [ ] Custom Libraries, .hpp files, segment between driver, definition, and declaration
+- [ ] Stack
+- [ ] Queue
+- [X] Vector
+*** DONE Functions [3/3]
+CLOSED: [2023-11-25 Sat 14:17]
+- CLOSING NOTE [2023-11-25 Sat 14:17]
++ [X] Basic Functions [2/2]
+  + [X] Declaration vs Definition
+  + [X] Recusrive function
++ [X] Int main
++ [X] Command line arguments
+*** TODO Classes [/]
+- [ ] Structs
+- [ ] Class Info
+*** TODO Pointers and Memory [0/6]
+- [ ] Basics
+- [ ] Heap
+- [ ] Stack
+- [ ] Pass-By-XYZ
+- [ ] array doubling
+- [ ] Struct and class ptrs
+** TODO Data Structures [3/8]
+*** DONE Debuggers Breakdown
+CLOSED: [2023-11-23 Thu 18:55]
+- CLOSING NOTE [2023-11-23 Thu 18:55]
+*** TODO Linked Lists [0/3]
+- [ ] Singly Linked List
+- [ ] Doubly Linked List
+- [ ] Circular Linked List
+*** DONE Stack [2/2]
+CLOSED: [2023-11-25 Sat 14:17]
+- CLOSING NOTE [2023-11-25 Sat 14:17]
+- [X] Array Based
+- [X] Linked List Based
+*** TODO Queue [0/2]
+- [ ] Circular Array Based
+- [ ] Linked List Based
+*** TODO Binary Tree [0/2]
+- [ ] Binary Search
+- [ ] Red-Black Tree
+*** DONE Graph [4/4]
+CLOSED: [2023-11-26 Sun 16:19]
+- CLOSING NOTE [2023-11-26 Sun 16:19]
+- [X] Undirected Graph
+- [X] Directed Graph
+- [X] Unweighted Graph
+- [X] Weighted Graph
+*** TODO Hash DS [0/3]
+- [ ] Hash Division
+- [ ] Hash Muliplication
+*** TODO Misc Data Structures [0/2]
+- [ ] Min/Max Heap
+- [ ] Priority Queue
+** TODO Main OrgReadme [1/3]
+- [ ] Heading Links, ToC to other org files
+- [X] Introduction
+- [ ] Contribution
+* TODO Fix Errors in Branches [1/38]
+- [X] arrays.cpp
+  matrix references item out of bounds, fixed in OrgRebase branch
+- [ ] Check all org files for proper referencing
+- [ ] Check all cpp files for good practices
+- [ ] Make note in readme for <<>> text in cpp
+- [ ] Hello-World.org not displaying cpp output
+  so i can't use the export option to display both #+Results: and the code if both are under different headings, I fixed this for now by making an extra code block at the bottom that only exports results, I might remove the headings in this org file
+- [ ] Get 4th level heading to appear in ToC of variables.org
+- [ ] Explain multivariable declaration in c++
+- [ ] Edit various abiguous variable files to utilize cin, rather than expecting user to edit code files themselves.
+- [ ] Utilize, realistic applications for loops in loops.org? Or apply that in functions?
+- [ ] Implement Advanced libraries in C++ tutorial
+- [ ] Integrate getline explaination()
+- [ ] Rename all subfolder lines to readme.org
+- [ ] Reformat code block in libaries.org for vector explaination
+- [ ] Fix BST Insert
+  - It should return currNode upon finishing the node->left or node->right iteration
+- [ ] There's a reference to a previous section in the libraries section of the repo, perhaps learn to use cross reference linking to link to previous section?
+- [ ] Expand linking and backlinking relations for each org file
+- [ ] Make notes on ~namespace~ and ~using namespace std;~
+- [ ] Make notes on how getline can mess up/common pitfalls
+- [ ] Make something on macro definitions
+- [ ] Consider making CPP libaries it's own section or split into basic libraries for basic section, advanced libraries for advanced section, etc.
+- [ ] Expand on declarations and definitions of functions and such in C++?
+- [ ] functions.org might require more headings?
+- [ ] Possible separate the data structures notes from the basics?
+- [ ] Learn about exception handling?
+- [ ] Figure out solution for "cin"
+- [ ] Add to libraries a note on "cin.fail()"
+- [ ] Functions.org might need headings
+- [ ] I have a "more on that later" thing in functions.org
+  Maybe declare an order of reading? That might defeat the purpose of the study guide nature of this repo
+- [ ] In functions.org i say "all cli args are strings" this might not be necesarily correct and requires review
+- [ ] I need to check to make sure each tangled file is valid code because org-babel is limited and won't let me evaluate certain code
+- [ ] Explain #indef and #define
+- [ ] Explain function recursion
+- [ ] Go more indepth in debuggers.md
+- [ ] Add on to properties of Stacks and Graphs in stacks.org and graphs.org
+- [ ] TEST dijsktraTraversal in graphs.org
+- [ ] CHECK DFT in graph.org
+- [ ] Create search() in graph.org
+- [ ] FIX BUGS (View Through Emacs) in tangled graph.hpp and graph.cpp files

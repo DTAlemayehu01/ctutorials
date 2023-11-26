@@ -1,0 +1,7 @@
+//note the verticies.size function in a vector runs every time each instance of the for loop is called so we assign it to a constant var to reduce runtime
+		//reminder we're using pointers here because when vectors resize themselves the memory addresses change locaation so the adjacency list would be pointing to incorrect pointers
+		//it's also just generally less memory intensive/more efficient
+stack overflow
+stack underflow
+precondition
+postcondition

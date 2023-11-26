@@ -1,0 +1,8 @@
+#+title: Pointer
+
+* Table of Contents :toc:
+- [[#objective][Objective]]
+- [[#memory][Memory]]
+
+* Objective
+* Memory
