@@ -1,0 +1,2 @@
+//note the verticies.size function in a vector runs every time each instance of the for loop is called so we assign it to a constant var to reduce runtime
+
