@@ -42,6 +42,8 @@ class Graph {
     private:
         vector<vertex*> verticies;
     public:
+        Graph();
+        ~Graph();
         void insertVertex(<<type>> key);
         void addEdge(<<type>> startValue, <<type>> endValue);
         void addEdge(<<type>> startValue, <<type>> endValue, int weight);
@@ -71,6 +73,19 @@ class Graph {
 *** private
 - ~vector<vertex*> verticies~ -> stores all ~verticies~ in the ~Graph~
 *** public
+- ~Graph()~ -> class constructor
+- ~~Graph()~ -> class deconstructor
 - ~void insertVertex(<<type>> key)~ -> inserts a new ~vertex~ in the graph storing the data of a nonspecific type in the ~vertex~
 - ~void addEdge(<<type>> startValue, <<type>> endValue)~ -> inserts an unweighted ~Edge~ directed from the ~vertex~ storing ~startValue~ to the ~vertex~ storing ~endValue~. Can call the function ~addEdge(endValue, startValue)~ in the function to make it an undirected edge.
+#+begin_src cpp
+#include<iostream>
+#+end_src
 - ~void addEdge(<<type>> startValue, <<type>> endValue, int weight)~ -> inserts an weighted ~Edge~ of ~int weight~ directed from the ~vertex~ storing ~startValue~ to the ~vertex~ storing ~endValue~.
+- ~void deleteVertex(<<type>> value)~ -> deletes the ~vertex~ storing ~value~ from the ~Graph~ (make sure all edges are deleted)
+- ~void deleteEdge(<<type>> startValue, <<type>> endValue)~ -> deletes the ~Edge~ directed from the ~vertex~ storing ~startValue~ from the ~Vertex~ storing ~endValue~
+- ~void displayGraph()~ -> displays the graph in output
+- ~void BFT(<<type>> keyStart)~ -> generic BFT starting from the ~Vertex~ storing ~keyStart~
+- ~void BFS(<<type>> keystart, <<type>> searchKey)~ -> BFS algorithm for /unweighted/ ~Graphs~ starting from the ~vertex~ storing ~keyStart~ to the shortest distance to ~searchKey~, for weighted graphs see ~dijkstraTraversal()~
+- ~void DFTStack(<<type>> keyStart)~ -> DFT algorithm starting from ~vertex~ storing ~keyStart~, implemented utilizing ~Stack~ data strucuture.
+- ~void DFTRecursiveHelper(<<type>> keyStart)~ and ~void DFTRecursive(<<type>> keyStart) -> same as ~DFTStack()~ but utilizing recursion
+- ~void dijkstraTraversal(<<type>> keyStart)~ -> Dijkstra's graph traversal for /weighted/ ~Graphs~.

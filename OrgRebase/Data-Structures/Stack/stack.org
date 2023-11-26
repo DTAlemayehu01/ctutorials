@@ -125,6 +125,8 @@ class Stack {
 * Stack Definitions
 ** Linked List Based
 *** struct Node
+- ~<<type>> key~ -> stores the data stored in the ~Node~ in the stack
+- ~Node* next~ -> points to the next ~Node~ in the stack from the current ~Node~
 *** class Stack
 **** Private
 - ~Node* StackHead~ -> points to stack top node
