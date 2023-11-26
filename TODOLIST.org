@@ -55,7 +55,7 @@ CLOSED: [2023-11-25 Sat 14:17]
 - [ ] Pass-By-XYZ
 - [ ] array doubling
 - [ ] Struct and class ptrs
-** TODO Data Structures [2/8]
+** TODO Data Structures [3/8]
 *** DONE Debuggers Breakdown
 CLOSED: [2023-11-23 Thu 18:55]
 - CLOSING NOTE [2023-11-23 Thu 18:55]
@@ -74,11 +74,13 @@ CLOSED: [2023-11-25 Sat 14:17]
 *** TODO Binary Tree [0/2]
 - [ ] Binary Search
 - [ ] Red-Black Tree
-*** TODO Graph [0/4]
-- [ ] Undirected Graph
-- [ ] Directed Graph
-- [ ] Unweighted Graph
-- [ ] Weighted Graph
+*** DONE Graph [4/4]
+CLOSED: [2023-11-26 Sun 16:19]
+- CLOSING NOTE [2023-11-26 Sun 16:19]
+- [X] Undirected Graph
+- [X] Directed Graph
+- [X] Unweighted Graph
+- [X] Weighted Graph
 *** TODO Hash DS [0/3]
 - [ ] Hash Division
 - [ ] Hash Muliplication
@@ -89,7 +91,7 @@ CLOSED: [2023-11-25 Sat 14:17]
 - [ ] Heading Links, ToC to other org files
 - [X] Introduction
 - [ ] Contribution
-* TODO Fix Errors in Branches [1/37]
+* TODO Fix Errors in Branches [1/38]
 - [X] arrays.cpp
   matrix references item out of bounds, fixed in OrgRebase branch
 - [ ] Check all org files for proper referencing
@@ -131,3 +133,4 @@ CLOSED: [2023-11-25 Sat 14:17]
 - [ ] TEST dijsktraTraversal in graphs.org
 - [ ] CHECK DFT in graph.org
 - [ ] Create search() in graph.org
+- [ ] FIX BUGS (View Through Emacs) in tangled graph.hpp and graph.cpp files

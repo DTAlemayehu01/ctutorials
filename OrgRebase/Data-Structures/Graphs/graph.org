@@ -1,5 +1,10 @@
 #+title: Graph
 
+#+NAME: type
+#+begin_src :exports none
+std::string
+#+end_src
+
 * Table of Contents :toc:
 - [[#graph-properties][Graph Properties]]
 - [[#graph-declarations][Graph Declarations]]
@@ -402,8 +407,24 @@ void Graph::dijsktraTraversal(<<type>> keyStart, <<type>> searchKey){
 }
 #+end_src
 #+NAME: Graph Definition
-#+begin_src cpp :exports none :noweb strip-export :tangle graph.cpp :var <<type>>=std::string
+#+begin_src cpp :exports none :noweb strip-export :tangle graph.cpp
 #include "graph.hpp"
 
+<<Insert Vertex>>
 
+<<Add Unweighted Edge>>
+
+<<Add Weighted Edge>>
+
+<<Display Graph>>
+
+<<BFT>>
+
+<<BFS>>
+
+<<DFT Stack>>
+
+<<DFT Recursive>>
+
+<<dijsktraTraversal>>
 #+end_src
