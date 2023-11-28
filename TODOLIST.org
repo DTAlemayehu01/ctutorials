@@ -91,7 +91,7 @@ CLOSED: [2023-11-26 Sun 16:19]
 - [ ] Heading Links, ToC to other org files
 - [X] Introduction
 - [ ] Contribution
-* TODO Fix Errors in Branches [1/38]
+* TODO Fix Errors in Branches [1/40]
 - [X] arrays.cpp
   matrix references item out of bounds, fixed in OrgRebase branch
 - [ ] Check all org files for proper referencing
@@ -134,3 +134,5 @@ CLOSED: [2023-11-26 Sun 16:19]
 - [ ] CHECK DFT in graph.org
 - [ ] Create search() in graph.org
 - [ ] FIX BUGS (View Through Emacs) in tangled graph.hpp and graph.cpp files
+- [ ] Write minheapify func
+- [ ] Write swap function

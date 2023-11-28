@@ -1,0 +1,138 @@
+#+title: Heap
+
+#+NAME: type
+#+begin_src :exports none
+std::string
+#+end_src
+
+* Table of Contents :toc:
+- [[#heap-properties][Heap Properties]]
+- [[#heap-declaration][Heap Declaration]]
+  - [[#min-heap][Min Heap]]
+- [[#heap-definition][Heap Definition]]
+  - [[#min-heap-1][Min Heap]]
+
+* Heap Properties
+Like a BST but unorganized left to right just up and down, why it's called binary heap
+
+Rules:
+- Parent is either greater than or less than it's children
+- The Maximum Differemce between the longest and shortest branch in the heap from root is one
+
+Variations:
+- Min Heap: Root is smallest node
+- Max Heap: Root is largest node
+
+Applications/Examples:
+- Sorting Algorithm
+- Priority Queue
+* Heap Declaration
+** Min Heap
+Here is the Declaration of a Min Heap (a Max Heap is incredibly similar so notes will not go into Max Heap)
+#+NAME: Min Heap Declaration
+#+begin_src cpp :exports code :noweb strip-export :tangle minheap.hpp
+#ifndef MINHEAP_H_
+#define MINHEAP_H_
+#include<iostream>
+#include<string>
+
+class MinHeap {
+    public:
+        MinHeap(int capacity);
+        ~MinHeap();
+        void push(<<type>> k);
+        int pop();
+        int peek();
+        void printHeap();
+    private:
+        int *heap;
+        int capacity;
+        int currentSize;
+        void MinHeapify(int index);
+        int parent(int i);
+        int right(int i);
+        int left(int i);
+        void swap(int &x, int &y);
+};
+#+end_src
+* Heap Definition
+** Min Heap
+*** Public
+- ~MinHeap(int capacity)~ -> Class Constructor
+#+NAME: Constructor
+#+begin_src cpp :exports code
+MinHeap::MinHeap(int capacity) {
+    *heap = new <<type>> [capacity];
+}
+#+end_src
+- ~~MinHeap()~ -> Class Deconstructor
+#+NAME: Deconstructor
+#+begin_src cpp :exports code
+MinHeap::~MinHeap(){
+    delete [] heap;
+}
+#+end_src
+- ~void push(<<type>> k)~ -> pushes ~<<type>>~ data ~k~ into heap
+- ~void pop()~ -> pops the data from the heap
+- ~int peek()~ -> returns the root of heap?
+#+NAME: Heap Peek
+#+begin_src cpp :exports code
+void MinHeap::push() {
+    return heap[1];
+}
+#+end_src
+- ~void printHeap()~ -> prints the heap data this is just a linear print
+#+NAME: Heap Print
+#+begin_src cpp :exports code
+void MinHeap::printHeap() {
+    for(int i = 0; i < currentSize; i++) {
+        std::cout << heap[i] << " ";
+    }
+}
+#+end_src
+*** Private
+- ~int *heap~ -> points to the heap array
+- ~int capacity~ -> stores the max capacity of heap
+- ~int currentSize~ -> stores number of Elements in heap
+- ~void MinHeapify(int index)~ -> heapifies array?
+- ~int parent(int i)~ -> returns the parent of the element at index ~i~
+#+NAME: Parent Heap
+#+begin_src cpp :exports code
+int MinHeap::parent(int i){
+    return (i-1)/2;
+}
+#+end_src
+- ~int left(int i)~ -> returns the parent of the element at index ~i~
+#+NAME: Left Heap
+#+begin_src cpp :exports code
+int MinHeap::left(int i){
+    return (2*i+1);
+}
+#+end_src
+- ~int right(int i)~ -> returns the parent of the element at index ~i~
+#+NAME: Right Heap
+#+begin_src cpp :exports code
+int MinHeap::right(int i){
+    return (2*i+2);
+}
+#+end_src
+- ~void swap(int &x, int &y)~ -> swaps elements
+
+#+NAME: Min Heap Definition
+#+begin_src cpp :exports code :noweb strip-export :results code :tangle minheap.cpp
+#include "minheap.hpp"
+
+<<Constructor>>
+
+<<Deconstructor>>
+
+<<Heap Peek>>
+
+<<Heap Print>>
+
+<<Parent Heap>>
+
+<<Left Heap>>
+
+<<Right Heap>>
+#+end_src
