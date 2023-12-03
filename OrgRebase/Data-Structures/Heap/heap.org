@@ -26,6 +26,7 @@ Variations:
 Applications/Examples:
 - Sorting Algorithm
 - Priority Queue
+- Dijkstra's Priority Queue (Has O(e^log(e)) complexity)
 * Heap Declaration
 ** Min Heap
 Here is the Declaration of a Min Heap (a Max Heap is incredibly similar so notes will not go into Max Heap)
@@ -38,7 +39,7 @@ Here is the Declaration of a Min Heap (a Max Heap is incredibly similar so notes
 
 class MinHeap {
     public:
-        MinHeap(int capacity);
+        MinHeap(int cap);
         ~MinHeap();
         void push(<<type>> k);
         int pop();
@@ -52,7 +53,6 @@ class MinHeap {
         int parent(int i);
         int right(int i);
         int left(int i);
-        void swap(int &x, int &y);
 };
 #+end_src
 * Heap Definition
@@ -61,23 +61,62 @@ class MinHeap {
 - ~MinHeap(int capacity)~ -> Class Constructor
 #+NAME: Constructor
 #+begin_src cpp :exports code
-MinHeap::MinHeap(int capacity) {
-    *heap = new <<type>> [capacity];
+MinHeap::MinHeap(int cap) {
+    currentSize = 0;
+    capacity = cap;
+    heap = new <<type>>[capacity];
 }
 #+end_src
 - ~~MinHeap()~ -> Class Deconstructor
 #+NAME: Deconstructor
 #+begin_src cpp :exports code
 MinHeap::~MinHeap(){
+
     delete [] heap;
 }
 #+end_src
 - ~void push(<<type>> k)~ -> pushes ~<<type>>~ data ~k~ into heap
+#+NAME: Heap Push
+#+begin_src cpp :exports code
+void MinHeap::push(<<type>> k){
+    if (currentSize < capacity) {
+        <<type>> temp;
+        heap[currentSize] = k;
+        i = currentSize;
+        while(i != 0 && heap[parent(i)]  > heap[i]){
+            temp = heap[i];
+            heap[i] = heap[parent(i)];
+            heap[parent(i)] = temp;
+            i = parent(i);
+        }
+
+    } else {
+        return;
+    }
+}
+#+end_src
 - ~void pop()~ -> pops the data from the heap
-- ~int peek()~ -> returns the root of heap?
+#+NAME: Heap Pop
+#+begin_src cpp :exports code
+<<type>> MinHeap::pop(){
+    if (currentSize == 1) {
+        currentSize = 0;
+        return heap[0];
+    } else if (currentSize > 1) {
+        <<type>> poppedVal = heap[0];
+        heap[0] = heap[currentSize - 1];
+        currentSize--;
+        MinHeapify(0);
+        return poppedVal;
+    } else {
+        return;
+    }
+}
+#+end_src
+- ~int peek()~ -> returns the root of heap
 #+NAME: Heap Peek
 #+begin_src cpp :exports code
-void MinHeap::push() {
+void MinHeap::peek() {
     return heap[1];
 }
 #+end_src
@@ -94,7 +133,29 @@ void MinHeap::printHeap() {
 - ~int *heap~ -> points to the heap array
 - ~int capacity~ -> stores the max capacity of heap
 - ~int currentSize~ -> stores number of Elements in heap
-- ~void MinHeapify(int index)~ -> heapifies array?
+- ~void MinHeapify(int index)~ -> recusively heapifies array (NEEDS TESTING, FOR CASE WHERE SUBTREES AREN'T HEAPIFIED)
+#+NAME: Heapify
+#+begin_src cpp :exports code
+void MinHeap::MinHeapify(int i) {
+    MinHeapify(left(i));
+    MinHeapify(right(i));
+    if(i > currentSize - 1) {
+        return;
+    }
+    int leftChild = left(i);
+    int righthild = right(i);
+
+    int smallest = i;
+
+    if (heap[leftChild] < heap[i]) {
+        smallest = leftChild;
+    }
+
+    if (heap[rightChild] < heap[smallest]) {
+        MinHeapifty(smallest);
+    }
+}
+#+end_src
 - ~int parent(int i)~ -> returns the parent of the element at index ~i~
 #+NAME: Parent Heap
 #+begin_src cpp :exports code
@@ -116,7 +177,6 @@ int MinHeap::right(int i){
     return (2*i+2);
 }
 #+end_src
-- ~void swap(int &x, int &y)~ -> swaps elements
 
 #+NAME: Min Heap Definition
 #+begin_src cpp :exports code :noweb strip-export :results code :tangle minheap.cpp
@@ -126,9 +186,15 @@ int MinHeap::right(int i){
 
 <<Deconstructor>>
 
+<<Heap Push>>
+
+<<Heap Pop>>
+
 <<Heap Peek>>
 
 <<Heap Print>>
+
+<<Heapify>>
 
 <<Parent Heap>>
 

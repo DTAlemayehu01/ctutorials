@@ -1,4 +1,10 @@
 #+title: Stack
+#+OPTIONS: broken-links:t
+
+#+NAME: type
+#+begin_src cpp :exports none
+std::string
+#+end_src
 
 * Table of Contents :toc:
 - [[#stack-properties][Stack Properties]]
@@ -26,7 +32,7 @@ Here is a Declartion of a Stack DS
 #include<string>
 
 struct Node{
-    type key;
+    <<type>> key;
     Node *next;
 };
 
@@ -40,34 +46,7 @@ class Stack {
         ~Stack();
         bool isEmpty();
         bool isFull();
-        void push(type key);
-        void pop();
-        Node* peek();
-        int size();
-};
-#+end_src
-#+begin_src cpp :exports none :noweb strip-export :tangle stackLL.hpp
-#ifndef STACK_H_
-#define STACK_H_
-#include<iostream>
-#include<string>
-
-struct Node{
-    std::string key;
-    Node *next;
-}
-
-class Stack {
-    private:
-        Node* StackHead;
-        int maxSize;
-        int numOfElements;
-    public;
-        Stack();
-        ~Stack();
-        bool isEmpty();
-        bool isFull();
-        void push(std::string key);
+        void push(<<type>> key);
         void pop();
         Node* peek();
         int size();
@@ -75,29 +54,6 @@ class Stack {
 #+end_src
 ** Array Based
 #+NAME:Stack AA Declaration
-#+begin_src cpp
-#ifndef STACK_H_
-#define STACK_H_
-#include<iostream>
-#include<string>
-
-class Stack {
-    private:
-        int maxSize;
-        int StackHead;
-        type *stack;
-    public;
-        Stack();
-        Stack(int size);
-        ~Stack();
-        bool isEmpty();
-        bool isFull();
-        void push(type key);
-        void pop();
-        Node* peek();
-        int size();
-};
-#+end_src
 #+begin_src cpp :exports none :noweb strip-export :tangle stackArray.hpp
 #ifndef STACK_H_
 #define STACK_H_
@@ -108,8 +64,7 @@ class Stack {
     private:
         int maxSize;
         int StackHead;
-        int numOfElments;
-        type *stack;
+        <<type>> *stack;
     public;
         Stack();
         Stack(int size);

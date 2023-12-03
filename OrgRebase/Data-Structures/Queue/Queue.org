@@ -1,8 +1,23 @@
 #+title: Queue
 
-* Table of Contents :toc:
-- [[#objective][Objective]]
-- [[#queue][Queue]]
+#+NAME: type
+#+begin_src cpp :exports none
+std::string
+#+end_src
 
-* Objective
-* Queue
+* Table of Contents :toc:
+- [[#queue-properties][Queue Properties]]
+- [[#queue-declaration][Queue Declaration]]
+  - [[#queue-linked-list][Queue Linked List]]
+  - [[#queue-circular-array][Queue Circular Array]]
+- [[#queue-definition][Queue Definition]]
+  - [[#queue-linked-list-1][Queue Linked List]]
+  - [[#queue-circular-array-1][Queue Circular Array]]
+
+* Queue Properties
+* Queue Declaration
+** Queue Linked List
+** Queue Circular Array
+* Queue Definition
+** Queue Linked List
+** Queue Circular Array

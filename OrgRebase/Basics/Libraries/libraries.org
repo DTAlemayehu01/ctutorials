@@ -1,4 +1,5 @@
 #+title: Libraries
+#+OPTIONS: broken-links:t
 
 * Table of Contents :toc:
 - [[#objective-understand-the-primary-standard-libraries-in-c][Objective: Understand the primary standard libraries in C++]]
